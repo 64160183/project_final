@@ -67,6 +67,10 @@
                     สินค้า
                 </a>
 
+                <a href="#" class="sidebar-menu">
+                    <img style="width: 35px;" src="https://cdn.pixabay.com/photo/2014/06/19/00/59/shopping-cart-371980_1280.png" alt="">
+                </a>
+
                 <hr>
 
                 <?php
@@ -86,7 +90,7 @@
             </div>
 
             
-            <div class="container ">
+            <div class="container">
             <div class="div1">
             <div class="filter">
                 <a href="#" class="sidebar-menu-filter">
@@ -97,9 +101,10 @@
                 </a>
                 <div class="product">
                     <div class="product-item">
+                        <a href="user_product.php">
                         <img class="product-img" src="" alt="">
                         <p style="font-size: 1.2vw;">Product name</p>
-                        <p style="font-size: 0.9vw;">500THB</p>
+                        <p style="font-size: 0.9vw;">500THB</p></a>
                     </div>
                     <div class="product-item">
                         <img class="product-img" src="" alt="">

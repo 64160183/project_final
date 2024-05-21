@@ -119,3 +119,38 @@
     object-fit: cover;
     border-radius: 10px;
 }
+
+.page {
+    width: 46vw;
+    min-height: 30vw;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.desc-content {
+    background: blue;
+    display: flex;
+}
+
+.desc-detail {
+    background: green;
+    margin-right: 20px;
+}
+
+.desc-img {
+    width: 20vw;
+    height: 20vw;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.btn-control {
+    background: red;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-add-to-card {
+    margin-left: 10px;
+}

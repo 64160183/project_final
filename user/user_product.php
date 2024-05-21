@@ -66,6 +66,10 @@
                     สินค้า
                 </a>
 
+                <a href="#" class="sidebar-menu">
+                    <img style="width: 35px;" src="https://cdn.pixabay.com/photo/2014/06/19/00/59/shopping-cart-371980_1280.png" alt="">
+                </a>
+
                 <hr>
 
                 <?php
@@ -85,40 +89,23 @@
             </div>
 
             
-            <div class="container ">
+            <div class="container">
             <div class="div1">
             <div class="filter">
-                <a href="#" class="sidebar-menu-filter">
-                    ทั้งหมด
-                </a>
-                <a href="#" class="sidebar-menu-filter">
-                    sadsad
-                </a>
-                <div class="product">
-                    <div class="product-item">
-                        <img class="product-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-                        <p style="font-size: 1.2vw;">Product name</p>
-                        <p style="font-size: 0.9vw;">500THB</p>
-                    </div>
-                    <div class="product-item">
-                        <img class="product-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-                        <p style="font-size: 1.2vw;">Product name</p>
-                        <p style="font-size: 0.9vw;">500THB</p>
-                    </div>
-                    <div class="product-item">
-                        <img class="product-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-                        <p style="font-size: 1.2vw;">Product name</p>
-                        <p style="font-size: 0.9vw;">500THB</p>
-                    </div>
-                    <div class="product-item">
-                        <img class="product-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-                        <p style="font-size: 1.2vw;">Product name</p>
-                        <p style="font-size: 0.9vw;">500THB</p>
-                    </div>
-                    <div class="product-item">
-                        <img class="product-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-                        <p style="font-size: 1.2vw;">Product name</p>
-                        <p style="font-size: 0.9vw;">500THB</p>
+                <div class="page">
+                    <h2>Detail</h2>
+                    <div class="desc-content">
+                        <img class="desc-img" src="" alt="">
+                        <div class="desc-detail">
+                            <p style="font-size: 1.5vw">Product Name</p>
+                            <p style="font-size: 1.2vw">500 THB</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, suscipit.</p>
+                            <br>
+                            <div class="btn-control">
+                                <a href="user_home.php" class="btn btn-danger">Cancel</a>
+                                <button class="btn btn-success btn-add-to-card">Add to Cart</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
