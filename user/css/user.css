@@ -154,3 +154,60 @@
 .btn-add-to-card {
     margin-left: 10px;
 }
+
+.cartlist {
+    background: gold;
+}
+
+.cartlist-item {
+    background: rgb(255, 255, 255);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.cartlist-left {
+    background: green;
+    display: flex;
+}
+
+.cartlist-left img {
+    width: 5vw;
+    height: 5vw;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+.cartlist-right {
+    background: orchid;
+    display: flex;
+    align-items: center;
+}
+
+.btn-con {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.btn-con:hover {
+    font-weight: bold;
+    background: rgb(0, 157, 255);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.btn-text {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}

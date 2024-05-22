@@ -108,7 +108,7 @@
                     สินค้า
                 </a>
 
-                <a href="#" class="sidebar-menu">
+                <a href="user_cart.php" class="sidebar-menu">
                     <img style="width: 35px;" src="https://cdn.pixabay.com/photo/2014/06/19/00/59/shopping-cart-371980_1280.png" alt="">
                 </a>
 

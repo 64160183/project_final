@@ -29,8 +29,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USER PAGE</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
 
     <link rel="stylesheet" href="css/user.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -60,7 +58,6 @@
             </h3>
         </div>
     </div>
-
     <div class="container background-container-menu">
         <div class="container1">
             <div class="sidebar">
@@ -95,26 +92,35 @@
             <div class="container">
             <div class="div1">
             <div class="filter">
-
-                <input onkeyup="searchsome(this)" id="txt_search" type="text" class="sidebar-search sidebar-menu-filter" placeholder="Search">
-                <br>
-
-                <a onclick="searchproduct('all')" class="sidebar-menu-filter" style="cursor: pointer;">
-                    ทั้งหมด
-                </a>
-
-                <a id="menufilterlist"></a>
-                
-
-                <div id="productlist" class="product"></div>
+                <div class="page">
+                    <h2>My Cart</h2>
+                    <div class="cartlist">
+                        <div class="cartlist-item">
+                            <div class="cartlist-left">
+                                <img src="" alt="">
+                                <div class="cartlist-detail">
+                                    <p style="font-size: 1.5vw">Product name</p>
+                                    <p style="font-size: 1.2vw">500 THB</p>
+                                </div>
+                            </div>
+                            <div class="cartlist-right">
+                                <p class="btn-con" style="font-size: 1.5vw">-</p>
+                                <p class="btn-text" style="font-size: 1.5vw">1</p>
+                                <p class="btn-con" style="font-size: 1.5vw">+</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                            <div class="btn-control">
+                                <button class="btn btn-success btn-add-to-card">Buy</button>
+                            </div>
+                </div>
             </div>
             </div>
 
 
-            
         </div>
     </div>
-
-
+    
 </body>
 </html>
