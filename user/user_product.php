@@ -31,6 +31,8 @@
     <title>USER PAGE</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <link rel="stylesheet" href="css/user.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -92,12 +94,12 @@
 
             
             <div class="container">
-            <div class="div1">
+            <div id="Desc" class="div1">
             <div class="filter">
                 <div class="page">
                     <h2>Detail</h2>
-                    <div id="Desc" class="desc-content">
-                        <img id="img" class="desc-img" src="" alt="">
+                    <div class="desc-content">
+                        <img id="mdimg" class="desc-img" src="" alt="">
                         <div class="desc-detail">
                             <p id="productname" style="font-size: 1.5vw">Product Name</p>
                             <p id="price" style="font-size: 1.2vw">500 THB</p>
@@ -105,7 +107,7 @@
                             <br>
                             <div class="btn-control">
                                 <a href="user_home.php" class="btn btn-danger">Cancel</a>
-                                <button class="btn btn-success btn-add-to-card">Add to Cart</button>
+                                <button onclick="addtocart()" class="btn btn-success btn-add-to-card">Add to Cart</button>
                             </div>
                         </div>
                     </div>

@@ -90,25 +90,13 @@
 
             
             <div class="container">
-            <div class="div1">
+            <div id="Cart" class="div1">
             <div class="filter">
                 <div class="page">
                     <h2>My Cart</h2>
-                    <div class="cartlist">
-                        <div class="cartlist-item">
-                            <div class="cartlist-left">
-                                <img src="" alt="">
-                                <div class="cartlist-detail">
-                                    <p style="font-size: 1.5vw">Product name</p>
-                                    <p style="font-size: 1.2vw">500 THB</p>
-                                </div>
-                            </div>
-                            <div class="cartlist-right">
-                                <p class="btn-con" style="font-size: 1.5vw">-</p>
-                                <p class="btn-text" style="font-size: 1.5vw">1</p>
-                                <p class="btn-con" style="font-size: 1.5vw">+</p>
-                            </div>
-                        </div>
+                    <div id="mycart" class="cartlist">
+                        
+                    
                     </div>
                     <br>
                             <div class="btn-control">
@@ -117,7 +105,6 @@
                 </div>
             </div>
             </div>
-
 
         </div>
     </div>

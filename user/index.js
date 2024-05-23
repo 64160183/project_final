@@ -32,7 +32,7 @@ $(document).ready(() => {
 $(document).ready(() => {
     var html = '';
     for (let i = 0; i < product.length; i++) {
-        html += `<div class="product-item ${product[i].type}">
+        html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
                 <a href="user_product.php">
                 <img class="product-img" src="${product[i].img}" alt="">
                 <p style="font-size: 1.2vw;">${product[i].name}</p>
@@ -57,7 +57,7 @@ function searchsome(elem) {
     var html = '';
     for (let i = 0; i < product.length; i++) {
         if(product[i].name.includes(value)) {
-            html += `<div class="product-item ${product[i].type}">
+            html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
                     <a href="user_product.php">
                     <img class="product-img" src="${product[i].img}" alt="">
                     <p style="font-size: 1.2vw;">${product[i].name}</p>
@@ -83,21 +83,107 @@ function searchproduct(param) {
 }
 
 
-$(document).ready(() => {
-    var html = '';
-    for (let i = 0; i < product.length; i++) {
-        html += `<img id="img" class="desc-img" src="${product[i].img}" alt="">
-                        <div class="desc-detail">
-                            <p id="productname" style="font-size: 1.5vw">Product Name</p>
-                            <p id="price" style="font-size: 1.2vw">500 THB</p>
-                            <p id="descript">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, suscipit.</p>
-                            <br>
-                            <div class="btn-control">
-                                <a href="user_home.php" class="btn btn-danger">Cancel</a>
-                                <button class="btn btn-success btn-add-to-card">Add to Cart</button>
+var productindex = 0;
+function openProductDetail(index) {
+    productindex = index;
+    console.log(productindex)
+    $("#mdimg").attr('src', product[index].img);
+    $("#productname").text(product[index].name)
+    $("#price").text(product[index].price)
+    $("#descript").text(product[index].descript)
+}
+
+
+var cart = [];
+function addtocart() {
+    var pass = true;
+    for (let i = 0; i < cart.length; i++) {
+        if(productindex == cart[i].index) {
+            console.log('found same product')
+            cart[i].count++;
+            pass = false;
+        }
+    }
+
+    if(pass) {
+        var obj = {
+            index: productindex,
+            id: product[productindex].id,
+            name: product[productindex].name,
+            price: product[productindex].price,
+            img: product[productindex].img,
+            count: 1
+        };
+        //console.log(obj)
+        cart.push(obj)
+    }
+    console.log(cart)
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Add ' + product[productindex].name + ' to cart'
+    })
+}
+
+function openCart() {
+    $('#Cart').css('display', 'flex')
+    rendercart();
+}
+
+function rendercart() {
+    if(cart.length > 0) {
+        var html = '';
+        for (let i = 0; i < array.length; i++) {
+            html += `<div class="cartlist-item">
+                            <div class="cartlist-left">
+                                <img src="${cart[i].img}" alt="">
+                                <div class="cartlist-detail">
+                                    <p style="font-size: 1.5vw">${cart[i].name}</p>
+                                    <p style="font-size: 1.2vw">${ numberWithCommas(cart[i].price) * cart[i].count} THB</p>
+                                </div>
+                            </div>
+                            <div class="cartlist-right">
+                                <p onclick="deinitems('-', ${i})" class="btn-con" style="font-size: 1.5vw">-</p>
+                                <p id="countitems${i}" class="btn-text" style="font-size: 1.5vw">${cart[i].count}</p>
+                                <p onclick="deinitems('+', ${i})" class="btn-con" style="font-size: 1.5vw">+</p>
                             </div>
                         </div>`;
+        }
+        $("#mycart").html(html)
+    } else {
+        $("#mycart").html(`<p>ไม่มีสินค้าในตะกร้า</p>`)
     }
-    $("#Desc").html(html);
-    
-})
+}
+
+function deinitems(action, index) {
+    if(action == '-') {
+        if(cart[index].count > 0) {
+            cart[index].count--;
+            $("#countitems"+index).text(cart[index].count)
+
+            if(cart[index].count <= 0) {
+                Swal.fire ({
+                icon: 'warning',
+                title: 'Are you sure to delete',
+                showConfirmButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Delete',
+                cancelButtonText: 'Cancel'
+            }).then((res) => {
+                if(res.showConfirmed) {
+                    cart.splice(index, 1)
+                    console.log(cart)
+                    rendercart();
+                } else {
+                    cart[index].count++;
+                    $("#countitems"+index).text(cart[index].count)
+                }
+            })
+
+            }
+        }
+    } else if(action == '+') {
+        cart[index].count++;
+        $("#countitems"+index).text(cart[index].count)
+    }
+}
