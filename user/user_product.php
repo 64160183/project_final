@@ -94,13 +94,13 @@
 
             
             <div class="container">
-            <div id="Desc" class="div1">
+            <div class="div1">
             <div class="filter">
                 <div class="page">
                     <h2>Detail</h2>
                     <div class="desc-content">
-                        <img id="mdimg" class="desc-img" src="" alt="">
-                        <div class="desc-detail">
+                        <img id="img" class="desc-img" src="" alt="">
+                        <div class="detail">
                             <p id="productname" style="font-size: 1.5vw">Product Name</p>
                             <p id="price" style="font-size: 1.2vw">500 THB</p>
                             <p id="descript">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, suscipit.</p>

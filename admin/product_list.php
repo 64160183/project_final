@@ -9,17 +9,17 @@
     if (isset($_REQUEST['delete_id'])) {
         $id = $_REQUEST['delete_id'];
 
-        $select_stmt = $db->prepare("SELECT * FROM masterlogin WHERE id = :id");
+        $select_stmt = $db->prepare("SELECT * FROM sp_product WHERE id = :id");
         $select_stmt->bindParam(':id', $id);
         $select_stmt->execute();
         $row = $select_stmt->fetch(PDO::FETCH_ASSOC);
 
         #ลบข้อมูล user
-        $delete_stmt = $db->prepare('DELETE FROM masterlogin WHERE id = :id');
+        $delete_stmt = $db->prepare('DELETE FROM sp_product WHERE id = :id');
         $delete_stmt->bindParam(':id', $id);
         $delete_stmt->execute();
 
-        header('Location:customer_list.php');
+        header('Location:product_list.php');
     }
 ?>
 
@@ -93,35 +93,31 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>Role</th>
-                            <th>Phone</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Type</th>
+                            <th>Description</th>
                             <th>Edit and Delete</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <?php
-                            $select_stmt = $db->prepare("SELECT * FROM masterlogin WHERE role = 'user'");
+                            $select_stmt = $db->prepare("SELECT * FROM sp_product WHERE id");
                             $select_stmt->execute();
                             while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
                         ?>
 
                             <tr>
                                 <td><?php echo $row["id"]; ?></td>
-                                <td><?php echo $row["firstname"]; ?></td>
-                                <td><?php echo $row["lastname"]; ?></td>
-                                <td><?php echo $row["username"]; ?></td>
-                                <td><?php echo $row["email"]; ?></td>
-                                <td><?php echo $row["password"]; ?></td>
-                                <td><?php echo $row["role"]; ?></td>
-                                <td><?php echo $row["phone"]; ?></td>
+                                <td><?php echo $row["img"]; ?></td>
+                                <td><?php echo $row["name"]; ?></td>
+                                <td><?php echo $row["price"]; ?></td>
+                                <td><?php echo $row["type"]; ?></td>
+                                <td><?php echo $row["description"]; ?></td>
                                 <td class="mt-5">
-                                    <a href="edit_user.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-success">Edit</a>
+                                    <a href="edit_product.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-success">Edit</a>
                                     <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>

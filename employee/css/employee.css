@@ -68,6 +68,8 @@
     margin-bottom: 10px;
     transition: 0.3s;
     margin-right: 1px;
+    display: flex;
+    justify-content: center;
 }
 
 .sidebar-menu:hover {

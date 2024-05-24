@@ -21,6 +21,7 @@
         $username_up = $_REQUEST['txt_username'];
         $email_up = $_REQUEST['txt_email'];
         $password_up = $_REQUEST['txt_password'];
+        $tel_up = $_REQUEST['txt_tel'];
         $role_up = $_REQUEST['txt_role'];
 
         if (empty($id_up)) {
@@ -35,18 +36,21 @@
             $errorMsg[] = "Please enter Email";
         } else if (empty($password_up)) {
             $errorMsg = 'Please enter Password';
+        } else if (empty($tel_up)) {
+            $errorMsg = 'Please enter Tel';
         } else if (empty($role_up)) {
             $errorMsg = 'Please enter Role';
         } else {
             try {
                 if (!isset($errorMsg)) {
-                    $update_stmt = $db->prepare("UPDATE masterlogin SET id = :id_up, firstname = :firstname_up, lastname = :lastname_up, username = :username_up, email = :email_up, password = :password_up, role = :role_up WHERE id = :id");
+                    $update_stmt = $db->prepare("UPDATE masterlogin SET id = :id_up, firstname = :firstname_up, lastname = :lastname_up, username = :username_up, email = :email_up, password = :password_up, phone = :tel_up, role = :role_up WHERE id = :id");
                     $update_stmt->bindParam(':id_up', $id_up);
                     $update_stmt->bindParam(':firstname_up', $firstname_up);
                     $update_stmt->bindParam(':lastname_up', $lastname_up);
                     $update_stmt->bindParam(':username_up', $username_up);
                     $update_stmt->bindParam(':email_up', $email_up);
                     $update_stmt->bindParam(':password_up', $password_up);
+                    $update_stmt->bindParam(':tel_up', $tel_up);
                     $update_stmt->bindParam(':role_up', $role_up);
                     $update_stmt->bindParam(':id', $id);
 
@@ -76,7 +80,7 @@
 
     <div class="container">
     <div class="div1">
-        <h2 class="div-login-register"><img src="img/add-user.png" width="70px" class="img">Edit User</h2>
+        <h2 class="div-login-register"><img src="img/Edit.png" width="70px" class="img">Edit User</h2>
         <hr>
 
     <?php
@@ -135,6 +139,13 @@
             <label for="password" class="col-sm-3 control-label">Password</label>
             <div>
                 <input type="text" name="txt_password" class="form-control" value="<?php echo $password; ?>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone" class="col-sm-3 control-label">Tel</label>
+            <div>
+                <input type="text" name="txt_tel" class="form-control" value="<?php echo $phone; ?>">
             </div>
         </div>
 

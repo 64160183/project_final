@@ -30,6 +30,17 @@ $(document).ready(() => {
 })
 
 $(document).ready(() => {
+
+    $.ajax({
+        method: 'get',
+        url: 'getallproduct.php',
+        success: function(response) {
+            console.log(response)
+        }, error: function(err) {
+            console.log(err)
+        }
+    })
+
     var html = '';
     for (let i = 0; i < product.length; i++) {
         html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
@@ -84,13 +95,17 @@ function searchproduct(param) {
 
 
 var productindex = 0;
-function openProductDetail(index) {
-    productindex = index;
+function openProductDetail(i) {
+    productindex = i;
     console.log(productindex)
-    $("#mdimg").attr('src', product[index].img);
-    $("#productname").text(product[index].name)
-    $("#price").text(product[index].price)
-    $("#descript").text(product[index].descript)
+    if (product[i]) {
+    $("#img").attr('src', product[i].img);
+    $("#productname").text(product[i].name);
+    $("#price").text(product[i].price);
+    $("#descript").text(product[i].descript);
+    } else {
+        console.error('Product not found');
+    }
 }
 
 

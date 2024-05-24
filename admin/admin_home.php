@@ -45,7 +45,6 @@
     <div class="container background-container-menu">
         <div class="container1">
             <div class="sidebar">
-                <input type="text" class="sidebar-search" placeholder="Search">
 
                 <a href="admin_home.php" class="sidebar-menu">
                     หน้าแรก
@@ -59,7 +58,7 @@
                     รายชื่อลูกค้า
                 </a>
 
-                <a href="#" class="sidebar-menu">
+                <a href="product_list.php" class="sidebar-menu">
                     รายการสินค้า
                 </a>
 
