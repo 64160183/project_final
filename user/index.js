@@ -3,21 +3,21 @@ var product = [{
     img: 'https://images.unsplash.com/photo-1616967520023-5d658b3cd0c6?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     name: 'Shoe',
     price: 700,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil soluta voluptas obcaecati molestiae natus deserunt possimus sit nam optio delectus.',
+    description: 'Shoe Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil soluta voluptas obcaecati molestiae natus deserunt possimus sit nam optio delectus.',
     type: 'shoe'
 }, {
     id: 2,
     img: 'https://images.unsplash.com/photo-1531390979850-32568e0159ce?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     name: 'Water',
     price: 1200,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil soluta voluptas obcaecati molestiae natus deserunt possimus sit nam optio delectus.',
+    description: 'Water Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil soluta voluptas obcaecati molestiae natus deserunt possimus sit nam optio delectus.',
     type: 'water'
 }, {
     id: 3,
     img: 'https://images.unsplash.com/photo-1608587070000-86389cc7291e?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     name: 'Food',
     price: 900,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil soluta voluptas obcaecati molestiae natus deserunt possimus sit nam optio delectus.',
+    description: 'Food Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil soluta voluptas obcaecati molestiae natus deserunt possimus sit nam optio delectus.',
     type: 'food'
 }];
 
@@ -44,7 +44,6 @@ $(document).ready(() => {
     var html = '';
     for (let i = 0; i < product.length; i++) {
         html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
-                <a href="user_product.php">
                 <img class="product-img" src="${product[i].img}" alt="">
                 <p style="font-size: 1.2vw;">${product[i].name}</p>
                 <p style="font-size: 0.9vw;">${numberWithCommas(product[i].price)} THB</p></a>
@@ -69,7 +68,6 @@ function searchsome(elem) {
     for (let i = 0; i < product.length; i++) {
         if(product[i].name.includes(value)) {
             html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
-                    <a href="user_product.php">
                     <img class="product-img" src="${product[i].img}" alt="">
                     <p style="font-size: 1.2vw;">${product[i].name}</p>
                     <p style="font-size: 0.9vw;">${numberWithCommas(product[i].price)}</p></a>
@@ -99,13 +97,18 @@ function openProductDetail(i) {
     productindex = i;
     console.log(productindex)
     if (product[i]) {
-    $("#img").attr('src', product[i].img);
-    $("#productname").text(product[i].name);
-    $("#price").text(product[i].price);
-    $("#descript").text(product[i].descript);
+        $("#modalDesc").css('display', 'flex')
+        $("#mdd-img").attr('src', product[i].img);
+        $("#productname").text(product[i].name);
+        $("#price").text(product[i].price);
+        $("#description").text(product[i].description);
     } else {
         console.error('Product not found');
     }
+}
+
+function cancelModal() {
+    $(".modal").css('display', 'none')
 }
 
 
@@ -141,7 +144,7 @@ function addtocart() {
 }
 
 function openCart() {
-    $('#Cart').css('display', 'flex')
+    $('#modalCart').css('display', 'flex')
     rendercart();
 }
 

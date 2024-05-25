@@ -5,22 +5,6 @@
     }
 
     require_once 'connection.php';
-
-    if (isset($_REQUEST['delete_id'])) {
-        $id = $_REQUEST['delete_id'];
-
-        $select_stmt = $db->prepare("SELECT * FROM masterlogin WHERE id = :id");
-        $select_stmt->bindParam(':id', $id);
-        $select_stmt->execute();
-        $row = $select_stmt->fetch(PDO::FETCH_ASSOC);
-
-        #ลบข้อมูล user
-        $delete_stmt = $db->prepare('DELETE FROM masterlogin WHERE id = :id');
-        $delete_stmt->bindParam(':id', $id);
-        $delete_stmt->execute();
-
-        header('Location:user_home.php');
-    }
 ?>
 
 <!DOCTYPE html>
@@ -70,10 +54,6 @@
                     สินค้า
                 </a>
 
-                <a onclick="openCart()" href="user_cart.php" class="sidebar-menu">
-                    <img style="width: 35px;" src="https://cdn.pixabay.com/photo/2014/06/19/00/59/shopping-cart-371980_1280.png" alt="">
-                </a>
-
                 <hr>
 
                 <?php
@@ -94,28 +74,85 @@
 
             
             <div class="container">
-            <div class="div1">
-            <div class="filter">
+                <div class="div1">
+                    <div class="itemcart ">
+                            <a class="sidebar-menu-cart" onclick="openCart()">
+                                <img style="width: 35px;" src="https://cdn.pixabay.com/photo/2014/06/19/00/59/shopping-cart-371980_1280.png" alt="">
+                            </a>
+                    </div>
 
-                <input onkeyup="searchsome(this)" id="txt_search" type="text" class="sidebar-search sidebar-menu-filter" placeholder="Search">
-                <br>
+                    <div class="filter">
+                        <input onkeyup="searchsome(this)" id="txt_search" type="text" class="sidebar-search sidebar-menu-filter" placeholder="Search">
 
-                <a onclick="searchproduct('all')" class="sidebar-menu-filter" style="cursor: pointer;">
-                    ทั้งหมด
-                </a>
+                        <br>
 
-                <a id="menufilterlist"></a>
+                        <a onclick="searchproduct('all')" class="sidebar-menu-filter" style="cursor: pointer;">
+                            ทั้งหมด
+                        </a>
+
+                        <a id="menufilterlist"></a>
                 
 
-                <div id="productlist" class="product"></div>
+                        <div id="productlist" class="product"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            </div>
-
 
             
         </div>
     </div>
 
+    <div id="modalDesc" class="modal" style="display: none;">
+        <div class="modal-bg"></div>
+        <div class="modal-page">
+                <h2>Detail</h2>
+                <div class="modaldesc-content">
+                    <img id="mdd-img" class="modaldese-image" src="https://images.unsplash.com/photo-1531390979850-32568e0159ce?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+
+                    <div class="modaldesc-detail">
+                            <p id="productname" style="font-size: 1.5vw">Product Name</p>
+                            <p id="price" style="font-size: 1.2vw">500 THB</p>
+                            <br>
+                            <p id="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, suscipit.</p>
+                            <br>
+                            <div class="btn-control">
+                                <button onclick="cancelModal()" class="btn btn-danger">Cancel</button>
+                                <button onclick="addtocart()" class="btn btn-success btn-add-to-card">Add to Cart</button>
+                            </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="modalCart" class="modal" style="display: none;">
+        <div class="modal-bg"></div>
+        <div class="modal-page">
+                <h2>My Cart</h2>
+                <div class="cartlist">
+                    <div class="cartlist-item">
+
+                        <div class="cartlist-left">
+                            <img src="https://images.unsplash.com/photo-1531390979850-32568e0159ce?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                            <div class="cartlist-detail">
+                                <p style="font-size: 1.5vw">Product name</p>
+                                <p style="font-size: 1.2vw">500 THB</p>
+                            </div>
+                        </div>
+
+                        <div class="cartlist-right">
+                            <p class="btn-con" style="font-size: 1.5vw">-</p>
+                            <p class="btn-text" style="font-size: 1.5vw">1</p>
+                            <p class="btn-con" style="font-size: 1.5vw">+</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-control">
+                    <button onclick="cancelModal()" class="btn btn-danger">Cancel</button>
+                    <button class="btn btn-success btn-add-to-card">Buy</button>
+                </div>
+        </div>
+    </div>
 
 </body>
 </html>

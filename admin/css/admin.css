@@ -166,3 +166,9 @@
     grid-gap: 10px;
     margin-top: 5px;
 }
+
+.img_product {
+    width: 10vw;
+    height: 11vw;
+    border-radius: 10px;
+}

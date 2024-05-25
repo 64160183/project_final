@@ -88,7 +88,7 @@
 
             <div class="filter">
                 <div class="display-5 text-center">Customer List</div>
-                <a href="add_user.php" class="btn btn-primary mt-3">Add +</a>
+                <a href="add_product.php" class="btn btn-primary mt-3">Add +</a>
                 <table class="table table-striped table-bordered table-hover mt-3">
                     <thead>
                         <tr>
@@ -104,14 +104,15 @@
 
                     <tbody>
                         <?php
-                            $select_stmt = $db->prepare("SELECT * FROM sp_product WHERE id");
+                            $select_stmt = $db->prepare("SELECT * FROM sp_product");
                             $select_stmt->execute();
+
                             while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
                         ?>
 
                             <tr>
                                 <td><?php echo $row["id"]; ?></td>
-                                <td><?php echo $row["img"]; ?></td>
+                                <td><img class="img_product" src="../img/<?php echo $row['img']; ?>" alt=""></td>
                                 <td><?php echo $row["name"]; ?></td>
                                 <td><?php echo $row["price"]; ?></td>
                                 <td><?php echo $row["type"]; ?></td>
