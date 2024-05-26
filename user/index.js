@@ -21,19 +21,12 @@ var product = [{
     type: 'food'
 }];
 
-$(document).ready(() => {
-    var html = '';
-    for (let i = 0; i < product.length; i++) {
-        html += `<a onclick="searchproduct('${product[i].type}')" class="sidebar-menu-filter" style="cursor: pointer;">${product[i].type}</a>`;
-    }
-    $("#menufilterlist").html(html);
-})
 
 $(document).ready(() => {
 
     $.ajax({
         method: 'get',
-        url: 'getallproduct.php',
+        url: '../user/getallproduct.php',
         success: function(response) {
             console.log(response)
         }, error: function(err) {
@@ -50,6 +43,13 @@ $(document).ready(() => {
             </div>`;
     }
     $("#productlist").html(html);
+
+    
+    var html = '';
+    for (let i = 0; i < product.length; i++) {
+        html += `<a onclick="searchproduct('${product[i].type}')" class="sidebar-menu-filter" style="cursor: pointer;">${product[i].type}</a>`;
+    }
+    $("#menufilterlist").html(html);
 })
 
 function numberWithCommas(x) {
@@ -98,10 +98,10 @@ function openProductDetail(i) {
     console.log(productindex)
     if (product[i]) {
         $("#modalDesc").css('display', 'flex')
-        $("#mdd-img").attr('src', product[i].img);
-        $("#productname").text(product[i].name);
-        $("#price").text(product[i].price);
-        $("#description").text(product[i].description);
+        $("#md-img").attr('src', product[i].img);
+        $("#md-productname").text(product[i].name);
+        $("#md-price").text(numberWithCommas(product[i].price));
+        $("#md-description").text(product[i].description);
     } else {
         console.error('Product not found');
     }
@@ -115,8 +115,9 @@ function cancelModal() {
 var cart = [];
 function addtocart() {
     var pass = true;
+
     for (let i = 0; i < cart.length; i++) {
-        if(productindex == cart[i].index) {
+        if( productindex == cart[i].index ) {
             console.log('found same product')
             cart[i].count++;
             pass = false;
@@ -132,16 +133,18 @@ function addtocart() {
             img: product[productindex].img,
             count: 1
         };
-        //console.log(obj)
+        // console.log(obj)
         cart.push(obj)
     }
     console.log(cart)
 
     Swal.fire({
         icon: 'success',
-        title: 'Add ' + product[productindex].name + ' to cart'
+        title: 'Add ' + product[productindex].name + ' to cart !'
     })
+    $("#cartcount").css('display','flex').text(cart.length)
 }
+
 
 function openCart() {
     $('#modalCart').css('display', 'flex')
@@ -151,21 +154,22 @@ function openCart() {
 function rendercart() {
     if(cart.length > 0) {
         var html = '';
-        for (let i = 0; i < array.length; i++) {
+        for (let i = 0; i < cart.length; i++) {
             html += `<div class="cartlist-item">
-                            <div class="cartlist-left">
-                                <img src="${cart[i].img}" alt="">
-                                <div class="cartlist-detail">
-                                    <p style="font-size: 1.5vw">${cart[i].name}</p>
-                                    <p style="font-size: 1.2vw">${ numberWithCommas(cart[i].price) * cart[i].count} THB</p>
-                                </div>
+                        <div class="cartlist-left">
+                            <img src="${cart[i].img}" alt="">
+                            <div class="cartlist-detail">
+                                <p style="font-size: 1.5vw">${cart[i].name}</p>
+                                <p style="font-size: 1.2vw">${cart[i].price}</p>
                             </div>
-                            <div class="cartlist-right">
-                                <p onclick="deinitems('-', ${i})" class="btn-con" style="font-size: 1.5vw">-</p>
-                                <p id="countitems${i}" class="btn-text" style="font-size: 1.5vw">${cart[i].count}</p>
-                                <p onclick="deinitems('+', ${i})" class="btn-con" style="font-size: 1.5vw">+</p>
-                            </div>
-                        </div>`;
+                        </div>
+
+                        <div class="cartlist-right">
+                            <p onclick="deinitems('subtract', ${i})" class="btn-con" style="font-size: 1.5vw">-</p>
+                            <p id="countitems${i}" class="btn-text" style="font-size: 1.5vw">${cart[i].count}</p>
+                            <p onclick="deinitems('add', ${i})" class="btn-con" style="font-size: 1.5vw">+</p>
+                        </div>
+                    </div>`;
         }
         $("#mycart").html(html)
     } else {
@@ -174,33 +178,37 @@ function rendercart() {
 }
 
 function deinitems(action, index) {
-    if(action == '-') {
+    if(action == 'subtract') {
         if(cart[index].count > 0) {
             cart[index].count--;
             $("#countitems"+index).text(cart[index].count)
 
             if(cart[index].count <= 0) {
-                Swal.fire ({
-                icon: 'warning',
-                title: 'Are you sure to delete',
-                showConfirmButton: true,
-                showCancelButton: true,
-                confirmButtonText: 'Delete',
-                cancelButtonText: 'Cancel'
-            }).then((res) => {
-                if(res.showConfirmed) {
-                    cart.splice(index, 1)
-                    console.log(cart)
-                    rendercart();
-                } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Are you sure to delete?',
+                    showConfirmButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Delete',
+                    cancelButtonText: 'Cancel'
+                }).then((res) => {
+                  if(res.isConfirmed) {
+                     cart.splice(index, 1) 
+                     console.log(cart)
+                     rendercart();
+                     $("#cartcount").css('display','flex').text(cart.length)
+                     
+                     if(cart.length <= 0) {
+                        $("#cartcount").css('display','none')
+                     }
+                  } else {
                     cart[index].count++;
                     $("#countitems"+index).text(cart[index].count)
-                }
-            })
-
+                  }
+                })
             }
         }
-    } else if(action == '+') {
+    } else if(action == 'add') {
         cart[index].count++;
         $("#countitems"+index).text(cart[index].count)
     }

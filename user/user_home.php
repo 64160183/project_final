@@ -75,7 +75,7 @@
             
             <div class="container">
                 <div class="div1">
-                    <div class="itemcart ">
+                    <div class="itemcart">
                             <a class="sidebar-menu-cart" onclick="openCart()">
                                 <img style="width: 35px;" src="https://cdn.pixabay.com/photo/2014/06/19/00/59/shopping-cart-371980_1280.png" alt="">
                             </a>
@@ -106,18 +106,20 @@
     <div id="modalDesc" class="modal" style="display: none;">
         <div class="modal-bg"></div>
         <div class="modal-page">
+            <div class="styleh2">
                 <h2>Detail</h2>
+                <img onclick="cancelModal()" class="close-size" src="../img/close.png" alt="">
+            </div>
                 <div class="modaldesc-content">
-                    <img id="mdd-img" class="modaldese-image" src="https://images.unsplash.com/photo-1531390979850-32568e0159ce?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <img id="md-img" class="modaldese-image" src="https://images.unsplash.com/photo-1531390979850-32568e0159ce?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
 
                     <div class="modaldesc-detail">
-                            <p id="productname" style="font-size: 1.5vw">Product Name</p>
-                            <p id="price" style="font-size: 1.2vw">500 THB</p>
+                            <p id="md-productname" style="font-size: 1.5vw">Product Name</p>
+                            <p id="md-price" style="font-size: 1.2vw">500 THB</p>
                             <br>
-                            <p id="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, suscipit.</p>
+                            <p id="md-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, suscipit.</p>
                             <br>
                             <div class="btn-control">
-                                <button onclick="cancelModal()" class="btn btn-danger">Cancel</button>
                                 <button onclick="addtocart()" class="btn btn-success btn-add-to-card">Add to Cart</button>
                             </div>
                     </div>
@@ -128,27 +130,16 @@
     <div id="modalCart" class="modal" style="display: none;">
         <div class="modal-bg"></div>
         <div class="modal-page">
+            <div class="styleh2">
                 <h2>My Cart</h2>
-                <div class="cartlist">
-                    <div class="cartlist-item">
+                <img onclick="cancelModal()" class="close-size" src="../img/close.png" alt="">
+            </div>
 
-                        <div class="cartlist-left">
-                            <img src="https://images.unsplash.com/photo-1531390979850-32568e0159ce?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-                            <div class="cartlist-detail">
-                                <p style="font-size: 1.5vw">Product name</p>
-                                <p style="font-size: 1.2vw">500 THB</p>
-                            </div>
-                        </div>
 
-                        <div class="cartlist-right">
-                            <p class="btn-con" style="font-size: 1.5vw">-</p>
-                            <p class="btn-text" style="font-size: 1.5vw">1</p>
-                            <p class="btn-con" style="font-size: 1.5vw">+</p>
-                        </div>
-                    </div>
+                <div id="mycart" class="cartlist">
+                    
                 </div>
                 <div class="btn-control">
-                    <button onclick="cancelModal()" class="btn btn-danger">Cancel</button>
                     <button class="btn btn-success btn-add-to-card">Buy</button>
                 </div>
         </div>
