@@ -1,55 +1,62 @@
-var product = [{
-    id: 1,
-    img: 'https://images.unsplash.com/photo-1616967520023-5d658b3cd0c6?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    name: 'Shoe',
-    price: 700,
-    description: 'Shoe Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil soluta voluptas obcaecati molestiae natus deserunt possimus sit nam optio delectus.',
-    type: 'shoe'
-}, {
-    id: 2,
-    img: 'https://images.unsplash.com/photo-1531390979850-32568e0159ce?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    name: 'Water',
-    price: 1200,
-    description: 'Water Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil soluta voluptas obcaecati molestiae natus deserunt possimus sit nam optio delectus.',
-    type: 'water'
-}, {
-    id: 3,
-    img: 'https://images.unsplash.com/photo-1608587070000-86389cc7291e?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    name: 'Food',
-    price: 900,
-    description: 'Food Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil soluta voluptas obcaecati molestiae natus deserunt possimus sit nam optio delectus.',
-    type: 'food'
-}];
+//var product = [{
+//    id: 1,
+//    img: 'https://images.unsplash.com/photo-1616967520023-5d658b3cd0c6?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+//    name: 'Shoe',
+//    price: 700,
+//    description: 'Shoe Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil soluta voluptas obcaecati molestiae natus deserunt possimus sit nam optio delectus.',
+//    type: 'shoe'
+//}, {
+//    id: 2,
+//   img: 'https://images.unsplash.com/photo-1531390979850-32568e0159ce?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+//    name: 'Water',
+//    price: 1200,
+//    description: 'Water Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil soluta voluptas obcaecati molestiae natus deserunt possimus sit nam optio delectus.',
+//    type: 'water'
+//}, {
+//    id: 3,
+//    img: 'https://images.unsplash.com/photo-1608587070000-86389cc7291e?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+//    name: 'Food',
+//    price: 900,
+//    description: 'Food Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil soluta voluptas obcaecati molestiae natus deserunt possimus sit nam optio delectus.',
+//    type: 'food'
+//}];
 
+
+var product;
 
 $(document).ready(() => {
 
     $.ajax({
         method: 'get',
-        url: '../user/getallproduct.php',
+        url: '../user/api/getallproduct.php',
         success: function(response) {
             console.log(response)
+            if(response.RespCode == 200) {
+
+                product = response.Result;
+                var html = '';
+                for (let i = 0; i < product.length; i++) {
+                    html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
+                            <img class="product-img" src="../img/${product[i].img}" alt="">
+                            <p style="font-size: 1.2vw;">${product[i].name}</p>
+                            <p style="font-size: 0.9vw;">${numberWithCommas(product[i].price)} THB</p></a>
+                        </div>`;
+                }
+                $("#productlist").html(html);
+
+    
+                var html = '';
+                for (let i = 0; i < product.length; i++) {
+                    html += `<a onclick="searchproduct('${product[i].type}')" class="sidebar-menu-filter" style="cursor: pointer;">${product[i].type}</a>`;
+                }
+                $("#menufilterlist").html(html);
+            }
         }, error: function(err) {
             console.log(err)
         }
     })
 
-    var html = '';
-    for (let i = 0; i < product.length; i++) {
-        html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
-                <img class="product-img" src="${product[i].img}" alt="">
-                <p style="font-size: 1.2vw;">${product[i].name}</p>
-                <p style="font-size: 0.9vw;">${numberWithCommas(product[i].price)} THB</p></a>
-            </div>`;
-    }
-    $("#productlist").html(html);
-
     
-    var html = '';
-    for (let i = 0; i < product.length; i++) {
-        html += `<a onclick="searchproduct('${product[i].type}')" class="sidebar-menu-filter" style="cursor: pointer;">${product[i].type}</a>`;
-    }
-    $("#menufilterlist").html(html);
 })
 
 function numberWithCommas(x) {
@@ -68,7 +75,7 @@ function searchsome(elem) {
     for (let i = 0; i < product.length; i++) {
         if(product[i].name.includes(value)) {
             html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
-                    <img class="product-img" src="${product[i].img}" alt="">
+                    <img class="product-img" src="../img/${product[i].img}" alt="">
                     <p style="font-size: 1.2vw;">${product[i].name}</p>
                     <p style="font-size: 0.9vw;">${numberWithCommas(product[i].price)}</p></a>
                 </div>`;
@@ -98,7 +105,7 @@ function openProductDetail(i) {
     console.log(productindex)
     if (product[i]) {
         $("#modalDesc").css('display', 'flex')
-        $("#md-img").attr('src', product[i].img);
+        $("#md-img").attr('src', '../img/' + product[i].img);
         $("#md-productname").text(product[i].name);
         $("#md-price").text(numberWithCommas(product[i].price));
         $("#md-description").text(product[i].description);
@@ -157,10 +164,10 @@ function rendercart() {
         for (let i = 0; i < cart.length; i++) {
             html += `<div class="cartlist-item">
                         <div class="cartlist-left">
-                            <img src="${cart[i].img}" alt="">
+                            <img src="../img/${cart[i].img}" alt="">
                             <div class="cartlist-detail">
                                 <p style="font-size: 1.5vw">${cart[i].name}</p>
-                                <p style="font-size: 1.2vw">${cart[i].price}</p>
+                                <p id="priceproduct${i}" style="font-size: 1.2vw">${(cart[i].price * cart[i].count)} THB</p>
                             </div>
                         </div>
 
@@ -177,13 +184,14 @@ function rendercart() {
     }
 }
 
-function deinitems(action, index) {
+function deinitems(action, i) {
     if(action == 'subtract') {
-        if(cart[index].count > 0) {
-            cart[index].count--;
-            $("#countitems"+index).text(cart[index].count)
+        if(cart[i].count > 0) {
+            cart[i].count--;
+            $("#countitems"+i).text(cart[i].count)
+            $("#priceproduct"+i).text(cart[i].price * cart[i].count + " THB")
 
-            if(cart[index].count <= 0) {
+            if(cart[i].count <= 0) {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Are you sure to delete?',
@@ -193,7 +201,7 @@ function deinitems(action, index) {
                     cancelButtonText: 'Cancel'
                 }).then((res) => {
                   if(res.isConfirmed) {
-                     cart.splice(index, 1) 
+                     cart.splice(i, 1) 
                      console.log(cart)
                      rendercart();
                      $("#cartcount").css('display','flex').text(cart.length)
@@ -202,14 +210,51 @@ function deinitems(action, index) {
                         $("#cartcount").css('display','none')
                      }
                   } else {
-                    cart[index].count++;
-                    $("#countitems"+index).text(cart[index].count)
+                    cart[i].count++;
+                    $("#countitems"+i).text(cart[i].count)
                   }
                 })
             }
         }
     } else if(action == 'add') {
-        cart[index].count++;
-        $("#countitems"+index).text(cart[index].count)
+        cart[i].count++;
+        $("#countitems"+i).text(cart[i].count)
+        $("#priceproduct"+i).text(cart[i].price * cart[i].count + " THB")
     }
+}
+
+function buynow() {
+    $.ajax ({
+        method: 'post',
+        url: '../user/api/buynow.php',
+        data: {
+            product: cart
+        }, success: function(response) {
+            console.log(response)
+            if(response.RespCode == 200) {
+                Swal.fire ({
+                    icon: 'success',
+                    title: 'Thank you',
+                    html: `<p>Amount : ${response.Amount.Amount}</p>
+                        <p>Shipping : ${response.Amount.Shipping}</p>
+                        <p>Vat : ${response.Amount.Vat}</p>
+                        <p>Netamount : ${response.Amount.Netamount}</p>`
+                }).then((res => {
+                    if(res.isConfirmed) {
+                        cart = [];
+                        cancelModal();
+                        $("#cartcount").css('display', 'none')
+                    }
+                }))
+            } else {
+                Swal.fire ({
+                    icon: 'error',
+                    title: 'Something is Went wrong'
+                })
+            }
+        }, error: function(err) {
+            console.log(err)
+        }
+    })
+
 }

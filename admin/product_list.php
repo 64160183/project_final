@@ -4,7 +4,7 @@
         header("location: ../index.php");
     }
 
-    require_once 'connection.php';
+    require_once '../connection.php';
 
     if (isset($_REQUEST['delete_id'])) {
         $id = $_REQUEST['delete_id'];
@@ -87,7 +87,7 @@
             </div>
 
             <div class="filter">
-                <div class="display-5 text-center">Customer List</div>
+                <div class="display-5 text-center">Product List</div>
                 <a href="add_product.php" class="btn btn-primary mt-3">Add +</a>
                 <table class="table table-striped table-bordered table-hover mt-3">
                     <thead>

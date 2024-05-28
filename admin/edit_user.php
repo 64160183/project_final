@@ -1,5 +1,5 @@
 <?php
-    require_once 'connection.php';
+    require_once '../connection.php';
 
     if (isset($_REQUEST['update_id'])) {
         try {

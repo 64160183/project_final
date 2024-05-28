@@ -4,7 +4,8 @@
         header("location: ../index.php");
     }
 
-    require_once 'connection.php';
+    require_once '../connection.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -76,9 +77,12 @@
             <div class="container">
                 <div class="div1">
                     <div class="itemcart">
-                            <a class="sidebar-menu-cart" onclick="openCart()">
-                                <img style="width: 35px;" src="https://cdn.pixabay.com/photo/2014/06/19/00/59/shopping-cart-371980_1280.png" alt="">
-                            </a>
+                        <div id="cartcount" class="cartcount" style="display: none;">
+                            0
+                        </div>
+                        <a class="sidebar-menu-cart" onclick="openCart()">
+                            <img style="width: 35px;" src="https://cdn.pixabay.com/photo/2014/06/19/00/59/shopping-cart-371980_1280.png" alt="">
+                        </a>
                     </div>
 
                     <div class="filter">
@@ -140,7 +144,7 @@
                     
                 </div>
                 <div class="btn-control">
-                    <button class="btn btn-success btn-add-to-card">Buy</button>
+                    <button onclick="buynow()" class="btn btn-success btn-add-to-card">Buy</button>
                 </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <?php
-    require_once 'connection.php';
+    require_once '../connection.php';
 
     if (isset($_REQUEST['btn_insert'])) {
         $id_up = $_REQUEST['txt_id'];
@@ -53,7 +53,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add User</title>
+    <title>Add Product</title>
 
     <link rel="stylesheet" href="css/admin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -62,7 +62,7 @@
 
     <div class="container">
     <div class="div1">
-        <h2 class="div-login-register"><img src="img/add-user.png" width="70px" class="img">Add User</h2>
+        <h2 class="div-login-register"><img src="img/add-user.png" width="70px" class="img">Add Product</h2>
         <hr>
 
     <?php

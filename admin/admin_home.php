@@ -3,6 +3,8 @@
     if (!isset($_SESSION['admin_login'])) {
         header("location: ../index.php");
     }
+
+    require_once '../connection.php';
 ?>
 
 <!DOCTYPE html>

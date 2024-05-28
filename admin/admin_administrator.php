@@ -4,7 +4,7 @@
         header("location: ../index.php");
     }
 
-    require_once 'connection.php';
+    require_once '../connection.php';
 
     if (isset($_REQUEST['delete_id'])) {
         $id = $_REQUEST['delete_id'];

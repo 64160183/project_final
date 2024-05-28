@@ -1,6 +1,6 @@
 <?php
 
-    require_once 'connection.php';
+    require_once 'connect_db.php';
 
     try {
         if($_SERVER['REQUEST_METHOD'] == 'GET') {

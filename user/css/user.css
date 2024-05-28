@@ -312,6 +312,7 @@
     height: 3vw;
     background: rgb(0, 157, 255);
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .close-size {
@@ -330,3 +331,16 @@
     display: flex;
     justify-content: space-between;
  }
+
+ .cartcount {
+    position: absolute;
+    top: 190px;
+    width: 25px;
+    height: 25px;
+    background: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ 
