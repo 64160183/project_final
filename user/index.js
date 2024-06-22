@@ -235,10 +235,10 @@ function buynow() {
                 Swal.fire ({
                     icon: 'success',
                     title: 'Thank you',
-                    html: `<p>Amount : ${response.Amount.Amount}</p>
-                        <p>Shipping : ${response.Amount.Shipping}</p>
+                    html: `<p>ราคาสินค้า : ${response.Amount.Amount}</p>
+                        <p>ค่าจัดส่ง : ${response.Amount.Shipping}</p>
                         <p>Vat : ${response.Amount.Vat}</p>
-                        <p>Netamount : ${response.Amount.Netamount}</p>`
+                        <p>ยอดรวม : ${response.Amount.Netamount}</p>`
                 }).then((res => {
                     if(res.isConfirmed) {
                         cart = [];

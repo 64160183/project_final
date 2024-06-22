@@ -6,7 +6,7 @@
 
     if (isset($_POST['btn_login'])) {
         $email = $_POST['txt_email']; // textbox name 
-        $password = $_POST['txt_password']; // password
+        $password = sha1(md5($_POST['txt_password'])); // password
         $role = $_POST['txt_role']; // select option role
   
         if (empty($email)) {

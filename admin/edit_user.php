@@ -20,7 +20,7 @@
         $lastname_up = $_REQUEST['txt_lastname'];
         $username_up = $_REQUEST['txt_username'];
         $email_up = $_REQUEST['txt_email'];
-        $password_up = $_REQUEST['txt_password'];
+        $password_up =  $password = sha1(md5($_POST['txt_password']));
         $tel_up = $_REQUEST['txt_tel'];
         $role_up = $_REQUEST['txt_role'];
 

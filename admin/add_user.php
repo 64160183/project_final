@@ -7,7 +7,7 @@
         $lastname = $_REQUEST['txt_lastname'];
         $username = $_REQUEST['txt_username'];
         $email = $_REQUEST['txt_email'];
-        $password = $_REQUEST['txt_password'];
+        $password = sha1(md5($_POST['txt_password']));
         $role = $_REQUEST['txt_role'];
         $phone = $_REQUEST['txt_phone'];
 

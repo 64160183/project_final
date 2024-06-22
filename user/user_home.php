@@ -67,7 +67,9 @@
 
                 <a href="user_profile.php?update_id=<?php echo $row["id"]; ?>" class="sidebar-menu">
                     โปรไฟล์
-                </a>    
+                </a>
+                
+                
                 
                 <?php } }?>
 
@@ -143,6 +145,8 @@
                 <div id="mycart" class="cartlist">
                     
                 </div>
+
+
                 <div class="btn-control">
                     <button onclick="buynow()" class="btn btn-success btn-add-to-card">Buy</button>
                 </div>

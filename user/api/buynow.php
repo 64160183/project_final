@@ -9,7 +9,7 @@
             $amount = 0;
             $product = $_POST['product'];
 
-            $stmt = $db->prepare('select id, price from sp_product order by id desc');
+            $stmt = $db->prepare('SELECT id, price from sp_product order by id desc');
             if($stmt->execute()) {
 
                 $queryproduct = array();
@@ -31,54 +31,49 @@
                     }
                 }
 
-                $shiping = $amount + 60;
-                $vat = $shiping * 7 /100;
-                $netamount = $shiping + $vat;
+                $shiping = 60;
+                $vat = ($amount + $shiping) * 7 /100;
+                $netamount = $amount + $shiping + $vat;
                 $transid = round(microtime(true) * 1000);
                 $product = json_encode($product);
                 $mil = time() * 1000;
                 $updated_at = date("Y-m-d h:i:sa");
 
+
+
                 $stmt = $db->prepare('INSERT INTO sp_transaction (transid, orderlist, amount, shipping, vat, netamount, operation, mil, updated_at) VALUES (?,?,?,?,?,?,?,?,?)');
                 if($stmt->execute([
                     $transid, $product, $amount, $shiping, $vat, $netamount, 'PENDING', $mil, $updated_at
-                ])) {
-
-                    $object->RespCode = 200;
-                    $object->RespMessage = 'success';
-                    $object->Amount = new stdClass();
-                    $object->Amount->Amount = $amount;
-                    $object->Amount->Shipping = $shiping;
-                    $object->Amount->Vat = $vat;
-                    $object->Amount->Netamount = $netamount;
-
-                    http_response_code(200);
-
-                    } else {
-
-                    $object->RespCode = 300;
-                    $object->Log = 0;
-                    $object->RespMessage = 'bad : insert transaction fail';
-                    http_response_code(300);
-                    
+                    ])) {
+                        $object->RespCode = 200;
+                        $object->RespMessage = 'success';
+                        $object->Amount = new stdClass();
+                        $object->Amount->Amount = $amount;
+                        $object->Amount->Shipping = $shiping;
+                        $object->Amount->Vat = $vat;
+                        $object->Amount->Netamount = $netamount;
+    
+                        http_response_code(200);
                     }
-                    } else { 
-
-                        $object->RespCode = 500;
-                        $object->Log = 1;
-                        $object->RespMessage = 'bad : cant get product';
-                        http_response_code(500);
-
+                    else {
+                        $object->RespCode = 300;
+                        $object->Log = 0;
+                        $object->RespMessage = 'bad : insert transaction fail';
+                        http_response_code(300);
                     }
-
-                    echo json_encode($object);
-
-                } else {
-
-                    http_response_code(405);
-
                 }
-            } catch(PEOException $e) {
+                else {
+                    $object->RespCode = 500;
+                    $object->Log = 1;
+                    $object->RespMessage = 'bad : cant get product';
+                    http_response_code(500);
+                }
+                echo json_encode($object);
+            }
+            else {
+                http_response_code(405);
+            }
+        } catch(PEOException $e) {
                 http_response_code(500);
                 echo $e->getMessage();
             }
