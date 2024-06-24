@@ -26,6 +26,7 @@
         $username_up = $_REQUEST['txt_username'];
         $email_up = $_REQUEST['txt_email'];
         $password_up =  $password = sha1(md5($_POST['txt_password']));
+        $phone_up = $_REQUEST['txt_phone'];
         $role_up = $_REQUEST['txt_role'];
 
         if (empty($firstname_up)) {
@@ -38,18 +39,21 @@
             $errorMsg[] = "Please enter Email";
         } else if (empty($password_up)) {
             $errorMsg = 'Please enter Password';
+        } else if (empty($phone_up)) {
+            $errorMsg = 'Please enter Phone';
         } else if (empty($role_up)) {
             $errorMsg = 'Please enter Role';
         } else {
             try {
                 if (!isset($errorMsg)) {
-                    $update_stmt = $db->prepare("UPDATE masterlogin SET id = :id_up, firstname = :firstname_up, lastname = :lastname_up, username = :username_up, email = :email_up, password = :password_up, role = :role_up WHERE id = :id");
+                    $update_stmt = $db->prepare("UPDATE masterlogin SET id = :id_up, firstname = :firstname_up, lastname = :lastname_up, username = :username_up, email = :email_up, password = :password_up, phone = :phone_up, role = :role_up WHERE id = :id");
                     $update_stmt->bindParam(':id_up', $id_up);
                     $update_stmt->bindParam(':firstname_up', $firstname_up);
                     $update_stmt->bindParam(':lastname_up', $lastname_up);
                     $update_stmt->bindParam(':username_up', $username_up);
                     $update_stmt->bindParam(':email_up', $email_up);
                     $update_stmt->bindParam(':password_up', $password_up);
+                    $update_stmt->bindParam(':phone_up', $phone_up);
                     $update_stmt->bindParam(':role_up', $role_up);
                     $update_stmt->bindParam(':id', $id);
 
@@ -166,45 +170,52 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="username" class="col-sm-3 control-label">Username</label>
-            <div>
-                <input type="text" name="txt_username" class="form-control" value="<?php echo $username; ?>">
-            </div>
-        </div>
+                    <div class="form-group">
+                        <label for="username" class="col-sm-3 control-label">Username</label>
+                        <div>
+                            <input type="text" name="txt_username" class="form-control" value="<?php echo $username; ?>">
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <label for="email" class="col-sm-3 control-label">Email</label>
-            <div>
-                <input type="text" name="txt_email" class="form-control" value="<?php echo $email; ?>">
-            </div>
-        </div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-3 control-label">Email</label>
+                        <div>
+                            <input type="text" name="txt_email" class="form-control" value="<?php echo $email; ?>">
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <label for="password" class="col-sm-3 control-label">Password</label>
-            <div>
-                <input type="text" name="txt_password" class="form-control" value="<?php echo $password; ?>">
-            </div>
-        </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-3 control-label">Password</label>
+                        <div>
+                            <input type="text" name="txt_password" class="form-control" value="<?php echo $password; ?>">
+                        </div>
+                    </div>
 
-        <div class="from-group">
-            <label for="type" class="col-sm-3 control-label">Select Type</label>
-            <div class="col-sm-12">
-                <select name="txt_role" id="form-control">
-                    <option value="<?php echo $role; ?>" select="selected"><?php ; echo $role; ?></option>
-                </select>
-            </div>
-        </div>
+                    <div class="form-group">
+                        <label for="phone" class="col-sm-3 control-label">Phone</label>
+                        <div>
+                            <input type="text" name="txt_phone" class="form-control" value="<?php echo $phone; ?>">
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9 mt-4">
-                <input type="submit" name="btn_update" class="btn btn-success" value="Update">
-                <a href="user_home.php" class="btn btn-danger">Cancel</a>
-                <p></p>
-            </div>
-        </div>
+                    <div class="from-group">
+                        <label for="type" class="col-sm-3 control-label">Select Type</label>
+                        <div class="col-sm-12">
+                            <select name="txt_role" id="form-control">
+                                <option value="<?php echo $role; ?>" select="selected"><?php ; echo $role; ?></option>
+                            </select>
+                        </div>
+                    </div>
 
-    </form>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9 mt-4">
+                            <input type="submit" name="btn_update" class="btn btn-success" value="Update">
+                            <a href="user_home.php" class="btn btn-danger">Cancel</a>
+                            <p></p>
+                        </div>
+                    </div>
+
+                </form>
             </div>
             </div>
         </div>

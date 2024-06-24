@@ -5,8 +5,8 @@
     }
 
     require_once '../connection.php';
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -142,14 +142,24 @@
             </div>
 
 
-                <div id="mycart" class="cartlist">
+            <div id="mycart" class="cartlist">
                     
-                </div>
+            </div>
+
+            <hr>
 
 
-                <div class="btn-control">
-                    <button onclick="buynow()" class="btn btn-success btn-add-to-card">Buy</button>
+
+            <div class="btn-control">
+                <div id="myprice">
+
                 </div>
+            </div>
+
+
+            <div class="btn-control">
+                <button onclick="buynow()"class="btn btn-success btn-add-to-card">Buy</button>
+            </div>
         </div>
     </div>
 
