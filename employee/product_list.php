@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if (!isset($_SESSION['admin_login'])) {
+    if (!isset($_SESSION['employee_login'])) {
         header("location: ../index.php");
     }
 
@@ -30,7 +30,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN PAGE</title>
     
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/employee.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
@@ -53,8 +53,8 @@
             <hr>
 
             <h3>
-                <?php if(isset($_SESSION['admin_login'])) { ?>
-                Welcome, <?php echo $_SESSION['admin_login']; }?>
+                <?php if(isset($_SESSION['employee_login'])) { ?>
+                Welcome, <?php echo $_SESSION['employee_login']; }?>
                 <a href="../logout.php" class="btn btn-danger">Logout</a>
             </h3>
 
@@ -63,33 +63,48 @@
     
     <div class="container background-container-menu">
         <div class="container2">
-            <div class="sidebar">
+        <div class="sidebar">
 
-                <a href="admin_home.php" class="sidebar-menu">
-                    หน้าแรก
-                </a>
+            <a href="employee_home.php" class="sidebar-menu">
+                หน้าแรก
+            </a>
 
-                <a href="admin_administrator.php" class="sidebar-menu">
-                    ผู้ดูแลระบบ
-                </a>
+            <a href="customer_list.php#" class="sidebar-menu">
+                รายชื่อลูกค้า
+            </a>
 
-                <a href="customer_list.php" class="sidebar-menu">
-                    รายชื่อลูกค้า
-                </a>
+            <a href="product_list.php" class="sidebar-menu">
+                รายการสินค้า
+            </a>
 
-                <a href="product_list.php" class="sidebar-menu">
-                    รายการสินค้า
-                </a>
+            <a href="order_history.php" class="sidebar-menu">
+                ประวัติรายการสั่งซื้อ
+            </a>
 
-                <a href="order_history.php" class="sidebar-menu">
-                    ประวัติรายการสั่งซื้อ
-                </a>
+            <a href="employee_product.php" class="sidebar-menu">
+                สินค้า
+            </a>
 
-            </div>
+            <hr>
+
+
+            <?php
+                if (isset($_SESSION['employee_login'])) {
+                $select_stmt = $db->prepare("SELECT * FROM masterlogin WHERE email = '".$_SESSION["employee_login"]."'");
+                $select_stmt->execute();
+                
+                while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
+            ?>
+
+            <a href="employee_profile.php?update_id=<?php echo $row["id"]; ?>" class="sidebar-menu">
+                โปรไฟล์
+            </a>    
+                
+            <?php } }?>
+        </div>
 
             <div class="filter">
                 <div class="display-5 text-center">Product List</div>
-                <a href="add_product.php" class="btn btn-primary mt-3">Add +</a>
                 <table class="table table-striped table-bordered table-hover mt-3">
                     <thead>
                         <tr>
@@ -98,8 +113,7 @@
                             <th>Name</th>
                             <th>Price</th>
                             <th>Type</th>
-                            <th>Description</th>
-                            <th>Edit and Delete</th>
+                            <th>Description</th>                           
                         </tr>
                     </thead>
 
@@ -118,10 +132,6 @@
                                 <td><?php echo $row["price"]; ?></td>
                                 <td><?php echo $row["type"]; ?></td>
                                 <td><?php echo $row["description"]; ?></td>
-                                <td class="mt-3">
-                                    <a href="edit_product.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-success">Edit</a>
-                                    <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger mt-1">Delete</a>
-                                </td>
                             </tr>
 
                         <?php } ?>

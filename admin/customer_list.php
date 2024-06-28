@@ -36,7 +36,7 @@
 <body>
     
     <div class="text-center mt-5">
-        <div class="container background-container-header">
+        <div class="container1 background-container-header">
 
             <?php if(isset($_SESSION['success'])) : ?>
                 <div class="alert alert-success">
@@ -60,8 +60,9 @@
 
         </div>
     </div>
-    <div class="container background-container-menu">
-        <div class="container1">
+
+    <div class="container2 background-container-menu">
+        <div class="container2">
             <div class="sidebar">
 
                 <a href="admin_home.php" class="sidebar-menu">
@@ -80,7 +81,7 @@
                     รายการสินค้า
                 </a>
 
-                <a href="#" class="sidebar-menu">
+                <a href="order_history.php" class="sidebar-menu">
                     ประวัติรายการสั่งซื้อ
                 </a>
 
@@ -88,23 +89,24 @@
 
             <div class="filter">
                 <div class="display-5 text-center">Customer List</div>
-                <a href="add_user.php" class="btn btn-primary mt-3">Add +</a>
-                <table class="table table-striped table-bordered table-hover mt-3">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>Role</th>
-                            <th>Phone</th>
-                            <th>Edit and Delete</th>
-                        </tr>
-                    </thead>
+                    <a href="add_user.php" class="btn btn-primary mt-3">Add +</a>
+                    <table class="table table-striped table-bordered table-hover mt-3">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Role</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Edit and Delete</th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
+                        <tbody>
                         <?php
                             $select_stmt = $db->prepare("SELECT * FROM masterlogin WHERE role = 'user'");
                             $select_stmt->execute();
@@ -120,17 +122,20 @@
                                 <td><?php echo $row["password"]; ?></td>
                                 <td><?php echo $row["role"]; ?></td>
                                 <td><?php echo $row["phone"]; ?></td>
+                                <td><?php echo $row["address"]; ?></td>
                                 <td class="mt-5">
                                     <a href="edit_user.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-success">Edit</a>
-                                    <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">Delete</a>
+                                    <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger mt-1">Delete</a>
                                 </td>
                             </tr>
 
                         <?php } ?>
-                    </tbody>
+                        </tbody>
                 </table>
             </div>
+
         </div>
     </div>
+    
 </body>
 </html>

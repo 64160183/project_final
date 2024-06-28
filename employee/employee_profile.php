@@ -101,22 +101,26 @@
         </div>
     </div>
     <div class="container background-container-menu">
-        <div class="container1">
+        <div class="container2">
             <div class="sidebar">
                 <a href="employee_home.php" class="sidebar-menu">
                     หน้าแรก
                 </a>
 
-                <a href="customer_list.php" class="sidebar-menu">
+                <a href="customer_list.php#" class="sidebar-menu">
                     รายชื่อลูกค้า
                 </a>
 
-                <a href="#" class="sidebar-menu">
+                <a href="product_list.php" class="sidebar-menu">
                     รายการสินค้า
                 </a>
 
-                <a href="#" class="sidebar-menu">
+                <a href="order_history.php" class="sidebar-menu">
                     ประวัติรายการสั่งซื้อ
+                </a>
+
+                <a href="employee_product.php" class="sidebar-menu">
+                    สินค้า
                 </a>
 
                 <hr>
@@ -128,97 +132,96 @@
 
                             
             </div>
+                    <div class="filter">
+                        <div class="container background-container">
+                            <div class="div1">
+                                <h2 class="div-login-register">Edit User</h2>
+                                <hr>
 
-            <div class="filter">
-            <div class="container background-container">
-            <div class="div1">
-                <h2 class="div-login-register">Edit User</h2>
-                <hr>
-
-            <?php
-                if(isset($errorMsg)) {
-            ?>
-                <div class="alert alert-danger">
-                    <strong>Wrong! <?php echo $errorMsg; ?></strong>
-                </div>
-            <?php } ?>
-
-            <?php
-                if(isset($updateMsg)) {
-            ?>
-                <div class="alert alert-success">
-                    <strong>Success! <?php echo $updateMsg; ?></strong>
-                </div>
-            <?php } ?>
-
-
-            <form method="post" class="form-horizontal">
-
-                <div class="form-group">
-                    <label for="id" class="col-sm-3 control-label">Id</label>
-                    <div>
-                        <input type="text" name="txt_id" class="form-control" value="<?php echo $id; ?>">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="firstname" class="col-sm-3 control-label">Firstname</label>
-                    <div>
-                        <input type="text" name="txt_firstname" class="form-control" value="<?php echo $firstname; ?>">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="lastname" class="col-sm-3 control-label">Lastname</label>
-                    <div>
-                        <input type="text" name="txt_lastname" class="form-control" value="<?php echo $lastname; ?>">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="username" class="col-sm-3 control-label">Username</label>
-                    <div>
-                        <input type="text" name="txt_username" class="form-control" value="<?php echo $username; ?>">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="email" class="col-sm-3 control-label">Email</label>
-                    <div>
-                        <input type="text" name="txt_email" class="form-control" value="<?php echo $email; ?>">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                                    <label for="password" class="col-sm-3 control-label">Password</label>
+                            <?php
+                                if(isset($errorMsg)) {
+                            ?>
+                                <div class="alert alert-danger">
+                                    <strong>Wrong! <?php echo $errorMsg; ?></strong>
+                                </div>
+                            <?php } ?>
+                                
+                            <?php
+                                if(isset($updateMsg)) {
+                            ?>
+                                <div class="alert alert-success">
+                                    <strong>Success! <?php echo $updateMsg; ?></strong>
+                                </div>
+                            <?php } ?>
+                                
+                                
+                            <form method="post" class="form-horizontal">
+                                
+                                <div class="form-group">
+                                    <label for="id" class="col-sm-3 control-label">Id</label>
                                     <div>
-                                                <input type="text" name="txt_password" class="form-control" value="<?php echo $password; ?>">
+                                        <input type="text" name="txt_id" class="form-control" value="<?php echo $id; ?>">
                                     </div>
-                </div>
-
-                <div class="from-group">
-                    <label for="type" class="col-sm-3 control-label">Select Type</label>
-                    <div class="col-sm-12">
-                        <select name="txt_role" id="form-control">
-                            <option value="<?php echo $role; ?>" select="selected"><?php ; echo $role; ?></option>
-                        </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="firstname" class="col-sm-3 control-label">Firstname</label>
+                                    <div>
+                                        <input type="text" name="txt_firstname" class="form-control" value="<?php echo $firstname; ?>">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="lastname" class="col-sm-3 control-label">Lastname</label>
+                                    <div>
+                                        <input type="text" name="txt_lastname" class="form-control" value="<?php echo $lastname; ?>">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="username" class="col-sm-3 control-label">Username</label>
+                                    <div>
+                                        <input type="text" name="txt_username" class="form-control" value="<?php echo $username; ?>">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-3 control-label">Email</label>
+                                    <div>
+                                        <input type="text" name="txt_email" class="form-control" value="<?php echo $email; ?>">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                                    <label for="password" class="col-sm-3 control-label">Password</label>
+                                                    <div>
+                                                                <input type="text" name="txt_password" class="form-control" value="<?php echo $password; ?>">
+                                                    </div>
+                                </div>
+                                
+                                <div class="from-group">
+                                    <label for="type" class="col-sm-3 control-label">Select Type</label>
+                                    <div class="col-sm-12">
+                                        <select name="txt_role" id="form-control">
+                                            <option value="<?php echo $role; ?>" select="selected"><?php ; echo $role; ?></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-9 mt-4">
+                                        <input type="submit" name="btn_update" class="btn btn-success" value="Update">
+                                        <a href="employee_home.php" class="btn btn-danger">Cancel</a>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9 mt-4">
-                        <input type="submit" name="btn_update" class="btn btn-success" value="Update">
-                        <a href="employee_home.php" class="btn btn-danger">Cancel</a>
-                        <p></p>
-                    </div>
-                </div>
-
-            </form>
-            </div>
-            </div>
-            </div>
         </div>
-    </div>
+    </div>  
 
 </body>
 </html>

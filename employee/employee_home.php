@@ -5,22 +5,6 @@
     }
 
     require_once '../connection.php';
-
-    if (isset($_REQUEST['delete_id'])) {
-        $id = $_REQUEST['delete_id'];
-
-        $select_stmt = $db->prepare("SELECT * FROM masterlogin WHERE id = :id");
-        $select_stmt->bindParam(':id', $id);
-        $select_stmt->execute();
-        $row = $select_stmt->fetch(PDO::FETCH_ASSOC);
-
-        #ลบข้อมูล user
-        $delete_stmt = $db->prepare('DELETE FROM masterlogin WHERE id = :id');
-        $delete_stmt->bindParam(':id', $id);
-        $delete_stmt->execute();
-
-        header('Location:user_home.php');
-    }
 ?>
 
 <!DOCTYPE html>
@@ -61,23 +45,27 @@
         </div>
     </div>
     <div class="container background-container-menu">
-        <div class="container1">
+        <div class="container2">
             <div class="sidebar">
 
                 <a href="employee_home.php" class="sidebar-menu">
                     หน้าแรก
                 </a>
 
-                <a href="customer_list.php" class="sidebar-menu">
+                <a href="customer_list.php#" class="sidebar-menu">
                     รายชื่อลูกค้า
                 </a>
 
-                <a href="#" class="sidebar-menu">
+                <a href="product_list.php" class="sidebar-menu">
                     รายการสินค้า
                 </a>
 
-                <a href="#" class="sidebar-menu">
+                <a href="order_history.php" class="sidebar-menu">
                     ประวัติรายการสั่งซื้อ
+                </a>
+
+                <a href="employee_product.php" class="sidebar-menu">
+                    สินค้า
                 </a>
 
                 <hr>

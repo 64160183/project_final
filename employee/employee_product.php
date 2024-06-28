@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if (!isset($_SESSION['user_login'])) {
+    if (!isset($_SESSION['employee_login'])) {
         header("location: ../index.php");
     }
 
@@ -18,7 +18,7 @@
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <link rel="stylesheet" href="css/user.css">
+    <link rel="stylesheet" href="css/employee.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -32,7 +32,7 @@
                     <h3>
                         <?php
                             echo $_SESSION['success'];
-                            header("refresh:1;user_home.php");
+                            header("refresh:1;employee_home.php");
                             unset($_SESSION['success']);
                         ?>
                     </h3>
@@ -43,26 +43,42 @@
             <hr>
 
             <h3>
-                <?php if(isset($_SESSION['user_login'])) { ?>
-                Welcome, <?php echo $_SESSION['user_login']; }?>
+                <?php if(isset($_SESSION['employee_login'])) { ?>
+                Welcome, <?php echo $_SESSION['employee_login']; }?>
                 <a href="../logout.php" class="btn btn-danger">Logout</a>
             </h3>
         </div>
     </div>
 
     <div class="container background-container-menu">
-        <div class="container1">
+        <div class="container2">
             <div class="sidebar">
 
-                <a href="user_home.php" class="sidebar-menu">
+                <a href="employee_home.php" class="sidebar-menu">
+                    หน้าแรก
+                </a>
+
+                <a href="customer_list.php#" class="sidebar-menu">
+                    รายชื่อลูกค้า
+                </a>
+
+                <a href="product_list.php" class="sidebar-menu">
+                    รายการสินค้า
+                </a>
+
+                <a href="order_history.php" class="sidebar-menu">
+                    ประวัติรายการสั่งซื้อ
+                </a>
+
+                <a href="employee_product.php" class="sidebar-menu">
                     สินค้า
                 </a>
 
                 <hr>
 
                 <?php
-                    if (isset($_SESSION['user_login'])) {
-                    $select_stmt = $db->prepare("SELECT * FROM masterlogin WHERE email = '".$_SESSION["user_login"]."'");
+                    if (isset($_SESSION['employee_login'])) {
+                    $select_stmt = $db->prepare("SELECT * FROM masterlogin WHERE email = '".$_SESSION["employee_login"]."'");
                     $select_stmt->execute();
 
                     while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -86,6 +102,9 @@
                         </div>
                         <a class="sidebar-menu-cart" onclick="openCart()">
                             <center><i style="width: 35px;" class="fa-solid fa-cart-shopping"></i></center>
+                        </a>
+                        <a class="sidebar-menu-cart" href="scanqr.php">
+                            <center><i style="width: 35px;" class="fa-solid fa-qrcode"></i></center>
                         </a>
                     </div>
 

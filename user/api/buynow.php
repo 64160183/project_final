@@ -16,6 +16,21 @@
             
             $username = $_SESSION['user_login'];
 
+
+                    if (isset($_SESSION['user_login'])) {
+                    $select_stmt = $db->prepare("SELECT * FROM masterlogin WHERE email = '".$_SESSION["user_login"]."'");
+                    $select_stmt->execute();
+
+                    while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
+                
+
+                        $phone = $row["phone"];
+                        $address = $row["address"];
+                        $username = $row["firstname"];
+
+                
+             }
+
             $stmt = $db->prepare('SELECT id, price from sp_product order by id desc');
             if($stmt->execute()) {
 
@@ -48,10 +63,10 @@
                 $updated_at = date("Y-m-d h:i:sa");
 
 
-                $stmt = $db->prepare('INSERT INTO sp_transaction (transid, orderlist, amount, shipping, vat, netamount, operation, mil, updated_at, username) VALUES (?,?,?,?,?,?,?,?,?,?)');
+                $stmt = $db->prepare('INSERT INTO sp_transaction (transid, orderlist, amount, shipping, vat, netamount, operation, mil, updated_at, username, phone, address) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)');
                 if($stmt->execute([
-                    $transid, $product, $amount, $shiping, $vat, $netamount, 'PENDING', $mil, $updated_at, $username
-                    ])) {
+                    $transid, $product, $amount, $shiping, $vat, $netamount, 'PENDING', $mil, $updated_at, $username, $phone, $address
+                    ])) if($address != null) {
                         $object->RespCode = 200;
                         $object->RespMessage = 'success';
                         $object->Amount = new stdClass();
@@ -80,9 +95,10 @@
             else {
                 http_response_code(405);
             }
-        } catch(PEOException $e) {
-                http_response_code(500);
-                echo $e->getMessage();
-            }
+        }
+    } catch(PEOException $e) {     
+        http_response_code(500);
+        echo $e->getMessage();
+    }
 
 ?> 

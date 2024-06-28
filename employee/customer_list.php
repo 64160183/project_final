@@ -36,7 +36,7 @@
 <body>
     
     <div class="text-center mt-5">
-        <div class="container background-container-header">
+        <div class="container1 background-container-header">
 
             <?php if(isset($_SESSION['success'])) : ?>
                 <div class="alert alert-success">
@@ -53,36 +53,40 @@
             <hr>
 
             <h3>
-                <?php if(isset($_SESSION['admin_login'])) { ?>
-                Welcome, <?php echo $_SESSION['admin_login']; }?>
+                <?php if(isset($_SESSION['employee_login'])) { ?>
+                Welcome, <?php echo $_SESSION['employee_login']; }?>
                 <a href="../logout.php" class="btn btn-danger">Logout</a>
             </h3>
 
         </div>
     </div>
-    <div class="container background-container-menu">
-        <div class="container1">
+
+    <div class="container2 background-container-menu">
+        <div class="container2">
             <div class="sidebar">
 
                 <a href="employee_home.php" class="sidebar-menu">
                     หน้าแรก
                 </a>
 
-                <a href="customer_list.php" class="sidebar-menu">
+                <a href="customer_list.php#" class="sidebar-menu">
                     รายชื่อลูกค้า
                 </a>
 
-                <a href="#" class="sidebar-menu">
+                <a href="product_list.php" class="sidebar-menu">
                     รายการสินค้า
                 </a>
 
-                <a href="#" class="sidebar-menu">
+                <a href="order_history.php" class="sidebar-menu">
                     ประวัติรายการสั่งซื้อ
+                </a>
+
+                <a href="employee_product.php" class="sidebar-menu">
+                    สินค้า
                 </a>
 
                 <hr>
 
-               
                 <?php
                     if (isset($_SESSION['employee_login'])) {
                     $select_stmt = $db->prepare("SELECT * FROM masterlogin WHERE email = '".$_SESSION["employee_login"]."'");
@@ -93,28 +97,31 @@
 
                 <a href="employee_profile.php?update_id=<?php echo $row["id"]; ?>" class="sidebar-menu">
                     โปรไฟล์
-                </a>    
+                </a>
                 
+
                 <?php } }?>
+
             </div>
 
             <div class="filter">
                 <div class="display-5 text-center">Customer List</div>
-                <table class="table table-striped table-bordered table-hover mt-3">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>Role</th>
-                            <th>Phone</th>
-                        </tr>
-                    </thead>
+                    <table class="table table-striped table-bordered table-hover mt-3">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Role</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
+                        <tbody>
                         <?php
                             $select_stmt = $db->prepare("SELECT * FROM masterlogin WHERE role = 'user'");
                             $select_stmt->execute();
@@ -130,12 +137,14 @@
                                 <td><?php echo $row["password"]; ?></td>
                                 <td><?php echo $row["role"]; ?></td>
                                 <td><?php echo $row["phone"]; ?></td>
+                                <td><?php echo $row["address"]; ?></td>
                             </tr>
 
                         <?php } ?>
-                    </tbody>
+                        </tbody>
                 </table>
             </div>
+
         </div>
     </div>
 </body>

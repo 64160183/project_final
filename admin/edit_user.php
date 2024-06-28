@@ -22,6 +22,7 @@
         $email_up = $_REQUEST['txt_email'];
         $password_up =  $password = sha1(md5($_POST['txt_password']));
         $tel_up = $_REQUEST['txt_tel'];
+        $address_up = $_REQUEST['txt_address'];
         $role_up = $_REQUEST['txt_role'];
 
         if (empty($id_up)) {
@@ -38,12 +39,14 @@
             $errorMsg = 'Please enter Password';
         } else if (empty($tel_up)) {
             $errorMsg = 'Please enter Tel';
+        } else if (empty($address_up)) {
+            $errorMsg = 'Please enter Address';
         } else if (empty($role_up)) {
             $errorMsg = 'Please enter Role';
         } else {
             try {
                 if (!isset($errorMsg)) {
-                    $update_stmt = $db->prepare("UPDATE masterlogin SET id = :id_up, firstname = :firstname_up, lastname = :lastname_up, username = :username_up, email = :email_up, password = :password_up, phone = :tel_up, role = :role_up WHERE id = :id");
+                    $update_stmt = $db->prepare("UPDATE masterlogin SET id = :id_up, firstname = :firstname_up, lastname = :lastname_up, username = :username_up, email = :email_up, password = :password_up, phone = :tel_up, address = :address_up, role = :role_up WHERE id = :id");
                     $update_stmt->bindParam(':id_up', $id_up);
                     $update_stmt->bindParam(':firstname_up', $firstname_up);
                     $update_stmt->bindParam(':lastname_up', $lastname_up);
@@ -51,6 +54,7 @@
                     $update_stmt->bindParam(':email_up', $email_up);
                     $update_stmt->bindParam(':password_up', $password_up);
                     $update_stmt->bindParam(':tel_up', $tel_up);
+                    $update_stmt->bindParam(':address_up', $address_up);
                     $update_stmt->bindParam(':role_up', $role_up);
                     $update_stmt->bindParam(':id', $id);
 
@@ -146,6 +150,13 @@
             <label for="phone" class="col-sm-3 control-label">Tel</label>
             <div>
                 <input type="text" name="txt_tel" class="form-control" value="<?php echo $phone; ?>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="address" class="col-sm-3 control-label">Address</label>
+            <div>
+                <input type="text" name="txt_address" class="form-control" value="<?php echo $address; ?>">
             </div>
         </div>
 

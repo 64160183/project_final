@@ -45,7 +45,7 @@
         </div>
     </div>
     <div class="container background-container-menu">
-        <div class="container1">
+        <div class="container2">
             <div class="sidebar">
 
                 <a href="admin_home.php" class="sidebar-menu">
@@ -108,7 +108,7 @@
                             <center><p style="font-size: 1.2vw;">xxxxx</p></center>
                         </div>
                     </div>
-                    
+    
                 </div>
             </div>
         </div>
