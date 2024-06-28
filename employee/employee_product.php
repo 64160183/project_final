@@ -84,7 +84,7 @@
                     while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
 
-                <a href="user_profile.php?update_id=<?php echo $row["id"]; ?>" class="sidebar-menu">
+                <a href="employee_profile.php?update_id=<?php echo $row["id"]; ?>" class="sidebar-menu">
                     โปรไฟล์
                 </a>
                 
