@@ -28,7 +28,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADMIN PAGE</title>
+    <title>EMPLOYEE PAGE</title>
     
     <link rel="stylesheet" href="css/employee.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -49,7 +49,7 @@
                 </div>
             <?php endif ?>
 
-            <h1>Admin Page</h1>
+            <h1>Employee Page</h1>
             <hr>
 
             <h3>
@@ -116,6 +116,7 @@
                             <th>ชื่อผู้สั่ง</th>
                             <th>ที่อยู่	</th>
                             <th>เบอร์โทรศัพ์</th>
+                            <th>สถานะสินค้า</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -137,8 +138,12 @@
                                 <td><?php echo $row["username"]; ?></td>
                                 <td><?php echo $row["address"]; ?></td>
                                 <td><?php echo $row["phone"]; ?></td>
+                                <td><?php echo $row["operation"]; ?></td>
                                 <td class="mt-5">
-                                    <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">Delete</a>
+                                    <center>
+                                        <a href="edit_operation.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-success">Edit</a>
+                                        <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger mt-3">Delete</a>
+                                    </center>
                                 </td>
                             </tr>
 

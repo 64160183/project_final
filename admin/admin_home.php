@@ -64,7 +64,7 @@
                     รายการสินค้า
                 </a>
 
-                <a href="#" class="sidebar-menu">
+                <a href="order_history.php" class="sidebar-menu">
                     ประวัติรายการสั่งซื้อ
                 </a>
 

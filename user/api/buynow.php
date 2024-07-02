@@ -65,7 +65,7 @@
 
                 $stmt = $db->prepare('INSERT INTO sp_transaction (transid, orderlist, amount, shipping, vat, netamount, operation, mil, updated_at, username, phone, address) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)');
                 if($stmt->execute([
-                    $transid, $product, $amount, $shiping, $vat, $netamount, 'PENDING', $mil, $updated_at, $username, $phone, $address
+                    $transid, $product, $amount, $shiping, $vat, $netamount, 'รอดำเนินการ', $mil, $updated_at, $username, $phone, $address
                     ])) if($address != null) {
                         $object->RespCode = 200;
                         $object->RespMessage = 'success';

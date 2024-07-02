@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USER PAGE</title>
+    <title>EMPLOYEE PAGE</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -22,6 +22,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
     <div class="text-center mt-5">
@@ -39,7 +46,7 @@
                 </div>
             <?php endif ?>
 
-            <h1>User Page</h1>
+            <h1>Employee Page</h1>
             <hr>
 
             <h3>
@@ -103,7 +110,7 @@
                         <a class="sidebar-menu-cart" onclick="openCart()">
                             <center><i style="width: 35px;" class="fa-solid fa-cart-shopping"></i></center>
                         </a>
-                        <a class="sidebar-menu-cart" href="scanqr.php">
+                        <a class="sidebar-menu-cart" onclick="openQr()">
                             <center><i style="width: 35px;" class="fa-solid fa-qrcode"></i></center>
                         </a>
                     </div>
@@ -151,6 +158,51 @@
                             </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalQr" class="modal" style="display: none;">
+        <div class="modal-bg"></div>
+        <div class="modal-page">
+            <div class="styleh2">
+                <h2>Detail</h2>
+                <img onclick="cancelModal()" class="close-size" src="../img/close.png" alt="">
+            </div>
+
+            <div class="container">
+                <div class="row" >
+                    <center>
+                        <div class="col-md-6">
+                            <video id="preview" width="100%"></video>
+                        
+                            <label>SCAN QR</label>
+                            <input type="text" name="text" id="text" placeholder="scan" class="form-control">
+                        </div>
+                    </center>
+                </div>
+            </div>
+
+                <script>
+                    let scanner = new Instascan.Scanner({ video: document.getElementById('preview')});
+                    Instascan.Camera.getCameras().then(function(cameras){
+                        if(cameras.length > 0){
+                            scanner.start(cameras[0]);
+                        } else {
+                            alert('No cameras found');
+                        }
+                    }).catch(function(e) {
+                        console.error(e);
+                    });
+                
+                    scanner.addListener('scan', function(c){
+                        document.getElementById('text').value=c;
+                        document.forms[0].submit();
+                    });
+                </script>
+            </div>
+                
+        </div>
         </div>
     </div>
 

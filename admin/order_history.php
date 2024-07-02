@@ -100,6 +100,7 @@
                             <th>ชื่อผู้สั่ง</th>
                             <th>ที่อยู่	</th>
                             <th>เบอร์โทรศัพ์</th>
+                            <th>สถานะสินค้า</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -121,8 +122,12 @@
                                 <td><?php echo $row["username"]; ?></td>
                                 <td><?php echo $row["address"]; ?></td>
                                 <td><?php echo $row["phone"]; ?></td>
+                                <td><?php echo $row["operation"]; ?></td>
                                 <td class="mt-5">
-                                    <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">Delete</a>
+                                    <center>
+                                        <a href="edit_operation.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-success">Edit</a>
+                                        <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger mt-3">Delete</a>
+                                    </center>
                                 </td>
                             </tr>
 
