@@ -111,30 +111,30 @@
                 <div class="container background-container">
     
                     <div class="box1">
-                        <div class="product-item">
+                        <div class="product-item2" style="background: #3498DB;">
                             <p style="font-size: 1.2vw; margin-left: 10px; margin-top: 10px; padding: 10px;">ยอดขายทั้งหมด <?php echo $all_orders; ?> รายการ</p>
-                            <i style="font-size: 100px;" class="product-img fa-brands fa-shopify"></i>
+                            <i style="font-size: 100px; color: #b9b9b9;" class="product-img2 fa-brands fa-shopify"></i>
                         </div>
-                        <div class="product-item">
+                        <div class="product-item2" style="background: #229954;">
                             <p style="font-size: 1.2vw;  margin-left: 10px; margin-top: 10px; padding: 10px;">รายการสินค้าทั้งหมด <?php echo $all_product; ?> รายการ</p>
-                            <i style="font-size: 100px;" class="product-img fa-solid fa-chart-simple"></i>
+                            <i style="font-size: 100px; color: #b9b9b9;" class="product-img2 fa-solid fa-chart-simple"></i>
                         </div>
                     </div>
 
                     <div class="box1">
-                        <div class="product-item">
+                        <div class="product-item2" style="background: #E67E22;">
                             <p style="font-size: 1.2vw; margin-left: 10px; margin-top: 10px; padding: 10px;">จำนวนสมาชิกทั้งหมด <?php echo $all_customer; ?> คน</p>
-                            <i style="font-size: 100px;" class="product-img fa-solid fa-users"></i>
+                            <i style="font-size: 100px; color: #b9b9b9;" class="product-img2 fa-solid fa-users"></i>
                         </div>
-                        <div class="product-item">
+                        <div class="product-item2" style="background: #E74C3C;">
                             <p style="font-size: 1.2vw; margin-left: 10px; margin-top: 10px; padding: 10px;">ยอดเงินรวมทั้งหมด <?php echo $total; ?> บาท</p>
-                            <i style="font-size: 100px;" class="product-img fa-solid fa-wallet"></i>
+                            <i style="font-size: 100px; color: #b9b9b9;" class="product-img2 fa-solid fa-wallet"></i>
                         </div>
                     </div>
 
                     <div class="box2">
-                        <div class="product-item">
-                            <img class="product-img" src="" alt="">
+                        <div class="product-item2">
+                            <img class="product-img2" src="" alt="">
                             <center><p style="font-size: 1.2vw;">xxxxx</p></center>
                         </div>
                     </div>

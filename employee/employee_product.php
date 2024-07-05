@@ -104,11 +104,11 @@
             <div class="container1">
                 <div class="div">
                     <div class="itemcart">
-                        <div id="cartcount" class="cartcount" style="display: none;">
-                            0
-                        </div>
                         <a class="sidebar-menu-cart" onclick="openCart()">
                             <center><i style="width: 35px;" class="fa-solid fa-cart-shopping"></i></center>
+                            <div id="cartcount" class="cartcount" style="display: none;">
+                                0
+                            </div>
                         </a>
                         <a class="sidebar-menu-cart" onclick="openQr()">
                             <center><i style="width: 35px;" class="fa-solid fa-qrcode"></i></center>

@@ -65,6 +65,8 @@
     background: #f4f4f4;
     display: flex;
     align-items: center;
+    color: #fff;
+    font-weight: bold;
 }
 
 .product-item:hover {
@@ -152,7 +154,7 @@
 }
 
 .background-container {
-    background: rgb(209, 209, 209);
+    background: rgb(232, 232, 232);
     padding: 1px;
     border-radius: 10px;
 }
