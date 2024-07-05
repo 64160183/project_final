@@ -102,7 +102,7 @@
 
             
             <div class="container1">
-                <div class="div1">
+                <div class="div">
                     <div class="itemcart">
                         <div id="cartcount" class="cartcount" style="display: none;">
                             0
@@ -166,7 +166,7 @@
         <div class="modal-bg"></div>
         <div class="modal-page">
             <div class="styleh2">
-                <h2>Detail</h2>
+                <h2>ScanQr</h2>
                 <img onclick="cancelModal()" class="close-size" src="../img/close.png" alt="">
             </div>
 
@@ -177,7 +177,7 @@
                             <video id="preview" width="100%"></video>
                         
                             <label>SCAN QR</label>
-                            <input type="text" name="text" id="text" placeholder="scan" class="form-control">
+                            <input onkeyup="searchsome(this)" type="text" name="text" id="text" placeholder="scan" class="form-control">
                         </div>
                     </center>
                 </div>
@@ -196,6 +196,7 @@
                     });
                 
                     scanner.addListener('scan', function(c){
+                        document.getElementById('txt_search').value=c;
                         document.getElementById('text').value=c;
                         document.forms[0].submit();
                     });

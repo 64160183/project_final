@@ -28,7 +28,7 @@ $(document).ready(() => {
 
     $.ajax({
         method: 'get',
-        url: '../user/api/getallproduct.php',
+        url: '../employee/api/getallproduct.php',
         success: function(response) {
             console.log(response)
             if(response.RespCode == 200) {
@@ -273,7 +273,7 @@ function deinitems(action, i) {
 function buynow() {
     $.ajax ({
         method: 'post',
-        url: '../user/api/buynow.php',
+        url: '../employee/api/buynow.php',
         data: {
             product: cart
         }, success: function(response) {

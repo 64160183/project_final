@@ -53,10 +53,13 @@
     border-radius: 10px;
     cursor: pointer;
     transition: 0.3s;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
 }
 
 .product-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .sidebar-search {
@@ -134,10 +137,12 @@
 }
 
 .product-img {
-    width: 100%;
+    width: 50%;
     height: 10vw;
     object-fit: cover;
     border-radius: 10px;
+    padding: 30px;
+    margin-left: 10px;
 }
 
 .box1 {
@@ -147,7 +152,7 @@
     padding: 10px;
     border-radius: 10px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
     margin-top: 5px;
 }
