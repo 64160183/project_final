@@ -232,7 +232,7 @@
 
 
             <div class="btn-control">
-                <button onclick="buynow()"class="btn btn-success btn-add-to-card">Buy</button>
+                <button onclick="buynow()" class="btn btn-success btn-add-to-card">Buy</button>
             </div>
         </div>
     </div>

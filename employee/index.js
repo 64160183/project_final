@@ -305,3 +305,13 @@ function buynow() {
     })
 
 }
+
+function openGraphTotal() {
+    $('#graph-total').css('display', 'flex')
+    $('#graph-type').css('display', 'none')
+}
+
+function openGraphType() {
+    $("#graph-type").css('display', 'flex')
+    $('#graph-total').css('display', 'none')
+}
