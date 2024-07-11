@@ -195,7 +195,7 @@ function rendercart() {
 function renderprice() {
     if(cart.length > 0) {
         var html = '';
-        var shiping = 40;
+        var shiping = 0;
                 
         for (let i = 0; i < cart.length; i++) {
             var amount = cart[i].price * cart[i].count;
@@ -219,7 +219,7 @@ function renderprice() {
 
 function deinitems(action, i) {
 
-    var shiping = 40;
+    var shiping = 0;
     var amount = cart[i].price * cart[i].count;
     var vat = (amount) * 7 /100;
     var netamount = amount + shiping + vat;
@@ -230,7 +230,7 @@ function deinitems(action, i) {
             $("#countitems"+i).text(cart[i].count)
             $("#priceproduct"+i).text(cart[i].price * cart[i].count + " THB")
             $("#pricevat"+i).text("Vat : " + cart[i].price * cart[i].count  * 7 /100)
-            $("#pricenetamount"+i).text("ยอดรวม : " + ((cart[i].price * cart[i].count) + ((cart[i].price * cart[i].count)* 7 /100) + 40))
+            $("#pricenetamount"+i).text("ยอดรวม : " + ((cart[i].price * cart[i].count) + ((cart[i].price * cart[i].count)* 7 /100) + 0))
 
 
             if(cart[i].count <= 0) {
@@ -256,7 +256,7 @@ function deinitems(action, i) {
                     $("#countitems"+i).text(cart[i].count)
                     $("#priceproduct"+i).text(cart[i].price * cart[i].count + " THB")
                     $("#pricevat"+i).text("Vat : " + cart[i].price * cart[i].count  * 7 /100)
-                    $("#pricenetamount"+i).text("ยอดรวม : " + ((cart[i].price * cart[i].count) + ((cart[i].price * cart[i].count)* 7 /100) + 40))
+                    $("#pricenetamount"+i).text("ยอดรวม : " + ((cart[i].price * cart[i].count) + ((cart[i].price * cart[i].count)* 7 /100) + 0))
                   }
                 })
             }
@@ -266,7 +266,7 @@ function deinitems(action, i) {
         $("#countitems"+i).text(cart[i].count)
         $("#priceproduct"+i).text(cart[i].price * cart[i].count + " THB")
         $("#pricevat"+i).text("Vat : " + cart[i].price * cart[i].count  * 7 /100)
-        $("#pricenetamount"+i).text("ยอดรวม : " + ((cart[i].price * cart[i].count) + ((cart[i].price * cart[i].count)* 7 /100) + 40))
+        $("#pricenetamount"+i).text("ยอดรวม : " + ((cart[i].price * cart[i].count) + ((cart[i].price * cart[i].count)* 7 /100) + 0))
     }
 }
 

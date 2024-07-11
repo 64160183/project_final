@@ -54,7 +54,7 @@
                     }
                 }
 
-                $shiping = 40 * $count;
+                $shiping = 0 * $count;
                 $vat = (($amount + $shiping) * 0.07);
                 $netamount = $amount + $shiping + $vat;
                 $transid = round(microtime(true) * 1000);

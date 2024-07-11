@@ -23,6 +23,38 @@
     while($row = $result4->fetch_assoc()) {
         $total=$row["total"];
     }
+
+    $data = "";
+    $sql_graph_day = "SELECT SUM(netamount) as total, date(updated_at) as day FROM sp_transaction WHERE operation = 'จัดส่งสําเร็จ' GROUP BY date(updated_at);";
+    $result5 = $conn->query($sql_graph_day);
+
+    if ($result5->num_rows > 0) {
+      // output data of each row
+      while($row = $result5->fetch_assoc()) {
+
+        $day = $row['day'];
+        $total2 = $row['total'];
+        $data.="['$day', $total2],";
+
+      }
+    } else {
+      echo "0 results";
+    }
+
+    $data2 = "";
+    $sql_type = "SELECT type , COUNT(*) as product_count FROM sp_product GROUP BY type;";
+    $result6 = $conn->query($sql_type);
+
+    if ($result5->num_rows > 0) {
+        // output data of each row
+        while($row = $result6->fetch_assoc()) {
+            $type = $row['type'];
+            $count = $row['product_count'];
+            $data2.="['$type', $count],";
+        }
+      } else {
+        echo "0 results";
+      }
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +79,7 @@
                     <h3>
                         <?php
                             echo $_SESSION['success'];
+                            header("refresh:1;admin_home.php");
                             unset($_SESSION['success']);
                         ?>
                     </h3>
@@ -114,11 +147,62 @@
                         </div>
                     </div>
                     
-                    <div class="box2">
-                        <div class="product-item">
-                            <img class="product-img" src="" alt="">
-                            <center><p style="font-size: 1.2vw;">xxxxx</p></center>
+                    <div class="box1">
+                        <div class="product-item1" style="background: #F9E79F;">
+
+
+                            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                            <script type="text/javascript">
+                              google.charts.load('current', {'packages':['corechart']});
+                              google.charts.setOnLoadCallback(drawChart);
+
+                              function drawChart() {
+                                var data = google.visualization.arrayToDataTable([
+                                  ['Day', 'Total'], <?php echo $data; ?>
+                                ]);
+                            
+                                var options = {
+                                  title: 'ผลการดำเนินงานของบริษัท',
+                                  curveType: 'function',
+                                  legend: { position: 'bottom' }
+                                };
+                            
+                                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                            
+                                chart.draw(data, options);
+                              }
+                            </script>
+
+
+                            <center><p style="font-size: 1.2vw;">กราฟสรุปยอด</p></center>
+                            <div id="curve_chart" style="width: 100%; height: 400px;"></div>
                         </div>
+
+
+                        <div class="product-item1" style="background: #F9E79F;">
+                        
+                            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                            <script type="text/javascript">
+                              google.charts.load('current', {'packages':['corechart']});
+                              google.charts.setOnLoadCallback(drawChart);
+                        
+                              function drawChart() {
+                            
+                                var data = google.visualization.arrayToDataTable([
+                                  ['Task', 'Hours per Day'], <?php echo $data2; ?>
+                                ]);
+                        
+                            
+                                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                            
+                                chart.draw(data);
+                              }
+                            </script>
+
+                            <center><p style="font-size: 1.2vw;">กราฟจำนวนสินค้าแต่ละชนิด</p></center>
+                            <div id="piechart" style="width: 100%; height: 400px;"></div>
+                        </div>
+
                     </div>
     
                 </div>

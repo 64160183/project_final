@@ -82,6 +82,7 @@
                     <h3>
                         <?php
                             echo $_SESSION['success'];
+                            header("refresh:1;employee_home.php");
                             unset($_SESSION['success']);
                         ?>
                     </h3>

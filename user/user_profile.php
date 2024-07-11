@@ -88,150 +88,150 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <div class="text-center mt-5">
-        <div class="container background-container-header">
+        <div class="text-center mt-5">
+            <div class="container background-container-header">
 
-            <?php if(isset($_SESSION['success'])) : ?>
-                <div class="alert alert-success">
-                    <h3>
-                        <?php
-                            echo $_SESSION['success'];
-                            unset($_SESSION['success']);
-                        ?>
-                    </h3>
-                </div>
-            <?php endif ?>
+                <?php if(isset($_SESSION['success'])) : ?>
+                    <div class="alert alert-success">
+                        <h3>
+                            <?php
+                                echo $_SESSION['success'];
+                                unset($_SESSION['success']);
+                            ?>
+                        </h3>
+                    </div>
+                <?php endif ?>
 
-            <h1>User Page</h1>
-            <hr>
-
-            <h3>
-                <?php if(isset($_SESSION['user_login'])) { ?>
-                Welcome, <?php echo $_SESSION['user_login']; }?>
-                <a href="../logout.php" class="btn btn-danger">Logout</a>
-            </h3>
-        </div>
-    </div>
-    <div class="container background-container-menu">
-        <div class="container1">
-            <div class="sidebar">
-
-                <a href="user_home.php" class="sidebar-menu">
-                    สินค้า
-                </a>
-
+                <h1>User Page</h1>
                 <hr>
 
-               
-                <a href="user_profile.php?update_id=<?php echo $row["id"]; ?>" class="sidebar-menu">
-                    โปรไฟล์
-                </a>
-
-                            
-            </div>
-            <div class="filter">
-            <div class="container background-container">
-    <div class="div1">
-        <h2 class="div-login-register">Edit User</h2>
-        <hr>
-
-    <?php
-        if(isset($errorMsg)) {
-    ?>
-        <div class="alert alert-danger">
-            <strong>Wrong! <?php echo $errorMsg; ?></strong>
-        </div>
-    <?php } ?>
-
-    <?php
-        if(isset($updateMsg)) {
-    ?>
-        <div class="alert alert-success">
-            <strong>Success! <?php echo $updateMsg; ?></strong>
-        </div>
-    <?php } ?>
-
-
-    <form method="post" class="form-horizontal">
-
-        <div class="form-group">
-            <label for="id" class="col-sm-3 control-label">Id</label>
-            <div>
-                <input type="text" name="txt_id" class="form-control" value="<?php echo $id; ?>">
+                <h3>
+                    <?php if(isset($_SESSION['user_login'])) { ?>
+                    Welcome, <?php echo $_SESSION['user_login']; }?>
+                    <a href="../logout.php" class="btn btn-danger">Logout</a>
+                </h3>
             </div>
         </div>
+        <div class="container background-container-menu">
+            <div class="container1">
+                <div class="sidebar">
 
-        <div class="form-group">
-            <label for="firstname" class="col-sm-3 control-label">Firstname</label>
-            <div>
-                <input type="text" name="txt_firstname" class="form-control" value="<?php echo $firstname; ?>">
+                    <a href="user_home.php" class="sidebar-menu">
+                        สินค้า
+                    </a>
+
+                    <hr>
+
+                    
+                    <a href="user_profile.php?update_id=<?php echo $row["id"]; ?>" class="sidebar-menu">
+                        โปรไฟล์
+                    </a>
+
+
+                </div>
+                <div class="filter">
+                <div class="container background-container">
+        <div class="div1">
+            <h2 class="div-login-register">Edit User</h2>
+            <hr>
+
+        <?php
+            if(isset($errorMsg)) {
+        ?>
+            <div class="alert alert-danger">
+                <strong>Wrong! <?php echo $errorMsg; ?></strong>
+            </div>
+        <?php } ?>
+
+        <?php
+            if(isset($updateMsg)) {
+        ?>
+            <div class="alert alert-success">
+                <strong>Success! <?php echo $updateMsg; ?></strong>
+            </div>
+        <?php } ?>
+
+
+        <form method="post" class="form-horizontal">
+
+            <div class="form-group">
+                <label for="id" class="col-sm-3 control-label">Id</label>
+                <div>
+                    <input type="text" name="txt_id" class="form-control" value="<?php echo $id; ?>">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="firstname" class="col-sm-3 control-label">Firstname</label>
+                <div>
+                    <input type="text" name="txt_firstname" class="form-control" value="<?php echo $firstname; ?>">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="lastname" class="col-sm-3 control-label">Lastname</label>
+                <div>
+                    <input type="text" name="txt_lastname" class="form-control" value="<?php echo $lastname; ?>">
+                </div>
+            </div>
+
+                        <div class="form-group">
+                            <label for="username" class="col-sm-3 control-label">Username</label>
+                            <div>
+                                <input type="text" name="txt_username" class="form-control" value="<?php echo $username; ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-sm-3 control-label">Email</label>
+                            <div>
+                                <input type="text" name="txt_email" class="form-control" value="<?php echo $email; ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="col-sm-3 control-label">Password</label>
+                            <div>
+                                <input type="text" name="txt_password" class="form-control" value="<?php echo $password; ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" class="col-sm-3 control-label">Phone</label>
+                            <div>
+                                <input type="text" name="txt_phone" class="form-control" value="<?php echo $phone; ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address" class="col-sm-3 control-label">Address</label>
+                            <div>
+                                <input type="text" name="txt_address" class="form-control" value="<?php echo $address; ?>">
+                            </div>
+                        </div>
+
+                        <div class="from-group">
+                            <label for="type" class="col-sm-3 control-label">Select Type</label>
+                            <div class="col-sm-12">
+                                <select name="txt_role" id="form-control">
+                                    <option value="<?php echo $role; ?>" select="selected"><?php ; echo $role; ?></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9 mt-4">
+                                <input type="submit" name="btn_update" class="btn btn-success" value="Update">
+                                <a href="user_home.php" class="btn btn-danger">Cancel</a>
+                                <p></p>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <label for="lastname" class="col-sm-3 control-label">Lastname</label>
-            <div>
-                <input type="text" name="txt_lastname" class="form-control" value="<?php echo $lastname; ?>">
-            </div>
-        </div>
-
-                    <div class="form-group">
-                        <label for="username" class="col-sm-3 control-label">Username</label>
-                        <div>
-                            <input type="text" name="txt_username" class="form-control" value="<?php echo $username; ?>">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email" class="col-sm-3 control-label">Email</label>
-                        <div>
-                            <input type="text" name="txt_email" class="form-control" value="<?php echo $email; ?>">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password" class="col-sm-3 control-label">Password</label>
-                        <div>
-                            <input type="text" name="txt_password" class="form-control" value="<?php echo $password; ?>">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone" class="col-sm-3 control-label">Phone</label>
-                        <div>
-                            <input type="text" name="txt_phone" class="form-control" value="<?php echo $phone; ?>">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="address" class="col-sm-3 control-label">Address</label>
-                        <div>
-                            <input type="text" name="txt_address" class="form-control" value="<?php echo $address; ?>">
-                        </div>
-                    </div>
-
-                    <div class="from-group">
-                        <label for="type" class="col-sm-3 control-label">Select Type</label>
-                        <div class="col-sm-12">
-                            <select name="txt_role" id="form-control">
-                                <option value="<?php echo $role; ?>" select="selected"><?php ; echo $role; ?></option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-9 mt-4">
-                            <input type="submit" name="btn_update" class="btn btn-success" value="Update">
-                            <a href="user_home.php" class="btn btn-danger">Cancel</a>
-                            <p></p>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-            </div>
-        </div>
-    </div>
 
 </body>
 </html>
