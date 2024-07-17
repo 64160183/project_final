@@ -48,9 +48,11 @@
     if ($result5->num_rows > 0) {
         // output data of each row
         while($row = $result6->fetch_assoc()) {
+            
             $type = $row['type'];
             $count = $row['product_count'];
             $data2.="['$type', $count],";
+
         }
       } else {
         echo "0 results";

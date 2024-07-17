@@ -40,6 +40,10 @@ $(document).ready(() => {
                             <img class="product-img" src="../img/${product[i].img}" alt="">
                             <p style="font-size: 1.2vw;">${product[i].name}</p>
                             <p style="font-size: 0.9vw;">${numberWithCommas(product[i].price)} THB</p></a>
+                            ${product[i].stock > 0 ? 
+                                `` : 
+                                `<button disabled class="btn btn-light btn-add-to-card">Out of Stock</button>`
+                            }
                         </div>`;
                 }
                 $("#productlist").html(html);
@@ -108,7 +112,11 @@ function openProductDetail(i) {
         $("#md-img").attr('src', '../img/' + product[i].img);
         $("#md-productname").text(product[i].name);
         $("#md-price").text(numberWithCommas(product[i].price) + " THB");
-        $("#md-description").text(product[i].description);
+        $("#md-description").text(product[i].description)
+        $("#button-add").html(`${product[i].stock > 0 ? 
+            `<button onclick="addtocart(${i})" class="btn btn-success btn-add-to-card">Add to Cart</button>` : 
+            `<button disabled class="btn btn-light btn-add-to-card">Out of Stock</button>`
+        }`);
     } else {
         console.error('Product not found');
     }

@@ -127,8 +127,8 @@
                             <br>
                             <p id="md-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, suscipit.</p>
                             <br>
-                            <div class="btn-control">
-                                <button onclick="addtocart()" class="btn btn-success btn-add-to-card">Add to Cart</button>
+                            <div class="btn-control" id="button-add">
+                                <div id="button-add"></div>
                             </div>
                     </div>
                 </div>
