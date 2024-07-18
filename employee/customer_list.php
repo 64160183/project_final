@@ -34,7 +34,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <div class="text-center mt-5">
+    <div class="text-center mt-3">
         <div class="container1 background-container-header">
 
             <?php if(isset($_SESSION['success'])) : ?>
@@ -105,7 +105,7 @@
 
             <div class="filter">
                 <div class="display-5 text-center">Customer List</div>
-                    <table class="table table-light table-bordered table-hover mt-3">
+                    <table class="table table-light table-bordered table-hover mt-3 align-middle">
                     <thead class="table-primary">
                             <tr>
                                 <th>Id</th>
@@ -136,7 +136,7 @@
                                 <td><?php echo $row["password"]; ?></td>
                                 <td><?php echo $row["role"]; ?></td>
                                 <td><?php echo $row["phone"]; ?></td>
-                                <td><?php echo $row["address"]; ?></td>
+                                <td class="text-nowrap"><?php echo $row["address"]; ?></td>
                             </tr>
 
                         <?php } ?>

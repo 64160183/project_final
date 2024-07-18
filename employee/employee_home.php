@@ -76,7 +76,7 @@
 </head>
 <body>
     
-    <div class="text-center mt-5">
+    <div class="text-center mt-3">
         <div class="container background-container-header">
 
             <?php if(isset($_SESSION['success'])) : ?>

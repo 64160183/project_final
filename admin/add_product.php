@@ -80,7 +80,7 @@
 
     <div class="container">
     <div class="div1">
-        <h2 class="div-login-register"><img src="img/add-user.png" width="70px" class="img">Add Product</h2>
+        <h2 class="div-login-register">Add Product</h2>
         <hr>
 
     <?php

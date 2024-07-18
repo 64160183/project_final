@@ -97,7 +97,7 @@
 
     <div class="container">
         <div class="div1">
-            <h2 class="div-login-register"><img src="img/Edit.png" width="70px" class="img">Edit Product</h2>
+            <h2 class="div-login-register">Edit Product</h2>
             <hr>
 
             <?php

@@ -35,8 +35,8 @@
 </head>
 <body>
     
-    <div class="text-center mt-5">
-        <div class="container background-container-header">
+    <div class="text-center mt-3">
+        <div class="container1 background-container-header">
 
             <?php if(isset($_SESSION['success'])) : ?>
                 <div class="alert alert-success">
@@ -60,7 +60,7 @@
 
         </div>
     </div>
-    <div class="container background-container-menu">
+    <div class="container2 background-container-menu">
         <div class="container2">
             <div class="sidebar">
 

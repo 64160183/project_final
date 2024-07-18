@@ -11,13 +11,13 @@
 }
 
 .container1 {
-    width: 85vw;
+    width: 95vw;
     margin: 0 auto;
     padding: 10px;
 }
 
 .container2 {
-    width: 85vw;
+    width: 95vw;
     display: flex;
     margin: 0 auto;
     padding: 10px;
@@ -28,17 +28,18 @@
     display: flex;
     flex-direction: column;
     padding: 10px;
+    margin-right:50px;
 }
 
 
 .filter {
-    width: 60%;
+    width: 51%;
     padding: 5px;
     border-radius: 10px;
 }
 
 .product {
-    width: 126%;
+    width: 120%;
     height: 100%;
     background: rgb(255, 255, 255);
     padding: 10px;

@@ -28,7 +28,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMPLOYEE PAGE</title>
+    <title>USER PAGE</title>
     
     
     <link rel="stylesheet" href="css/user.css">
@@ -36,7 +36,7 @@
 </head>
 <body>
     
-    <div class=" text-center mt-5">
+    <div class=" text-center mt-3">
         <div class="container1 background-container-header">
 
             <?php if(isset($_SESSION['success'])) : ?>
@@ -50,7 +50,7 @@
                 </div>
             <?php endif ?>
 
-            <h1>Employee Page</h1>
+            <h1>User Page</h1>
             <hr>
 
             <h3>
