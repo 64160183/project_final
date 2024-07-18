@@ -6,7 +6,7 @@
 
     require_once '../connection.php';
 
-    $sql_order = "SELECT * FROM sp_transaction";
+    $sql_order = "SELECT * FROM sp_transaction WHERE operation = 'จัดส่งสําเร็จ'";
     $result = $conn->query($sql_order);
     $all_orders = $result->num_rows; #จำนวน order
 

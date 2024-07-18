@@ -14,7 +14,7 @@
             $amount = 0;
             $product = $_POST['product'];
             
-            $username = $_SESSION['employee_login'];
+            $email = $_SESSION['employee_login'];
 
 
                     if (isset($_SESSION['employee_login'])) {
@@ -74,9 +74,9 @@
                     $mil = time() * 1000;
                     $updated_at = date("Y-m-d h:i:sa");
 
-                    $stmt = $db->prepare('INSERT INTO sp_transaction (transid, orderlist, amount, shipping, vat, netamount, operation, mil, updated_at, username, phone, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+                    $stmt = $db->prepare('INSERT INTO sp_transaction (transid, orderlist, amount, shipping, vat, netamount, operation, mil, updated_at, username, email, phone, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
                     if($stmt->execute([
-                        $transid, $productJson, $amount, $shipping, $vat, $netamount, 'จัดส่งสําเร็จ', $mil, $updated_at, $username, $phone, $address
+                        $transid, $productJson, $amount, $shipping, $vat, $netamount, 'จัดส่งสําเร็จ', $mil, $updated_at, $username, $email, $phone, $address
                     ])) {
                         if($address != null) {
                             $object->RespCode = 200;

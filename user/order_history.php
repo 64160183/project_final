@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if (!isset($_SESSION['employee_login'])) {
+    if (!isset($_SESSION['user_login'])) {
         header("location: ../index.php");
     }
 
@@ -31,7 +31,7 @@
     <title>EMPLOYEE PAGE</title>
     
     
-    <link rel="stylesheet" href="css/employee.css">
+    <link rel="stylesheet" href="css/user.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
@@ -54,8 +54,8 @@
             <hr>
 
             <h3>
-                <?php if(isset($_SESSION['employee_login'])) { ?>
-                Welcome, <?php echo $_SESSION['employee_login']; }?>
+                <?php if(isset($_SESSION['user_login'])) { ?>
+                Welcome, <?php echo $_SESSION['user_login']; }?>
                 <a href="../logout.php" class="btn btn-danger">Logout</a>
             </h3>
 
@@ -66,41 +66,29 @@
         <div class="container2">
             <div class="sidebar">
 
-                <a href="employee_home.php" class="sidebar-menu">
-                    หน้าแรก
-                </a>
-
-                <a href="customer_list.php#" class="sidebar-menu">
-                    รายชื่อลูกค้า
-                </a>
-
-                <a href="product_list.php" class="sidebar-menu">
-                    รายการสินค้า
+            <a href="user_home.php" class="sidebar-menu">
+                    สินค้า
                 </a>
 
                 <a href="order_history.php" class="sidebar-menu">
-                    ประวัติรายการสั่งซื้อ
-                </a>
-
-                <a href="employee_product.php" class="sidebar-menu">
-                    สินค้า
+                    คำสั่งซื้อของคุณ
                 </a>
 
                 <hr>
 
-               
                 <?php
-                    if (isset($_SESSION['employee_login'])) {
-                    $select_stmt = $db->prepare("SELECT * FROM masterlogin WHERE email = '".$_SESSION["employee_login"]."'");
+                    if (isset($_SESSION['user_login'])) {
+                    $select_stmt = $db->prepare("SELECT * FROM masterlogin WHERE email = '".$_SESSION["user_login"]."'");
                     $select_stmt->execute();
-                    
+
                     while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
 
-                <a href="employee_profile.php?update_id=<?php echo $row["id"]; ?>" class="sidebar-menu">
+                <a href="user_profile.php?update_id=<?php echo $row["id"]; ?>" class="sidebar-menu">
                     โปรไฟล์
-                </a>    
-                    
+                </a>
+                
+
                 <?php } }?>
             </div>
 
@@ -118,16 +106,18 @@
                             <th>ที่อยู่	</th>
                             <th>เบอร์โทรศัพ์</th>
                             <th>สถานะสินค้า</th>
-                            <th>Delete</th>
+                            <th>สลิปจ่ายเงิน</th>
+                            <th>แก้ไข</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <?php
-                            $select_stmt = $db->prepare("SELECT * FROM sp_transaction");
+                            $select_stmt = $db->prepare("SELECT * FROM sp_transaction WHERE email = '".$_SESSION["user_login"]."'");
                             $select_stmt->execute();
 
                             while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
+
                         ?>
 
                             <tr>
@@ -140,9 +130,10 @@
                                 <td><?php echo $row["address"]; ?></td>
                                 <td><?php echo $row["phone"]; ?></td>
                                 <td><?php echo $row["operation"]; ?></td>
+                                <td><img class="img_product" src="../uploads/<?php echo $row["slip"]; ?>"></td>
                                 <td class="mt-5">
                                     <center>
-                                        <a href="edit_operation.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-success">Edit</a>
+                                        <a href="add_slip.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">แก้ไข</a>
                                     </center>
                                 </td>
                             </tr>

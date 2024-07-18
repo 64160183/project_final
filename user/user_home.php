@@ -51,11 +51,15 @@
     </div>
 
     <div class="container background-container-menu">
-        <div class="container1">
+        <div class="container2">
             <div class="sidebar">
 
                 <a href="user_home.php" class="sidebar-menu">
                     สินค้า
+                </a>
+
+                <a href="order_history.php" class="sidebar-menu">
+                    คำสั่งซื้อของคุณ
                 </a>
 
                 <hr>
@@ -79,7 +83,7 @@
 
             
             <div class="container1">
-                <div class="div1">
+                <div class="">
                     <div class="itemcart">
                         <div id="cartcount" class="cartcount" style="display: none;">
                             0

@@ -21,18 +21,12 @@
 
     if (isset($_REQUEST['btn_update'])) {
         $id_up = $_REQUEST['txt_id'];
-        $firstname_up = $_REQUEST['txt_firstname'];
-        $lastname_up = $_REQUEST['txt_lastname'];
         $username_up = $_REQUEST['txt_username'];
         $email_up = $_REQUEST['txt_email'];
         $password_up = sha1(md5($_POST['txt_password']));
         $role_up = $_REQUEST['txt_role'];
 
-        if (empty($firstname_up)) {
-            $errorMsg = 'Please enter Firstname';
-        } else if (empty($lastname_up)) {
-            $errorMsg = 'Please enter Lastname';
-        } else if (empty($username_up)) {
+        if (empty($username_up)) {
             $errorMsg = 'Please enter Username';
         } else if (empty($email_up)) {
             $errorMsg[] = "Please enter Email";
@@ -43,10 +37,8 @@
         } else {
             try {
                 if (!isset($errorMsg)) {
-                    $update_stmt = $db->prepare("UPDATE masterlogin SET id = :id_up, firstname = :firstname_up, lastname = :lastname_up, username = :username_up, email = :email_up, password = :password_up, role = :role_up WHERE id = :id");
+                    $update_stmt = $db->prepare("UPDATE masterlogin SET id = :id_up, username = :username_up, email = :email_up, password = :password_up, role = :role_up WHERE id = :id");
                     $update_stmt->bindParam(':id_up', $id_up);
-                    $update_stmt->bindParam(':firstname_up', $firstname_up);
-                    $update_stmt->bindParam(':lastname_up', $lastname_up);
                     $update_stmt->bindParam(':username_up', $username_up);
                     $update_stmt->bindParam(':email_up', $email_up);
                     $update_stmt->bindParam(':password_up', $password_up);
@@ -134,7 +126,7 @@
             </div>
                     <div class="filter">
                         <div class="container background-container">
-                            <div class="div1">
+                            <div class="div">
                                 <h2 class="div-login-register">Edit User</h2>
                                 <hr>
 
@@ -156,49 +148,49 @@
                                 
                                 
                             <form method="post" class="form-horizontal">
-                                
+
                                 <div class="form-group">
                                     <label for="id" class="col-sm-3 control-label">Id</label>
                                     <div>
                                         <input type="text" name="txt_id" class="form-control" value="<?php echo $id; ?>">
                                     </div>
                                 </div>
-                                
-                                <div class="form-group">
-                                    <label for="firstname" class="col-sm-3 control-label">Firstname</label>
-                                    <div>
-                                        <input type="text" name="txt_firstname" class="form-control" value="<?php echo $firstname; ?>">
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="lastname" class="col-sm-3 control-label">Lastname</label>
-                                    <div>
-                                        <input type="text" name="txt_lastname" class="form-control" value="<?php echo $lastname; ?>">
-                                    </div>
-                                </div>
-                                
+
                                 <div class="form-group">
                                     <label for="username" class="col-sm-3 control-label">Username</label>
                                     <div>
                                         <input type="text" name="txt_username" class="form-control" value="<?php echo $username; ?>">
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="email" class="col-sm-3 control-label">Email</label>
                                     <div>
                                         <input type="text" name="txt_email" class="form-control" value="<?php echo $email; ?>">
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
-                                                    <label for="password" class="col-sm-3 control-label">Password</label>
-                                                    <div>
-                                                                <input type="text" name="txt_password" class="form-control" value="<?php echo $password; ?>">
-                                                    </div>
+                                    <label for="password" class="col-sm-3 control-label">Password</label>
+                                    <div>
+                                        <input type="text" name="txt_password" class="form-control" value="<?php echo $password; ?>">
+                                    </div>
                                 </div>
-                                
+
+                                <div class="form-group">
+                                    <label for="phone" class="col-sm-3 control-label">Phone</label>
+                                    <div>
+                                        <input type="text" name="txt_phone" class="form-control" value="<?php echo $phone; ?>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="address" class="col-sm-3 control-label">Address</label>
+                                    <div>
+                                        <input type="text" name="txt_address" class="form-control" value="<?php echo $address; ?>">
+                                    </div>
+                                </div>
+
                                 <div class="from-group">
                                     <label for="type" class="col-sm-3 control-label">Select Type</label>
                                     <div class="col-sm-12">
@@ -207,7 +199,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <div class="col-sm-offset-3 col-sm-9 mt-4">
                                         <input type="submit" name="btn_update" class="btn btn-success" value="Update">
@@ -215,11 +207,12 @@
                                         <p></p>
                                     </div>
                                 </div>
-                                
+
                             </form>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>  
 

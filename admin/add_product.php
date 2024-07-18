@@ -2,21 +2,24 @@
     require_once '../connection.php';
 
     if (isset($_REQUEST['btn_insert'])) {
+        try {
         $id_up = $_REQUEST['txt_id'];
-
         $name_up = $_REQUEST['txt_name'];
-
-        $image_up = $_REQUEST['txt_image'];
-    
         $price_up = $_REQUEST['txt_price'];
         $type_up = $_REQUEST['txt_type'];
         $description_up = $_REQUEST['txt_description'];
+        $stock_up = $_REQUEST['txt_stock'];
+
+        $image_file = $_FILES['txt_file']['name'];
+        $type = $_FILES['txt_file']['type'];
+        $size = $_FILES['txt_file']['size'];
+        $temp = $_FILES['txt_file']['tmp_name'];
+
+        $path = "../img/".$image_file;
 
 
         if (empty($id_up)) {
             $errorMsg = 'Please enter Id';
-        } else if (empty($image_up)) {
-            $errorMsg = 'Please Secect Image';
         } else if (empty($name_up)) {
             $errorMsg = 'Please enter Name';
         } else if (empty($price_up)) {
@@ -25,16 +28,32 @@
             $errorMsg[] = "Please enter Type";
         } else if (empty($description_up)) {
             $errorMsg = 'Please enter Description';
+        } else if (empty($stock_up)) {
+            $errorMsg = 'Please enter Stock';
+        } else if (empty($image_file)) {
+            $errorMsg = 'Please enter Image';
+        } else if ($type == "image/jpg" || $type == "image/jpeg" || $type == "image/png") { //เช็คประเภทรูป
+            if (!file_exists($path)) {
+                if ($size < 5000000) { //เช็ค size รูปที่จะอัฟ
+                    move_uploaded_file($temp, '../img/'.$image_file); //อัปไฟล์ลง โหเดอร์
+                } else {
+                    $errorMsg = "ขนาดไฟล์ใหญ่กว่า 5MB";
+                }
+            } else {
+                $errorMsg = "มีการผิดพลาดในการอัปโหลด";
+            }
         } else {
-            try {
+            $errorMsg = "อัปโหลด jpg, jpeg, png";
+        }
                 if (!isset($errorMsg)) {
-                    $insert_stmt = $db->prepare("INSERT INTO sp_product(id, image, name, price, type, description) VALUES (:id, :image, :name, :price, :type, :description)");
+                    $insert_stmt = $db->prepare("INSERT INTO sp_product(id, img, name, price, type, description, stock) VALUES (:id, :fimage, :name, :price, :type, :description, :stock)");
                     $insert_stmt->bindParam(':id', $id_up);
-                    $insert_stmt->bindParam(':image', $image_up);
+                    $insert_stmt->bindParam(':fimage', $image_file);
                     $insert_stmt->bindParam(':name', $name_up);
                     $insert_stmt->bindParam(':price', $price_up);
                     $insert_stmt->bindParam(':type', $type_up);
                     $insert_stmt->bindParam(':description', $description_up);
+                    $insert_stmt->bindParam(':stock', $stock_up);
 
                     if ($insert_stmt->execute()) {
                         $insertMsg = "Insert Successfully...";
@@ -45,7 +64,6 @@
                 echo $e->getMessage();
             }
         }
-    }
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +99,7 @@
         </div>
     <?php } ?>
 
-    <form method="post" class="form-horizontal">
+    <form method="post" class="form-horizontal" enctype="multipart/form-data">
         <div class="form-group">
             <label for="id" class="col-sm-3 control-label">Id</label>
             <div>
@@ -92,7 +110,7 @@
         <div class="form-group">
             <label for="image" class="col-sm-3 control-label">Image</label>
             <div>
-                <input type="file" name="txt_image" class="form-control" placeholder="Select Image">
+                <input type="file" name="txt_file" class="form-control" placeholder="Select Image">
             </div>
         </div>
 
@@ -125,6 +143,13 @@
         </div>
 
         <div class="form-group">
+            <label for="stock" class="col-sm-3 control-label">Stock</label>
+            <div>
+                <input type="text" name="txt_stock" class="form-control" placeholder="Enter Stock">
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9 mt-4">
                 <input type="submit" name="btn_insert" class="btn btn-success" value="Insert">
                 <a href="product_list.php" class="btn btn-danger">Cancel</a>
@@ -133,5 +158,8 @@
 
     </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 </html>

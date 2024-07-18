@@ -89,8 +89,8 @@
 
             <div class="filter">
                 <div class="display-5 text-center">Order History</div>
-                <table class="table table-striped table-bordered table-hover mt-3">
-                    <thead>
+                <table class="table table-light table-bordered table-hover mt-3">
+                    <thead class="table-primary">
                         <tr>
                             <th>Id</th>
                             <th>รหัสสินค้า</th>
@@ -138,4 +138,23 @@
         </div>
     </div>
 </body>
+    <script>
+        // ฟังก์ชันเพื่อเปลี่ยนสีของเซลล์ที่มีข้อความเป็น "สำเร็จ"
+        function changeCellColor() {
+            // เลือกทุกเซลล์ในตาราง
+            const cells = document.querySelectorAll('table td');
+
+            // ตรวจสอบแต่ละเซลล์
+            cells.forEach(cell => {
+                if (cell.textContent.trim() === 'จัดส่งสําเร็จ') {
+                    cell.style.backgroundColor = 'green';
+                } else if (cell.textContent.trim() === 'รอดำเนินการ' || cell.textContent.trim() === 'กำลังจัดส่ง') {
+                    cell.style.backgroundColor = 'orange';
+                }
+            });
+        }
+
+        // เรียกใช้ฟังก์ชันเมื่อโหลดหน้าเสร็จแล้ว
+        window.onload = changeCellColor;
+    </script>
 </html>

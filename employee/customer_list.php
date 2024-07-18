@@ -105,8 +105,8 @@
 
             <div class="filter">
                 <div class="display-5 text-center">Customer List</div>
-                    <table class="table table-striped table-bordered table-hover mt-3">
-                        <thead>
+                    <table class="table table-light table-bordered table-hover mt-3">
+                    <thead class="table-primary">
                             <tr>
                                 <th>Id</th>
                                 <th>First Name</th>
