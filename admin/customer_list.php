@@ -124,8 +124,8 @@
                                 <td><?php echo $row["phone"]; ?></td>
                                 <td><?php echo $row["address"]; ?></td>
                                 <td class="text-nowrap">
-                                    <a href="edit_user.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-success">Edit</a>
-                                    <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger mt-1">Delete</a>
+                                    <a href="edit_user.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">Edit</a>
+                                    <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
 

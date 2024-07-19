@@ -123,10 +123,10 @@
                                 <td><?php echo $row["address"]; ?></td>
                                 <td><?php echo $row["phone"]; ?></td>
                                 <td><?php echo $row["operation"]; ?></td>
-                                <td class="mt-5">
+                                <td class="text-nowrap">
                                     <center>
-                                        <a href="edit_operation.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-success">Edit</a>
-                                        <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger mt-3">Delete</a>
+                                        <a href="edit_operation.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">Edit</a>
+                                        <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">Cancel</a>
                                     </center>
                                 </td>
                             </tr>

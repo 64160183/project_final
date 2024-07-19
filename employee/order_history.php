@@ -142,7 +142,7 @@
                                 <td><?php echo $row["operation"]; ?></td>
                                 <td class="mt-5">
                                     <center>
-                                        <a href="edit_operation.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-success">Edit</a>
+                                        <a href="edit_operation.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">Edit</a>
                                     </center>
                                 </td>
                             </tr>

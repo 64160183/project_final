@@ -133,7 +133,7 @@
                                 <td><img class="img_product" src="../uploads/<?php echo $row["slip"]; ?>"></td>
                                 <td class="mt-5">
                                     <center>
-                                        <a href="add_slip.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">แก้ไข</a>
+                                        <a href="add_slip.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">Edit</a>
                                     </center>
                                 </td>
                             </tr>
