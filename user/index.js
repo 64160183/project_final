@@ -77,7 +77,7 @@ function searchsome(elem) {
 
     var html = '';
     for (let i = 0; i < product.length; i++) {
-        if(product[i].name.includes(value)) {
+        if(product[i].name.includes(value)  || product[i].type.includes(value)) {
             html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
                     <img class="product-img" src="../img/${product[i].img}" alt="">
                     <p style="font-size: 1.2vw;">${product[i].name}</p>
@@ -200,47 +200,78 @@ function rendercart() {
 }
 
 function renderprice() {
-    if(cart.length > 0) {
+    if (cart.length > 0) {
         var html = '';
-        var shiping = 40;
-                
+        var totalWeight = cart.reduce((total, item) => total + (item.weight * item.count), 0); // น้ำหนักมีอยู่ในรายการรถเข็น
+        var shipping = 0;
+        var totalAmount = 0;
+        
+        // คำนวณค่าจัดส่งตามน้ำหนัก
+        if (totalWeight <= 1000) {
+            shipping = 30;
+        } else if (totalWeight <= 3000) {
+            shipping = 60;
+        } else if (totalWeight <= 5000) {
+            shipping = 90;
+        } else if (totalWeight <= 7000) {
+            shipping = 120;
+        } else {
+            shipping = 150;
+        }
+
         for (let i = 0; i < cart.length; i++) {
             var amount = cart[i].price * cart[i].count;
-            var vat = (amount) * 7 /100;
-            var netamount = amount + shiping + vat;
+            var vat = (amount + shipping) * 0.07; // คำนวณตามจำนวน + ค่าจัดส่ง
+            var netamount = amount + shipping + vat;
+            totalAmount += amount; // รวมยอดรวมสำหรับการแสดงผล
+
             html += `<div class="menu-price">
                         <p>ชื่อสินค้า : ${cart[i].name}</p> &nbsp;&nbsp;
-                        <p>ค่าจัดส่ง : ${shiping}</p> &nbsp;&nbsp;
-                        <p id="pricevat${i}">Vat : ${vat}</p> &nbsp;&nbsp;
-                        <p id="pricenetamount${i}">ยอดรวม : ${netamount}</p>
+                        <p>ค่าจัดส่ง : ${shipping}</p> &nbsp;&nbsp;
+                        <p id="pricevat${i}">Vat : ${vat.toFixed(1)}</p> &nbsp;&nbsp;
+                        <p id="pricenetamount${i}">ยอดรวม : ${netamount.toFixed(1)}</p>
                     </div>`;
-
         }
-        $("#myprice").html(html)
+                
+        $("#myprice").html(html);
 
-        
     } else {
-
+        $("#myprice").html('<p>ไม่มีสินค้าในตะกร้า</p>');
     }
 }
 
 function deinitems(action, i) {
-
-    var shiping = 40;
+    var shipping = 0;
     var amount = cart[i].price * cart[i].count;
-    var vat = (amount) * 7 /100;
-    var netamount = amount + shiping + vat;
+    var vat = amount * 0.07;
+    var totalWeight = cart.reduce((total, item) => total + (item.weight * item.count), 0); // น้ำหนักมีอยู่ในรายการรถเข็น
+    var netamount = amount + shipping + vat;
 
-    if(action == 'subtract') {
-        if(cart[i].count > 0) {
+    // คำนวณค่าจัดส่งตามน้ำหนัก
+    if (totalWeight <= 1000) {
+        shipping = 30;
+    } else if (totalWeight <= 3000) {
+        shipping = 60;
+    } else if (totalWeight <= 5000) {
+        shipping = 90;
+    } else if (totalWeight <= 7000) {
+        shipping = 120;
+    } else {
+        shipping = 150;
+    }
+
+    vat = (amount + shipping) * 0.07;
+    netamount = amount + shipping + vat;
+
+    if (action == 'subtract') {
+        if (cart[i].count > 0) {
             cart[i].count--;
-            $("#countitems"+i).text(cart[i].count)
-            $("#priceproduct"+i).text(cart[i].price * cart[i].count + " THB")
-            $("#pricevat"+i).text("Vat : " + cart[i].price * cart[i].count  * 7 /100)
-            $("#pricenetamount"+i).text("ยอดรวม : " + ((cart[i].price * cart[i].count) + ((cart[i].price * cart[i].count)* 7 /100) + 40))
+            $("#countitems" + i).text(cart[i].count);
+            $("#priceproduct" + i).text(amount + " THB");
+            $("#pricevat" + i).text("Vat : " + vat.toFixed(1));
+            $("#pricenetamount" + i).text("ยอดรวม : " + (cart[i].price * cart[i].count + vat + shipping).toFixed(1));
 
-
-            if(cart[i].count <= 0) {
+            if (cart[i].count <= 0) {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Are you sure to delete?',
@@ -249,33 +280,33 @@ function deinitems(action, i) {
                     confirmButtonText: 'Delete',
                     cancelButtonText: 'Cancel'
                 }).then((res) => {
-                  if(res.isConfirmed) {
-                     cart.splice(i, 1) 
-                     console.log(cart)
-                     rendercart();
-                     $("#cartcount").css('display','flex').text(cart.length)
-                     
-                     if(cart.length <= 0) {
-                        $("#cartcount").css('display','none')
-                        $("#myprice").css('display','none')
-                     }
-                  } else {
-                    cart[i].count++;
-                    $("#countitems"+i).text(cart[i].count)
-                    $("#priceproduct"+i).text(cart[i].price * cart[i].count + " THB")
-                    $("#pricevat"+i).text("Vat : " + cart[i].price * cart[i].count  * 7 /100)
-                    $("#pricenetamount"+i).text("ยอดรวม : " + ((cart[i].price * cart[i].count) + ((cart[i].price * cart[i].count)* 7 /100) + 40))
-                  }
-                })
+                    if (res.isConfirmed) {
+                        cart.splice(i, 1);
+                        console.log(cart);
+                        rendercart();
+                        $("#cartcount").css('display', 'flex').text(cart.length);
+
+                        if (cart.length <= 0) {
+                            $("#cartcount").css('display', 'none');
+                            $("#myprice").css('display', 'none');
+                        }
+                    } else {
+                        cart[i].count++;
+                        $("#countitems" + i).text(cart[i].count);
+                        $("#priceproduct" + i).text(amount + " THB");
+                        $("#pricevat" + i).text("Vat : " + vat.toFixed(1));
+                        $("#pricenetamount" + i).text("ยอดรวม : " + (cart[i].price * cart[i].count + vat + shipping).toFixed(1));
+                    }
+                });
             }
         }
-    } else if(action == 'add') {
-        if(cart[i].count < cart[i].stock) {
-        cart[i].count++;
-        $("#countitems"+i).text(cart[i].count)
-        $("#priceproduct"+i).text(cart[i].price * cart[i].count + " THB")
-        $("#pricevat"+i).text("Vat : " + cart[i].price * cart[i].count  * 7 /100)
-        $("#pricenetamount"+i).text("ยอดรวม : " + ((cart[i].price * cart[i].count) + ((cart[i].price * cart[i].count)* 7 /100) + 40))
+    } else if (action == 'add') {
+        if (cart[i].count < cart[i].stock) {
+            cart[i].count++;
+            $("#countitems" + i).text(cart[i].count);
+            $("#priceproduct" + i).text(amount + " THB");
+            $("#pricevat" + i).text("Vat : " + vat.toFixed(1));
+            $("#pricenetamount" + i).text("ยอดรวม : " + (cart[i].price * cart[i].count + vat + shipping).toFixed(1));
         }
     }
 }

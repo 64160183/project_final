@@ -77,7 +77,7 @@ function searchsome(elem) {
 
     var html = '';
     for (let i = 0; i < product.length; i++) {
-        if(product[i].name.includes(value) || product[i].type.includes(value) || product[i].productid.includes(value)) {
+        if(product[i].name.includes(value)  || product[i].type.includes(value) || product[i].productid === value) {
             html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
                     <img class="product-img" src="../img/${product[i].img}" alt="">
                     <p style="font-size: 1.2vw;">${product[i].name}</p>

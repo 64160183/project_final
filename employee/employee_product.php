@@ -28,6 +28,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
 
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
@@ -184,24 +185,69 @@
                 </div>
             </div>
 
-                <script>
-                    let scanner = new Instascan.Scanner({ video: document.getElementById('preview')});
-                    Instascan.Camera.getCameras().then(function(cameras){
-                        if(cameras.length > 0){
-                            scanner.start(cameras[0]);
+            <script>
+                let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+                Instascan.Camera.getCameras().then(function(cameras) {
+                    if (cameras.length > 0) {
+                        scanner.start(cameras[0]);
+                    } else {
+                        alert('No cameras found');
+                    }
+                }).catch(function(e) {
+                    console.error(e);
+                });
+            
+                scanner.addListener('scan', function(c) {
+                    const scannedId = c; // Adjust if QR code data needs parsing
+                    addProductToCartById(scannedId);
+                });
+            
+                function addProductToCartById(productid) {
+               
+                    console.log("Looking for product with ID:", productid); // Debug line
+                    console.log("Product list:", product); // Debug line to see the product list
+
+                    const productToAdd = product.find(item => item.productid === productid);
+
+                    if (productToAdd) {
+                        let existingItem = cart.find(item => item.productid === productid);
+                    
+                        if (existingItem) {
+                            existingItem.count++;
                         } else {
-                            alert('No cameras found');
+                            cart.push({
+                                index: product.indexOf(productToAdd),
+                                productid: productToAdd.productid,
+                                id: productToAdd.id,
+                                name: productToAdd.name,
+                                price: productToAdd.price,
+                                img: productToAdd.img,
+                                count: 1
+                            });
                         }
-                    }).catch(function(e) {
-                        console.error(e);
-                    });
-                
-                    scanner.addListener('scan', function(c){
-                        document.getElementById('txt_search').value=c;
-                        document.getElementById('text').value=c;
-                        document.forms[0].submit();
-                    });
-                </script>
+                    
+                        Swal.fire({
+                            icon: 'success',
+                            title: `Added ${productToAdd.name} to cart!`
+                        });
+                        $("#cartcount").css('display','flex').text(cart.length)
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Product not found',
+                            text: `No product with ID ${productid} was found.`
+                        });
+                    }
+                }
+
+        function cancelModal() {
+            $(".modal").css('display', 'none');
+        }
+
+        // Initialize product and cart arrays
+        var product = []; // Populate this with your product data
+        var cart = [];
+    </script>
             </div>
                 
         </div>
