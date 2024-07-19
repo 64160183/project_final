@@ -118,7 +118,7 @@
                                 <td><?php echo $row["price"]; ?></td>
                                 <td><?php echo $row["type"]; ?></td>
                                 <td><?php echo $row["description"]; ?></td>
-                                <td class="mt-3">
+                                <td class="text-nowrap">
                                     <a href="edit_product.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-success">Edit</a>
                                     <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger mt-1">Delete</a>
                                 </td>

@@ -150,6 +150,7 @@
                     <div class="modaldesc-detail">
                             <p id="md-productname" style="font-size: 1.5vw">Product Name</p>
                             <p id="md-price" style="font-size: 1.2vw">500 THB</p>
+                            <p id="md-stock">0</p>
                             <br>
                             <p id="md-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, suscipit.</p>
                             <br>

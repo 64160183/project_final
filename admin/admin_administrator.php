@@ -119,7 +119,7 @@
                                 <td><?php echo $row["email"]; ?></td>
                                 <td><?php echo $row["password"]; ?></td>
                                 <td><?php echo $row["role"]; ?></td>
-                                <td class="mt-5">
+                                <td class="text-nowrap">
                                     <a href="edit_user.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-success">Edit</a>
                                     <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger mt-1">Delete</a>
                                 </td>

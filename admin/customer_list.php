@@ -90,7 +90,7 @@
             <div class="filter">
                 <div class="display-5 text-center">Customer List</div>
                     <a href="add_user.php" class="btn btn-primary mt-3">Add +</a>
-                    <table class="table table-light table-bordered table-hover mt-3">
+                    <table class="table table-light table-bordered table-hover mt-3 align-middle">
                         <thead class="table-primary">
                             <tr>
                                 <th>Id</th>
@@ -123,7 +123,7 @@
                                 <td><?php echo $row["role"]; ?></td>
                                 <td><?php echo $row["phone"]; ?></td>
                                 <td><?php echo $row["address"]; ?></td>
-                                <td class="mt-5">
+                                <td class="text-nowrap">
                                     <a href="edit_user.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-success">Edit</a>
                                     <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger mt-1">Delete</a>
                                 </td>
