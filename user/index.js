@@ -341,6 +341,10 @@ function buynow() {
                 })
             }
         }, error: function(err) {
+            Swal.fire ({
+                icon: 'error',
+                title: 'Please fill in complete details.'
+            })
             console.log(err)
         }
     })

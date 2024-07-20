@@ -104,7 +104,7 @@
                 <?php } }?>
             </div>
 
-            <div class="filter">
+            <div class="filter2">
                 <div class="display-5 text-center">Order History</div>
                 <table class="table table-light table-bordered table-hover mt-3">
                     <thead class="table-primary">
@@ -133,7 +133,7 @@
                             <tr>
                                 <td><?php echo $row["id"]; ?></td>
                                 <td><?php echo $row["transid"]; ?></td>
-                                <td><?php echo $row["orderlist"]; ?></td>
+                                <td style="width: 50px;"><?php echo $row["orderlist"]; ?></td>
                                 <td><?php echo $row["netamount"]; ?></td>
                                 <td><?php echo $row["updated_at"]; ?></td>
                                 <td><?php echo $row["username"]; ?></td>

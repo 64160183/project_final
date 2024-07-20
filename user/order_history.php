@@ -92,7 +92,7 @@
                 <?php } }?>
             </div>
 
-            <div class="filter">
+            <div class="filter2">
                 <div class="display-5 text-center">Order History</div>
                 <table class="table table-light table-bordered table-hover mt-3">
                     <thead class="table-primary">

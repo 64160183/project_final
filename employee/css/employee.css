@@ -28,12 +28,18 @@
     display: flex;
     flex-direction: column;
     padding: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 
 .filter {
-    width: 51%;
+    width: 50%;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.filter2 {
+    width: 90%;
     padding: 5px;
     border-radius: 10px;
 }

@@ -87,7 +87,7 @@
 
             </div>
 
-            <div class="filter">
+            <div class="filter2">
                 <div class="display-5 text-center">Customer List</div>
                     <a href="add_user.php" class="btn btn-primary mt-3">Add +</a>
                     <table class="table table-light table-bordered table-hover mt-3 align-middle">

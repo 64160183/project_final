@@ -87,7 +87,7 @@
 
             </div>
 
-            <div class="filter">
+            <div class="filter2">
                 <div class="display-5 text-center">Order History</div>
                 <table class="table table-light table-bordered table-hover mt-3">
                     <thead class="table-primary">
@@ -126,7 +126,7 @@
                                 <td class="text-nowrap">
                                     <center>
                                         <a href="edit_operation.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">Edit</a>
-                                        <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">Cancel</a>
+                                        <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">Delete</a>
                                     </center>
                                 </td>
                             </tr>

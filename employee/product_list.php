@@ -36,7 +36,7 @@
 <body>
     
     <div class="text-center mt-3">
-        <div class="container background-container-header">
+        <div class="container1 background-container-header">
 
             <?php if(isset($_SESSION['success'])) : ?>
                 <div class="alert alert-success">
@@ -61,7 +61,7 @@
         </div>
     </div>
     
-    <div class="container background-container-menu">
+    <div class="container2 background-container-menu">
         <div class="container2">
         <div class="sidebar">
 
@@ -103,7 +103,7 @@
             <?php } }?>
         </div>
 
-            <div class="filter">
+            <div class="filter2">
                 <div class="display-5 text-center">Product List</div>
                 <table class="table table-light table-bordered table-hover mt-3">
                     <thead class="table-primary">

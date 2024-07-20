@@ -33,7 +33,13 @@
 
 
 .filter {
-    width: 51%;
+    width: 50%;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.filter2 {
+    width: 70%;
     padding: 5px;
     border-radius: 10px;
 }
