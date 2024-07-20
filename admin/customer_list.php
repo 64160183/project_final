@@ -55,7 +55,7 @@
             <h3>
                 <?php if(isset($_SESSION['admin_login'])) { ?>
                 Welcome, <?php echo $_SESSION['admin_login']; }?>
-                <a href="../logout.php" class="btn btn-danger">Logout</a>
+                <a href="../logout.php" class="btn btn-danger">ออกจากระบบ</a>
             </h3>
 
         </div>
@@ -88,21 +88,21 @@
             </div>
 
             <div class="filter2">
-                <div class="display-5 text-center">Customer List</div>
-                    <a href="add_user.php" class="btn btn-primary mt-3">Add +</a>
+                <div class="display-5 text-center">รายชื่อลูกค้า</div>
+                    <a href="add_user.php" class="btn btn-primary mt-3">เพิ่ม +</a>
                     <table class="table table-light table-bordered table-hover mt-3 align-middle">
                         <thead class="table-primary">
                             <tr>
                                 <th>Id</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
+                                <th>ชื่อ</th>
+                                <th>นามสกุล</th>
                                 <th>Username</th>
                                 <th>Email</th>
-                                <th>Password</th>
-                                <th>Role</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Edit and Delete</th>
+                                <th>รายการสินค้า</th>
+                                <th>ประเภท</th>
+                                <th>เบอร์โทรศัพ์</th>
+                                <th>ที่อยู่</th>
+                                <th>แก้ไข</th>
                             </tr>
                         </thead>
 
@@ -124,8 +124,8 @@
                                 <td><?php echo $row["phone"]; ?></td>
                                 <td><?php echo $row["address"]; ?></td>
                                 <td class="text-nowrap">
-                                    <a href="edit_user.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">Edit</a>
-                                    <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">Delete</a>
+                                    <a href="edit_user.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">แก้ไข</a>
+                                    <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">ลบ</a>
                                 </td>
                             </tr>
 

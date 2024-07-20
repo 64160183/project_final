@@ -84,7 +84,7 @@
 
     <div class="container">
     <div class="div1">
-        <h2 class="div-login-register"><img src="img/Edit.png" width="70px" class="img">Edit User</h2>
+        <h2 class="div-login-register"><img src="../img/edit.png" width="70px" class="img">Edit User</h2>
         <hr>
 
     <?php
@@ -174,8 +174,8 @@
 
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9 mt-4">
-                <input type="submit" name="btn_update" class="btn btn-success" value="Update">
-                <a href="admin_administrator.php" class="btn btn-danger">Cancel</a>
+                <input type="submit" name="btn_update" class="btn btn-success" value="ตกลง">
+                <a href="admin_administrator.php" class="btn btn-danger">ยกเลิก</a>
             </div>
         </div>
 

@@ -67,7 +67,7 @@
 
     <div class="container">
     <div class="div1">
-        <h2 class="div-login-register"><img src="img/add-user.png" width="70px" class="img">Add User</h2>
+        <h2 class="div-login-register"><img src="../img/add-user.png" width="70px" class="img">เพิ่มผู้ใช้</h2>
         <hr>
 
     <?php
@@ -95,14 +95,14 @@
         </div>
 
         <div class="form-group">
-            <label for="firstname" class="col-sm-3 control-label">Firstname</label>
+            <label for="firstname" class="col-sm-3 control-label">ชื่อ</label>
             <div>
                 <input type="text" name="txt_firstname" class="form-control" placeholder="Enter Firstname">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="lastname" class="col-sm-3 control-label">Lastname</label>
+            <label for="lastname" class="col-sm-3 control-label">นามสกุล</label>
             <div>
                 <input type="text" name="txt_lastname" class="form-control" placeholder="Enter Lastname">
             </div>
@@ -123,21 +123,21 @@
         </div>
 
         <div class="form-group">
-            <label for="password" class="col-sm-3 control-label">Password</label>
+            <label for="password" class="col-sm-3 control-label">รหัสผ่าน</label>
             <div>
                 <input type="text" name="txt_password" class="form-control" placeholder="Enter Password">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="phone" class="col-sm-3 control-label">Tel</label>
+            <label for="phone" class="col-sm-3 control-label">เบอร์โทรศัพท์</label>
             <div>
                 <input type="text" name="txt_phone" class="form-control" placeholder="Enter Phone">
             </div>
         </div>
 
         <div class="from-group">
-            <label for="type" class="col-sm-3 control-label">Select Type</label>
+            <label for="type" class="col-sm-3 control-label">ประเภท</label>
             <div class="col-sm-12">
                 <select name="txt_role" id="form-control">
                     <option value="" select="selected">- Select Role -</option>
@@ -150,8 +150,8 @@
 
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9 mt-4">
-                <input type="submit" name="btn_insert" class="btn btn-success" value="Insert">
-                <a href="admin_administrator.php" class="btn btn-danger">Cancel</a>
+                <input type="submit" name="btn_insert" class="btn btn-success" value="เพิ่ม">
+                <a href="admin_administrator.php" class="btn btn-danger">ยกเลิก</a>
             </div>
         </div>
 

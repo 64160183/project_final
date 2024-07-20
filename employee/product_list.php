@@ -55,7 +55,7 @@
             <h3>
                 <?php if(isset($_SESSION['employee_login'])) { ?>
                 Welcome, <?php echo $_SESSION['employee_login']; }?>
-                <a href="../logout.php" class="btn btn-danger">Logout</a>
+                <a href="../logout.php" class="btn btn-danger">ออกจากระบบ</a>
             </h3>
 
         </div>
@@ -104,16 +104,16 @@
         </div>
 
             <div class="filter2">
-                <div class="display-5 text-center">Product List</div>
+                <div class="display-5 text-center">รายการสินค้า</div>
                 <table class="table table-light table-bordered table-hover mt-3">
                     <thead class="table-primary">
                         <tr>
                             <th>Id</th>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Type</th>
-                            <th>Description</th>                           
+                            <th>รูปภาพ</th>
+                            <th>ชื่อ</th>
+                            <th>ราคา</th>
+                            <th>ประเภท</th>
+                            <th>รายละเอียด</th>                           
                         </tr>
                     </thead>
 

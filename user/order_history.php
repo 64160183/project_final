@@ -56,7 +56,7 @@
             <h3>
                 <?php if(isset($_SESSION['user_login'])) { ?>
                 Welcome, <?php echo $_SESSION['user_login']; }?>
-                <a href="../logout.php" class="btn btn-danger">Logout</a>
+                <a href="../logout.php" class="btn btn-danger">ออกจากระบบ</a>
             </h3>
 
         </div>
@@ -93,7 +93,7 @@
             </div>
 
             <div class="filter2">
-                <div class="display-5 text-center">Order History</div>
+                <div class="display-5 text-center">ประวัติการสั่งซื้อ</div>
                 <table class="table table-light table-bordered table-hover mt-3">
                     <thead class="table-primary">
                         <tr>

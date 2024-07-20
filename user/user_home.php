@@ -46,7 +46,7 @@
             <h3>
                 <?php if(isset($_SESSION['user_login'])) { ?>
                 Welcome, <?php echo $_SESSION['user_login']; }?>
-                <a href="../logout.php" class="btn btn-danger">Logout</a>
+                <a href="../logout.php" class="btn btn-danger">ออกจากระบบ</a>
             </h3>
         </div>
     </div>
@@ -95,7 +95,7 @@
                     </div>
 
                     <div class="filter">
-                        <input onkeyup="searchsome(this)" id="txt_search" type="text" class="sidebar-search sidebar-menu-filter" placeholder="Search">
+                        <input onkeyup="searchsome(this)" id="txt_search" type="text" class="sidebar-search sidebar-menu-filter" placeholder="ค้นหา">
 
                         <br>
 
@@ -120,7 +120,7 @@
         <div class="modal-bg"></div>
         <div class="modal-page">
             <div class="styleh2">
-                <h2>Detail</h2>
+                <h2>รายละเอียดสินค้า</h2>
                 <img onclick="cancelModal()" class="close-size" src="../img/close.png" alt="">
             </div>
                 <div class="modaldesc-content">
@@ -145,10 +145,11 @@
         <div class="modal-bg"></div>
         <div class="modal-page">
             <div class="styleh2">
-                <h2>My Cart</h2>
+                <h2>รถเข็นของฉัน</h2>
                 <img onclick="cancelModal()" class="close-size" src="../img/close.png" alt="">
             </div>
 
+            <br>
 
             <div id="mycart" class="cartlist">
                     
@@ -166,7 +167,7 @@
 
 
             <div class="btn-control">
-                <button onclick="buynow()"class="btn btn-success btn-add-to-card">Buy</button>
+                <button onclick="buynow()"class="btn btn-success btn-add-to-card">ซื้อสินค้า</button>
             </div>
         </div>
     </div>

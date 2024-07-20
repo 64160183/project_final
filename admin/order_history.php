@@ -55,7 +55,7 @@
             <h3>
                 <?php if(isset($_SESSION['admin_login'])) { ?>
                 Welcome, <?php echo $_SESSION['admin_login']; }?>
-                <a href="../logout.php" class="btn btn-danger">Logout</a>
+                <a href="../logout.php" class="btn btn-danger">ออกจากระบบ</a>
             </h3>
 
         </div>
@@ -88,7 +88,7 @@
             </div>
 
             <div class="filter2">
-                <div class="display-5 text-center">Order History</div>
+                <div class="display-5 text-center">ประวัติการสั่งซื้อ</div>
                 <table class="table table-light table-bordered table-hover mt-3">
                     <thead class="table-primary">
                         <tr>
@@ -101,7 +101,7 @@
                             <th>ที่อยู่	</th>
                             <th>เบอร์โทรศัพ์</th>
                             <th>สถานะสินค้า</th>
-                            <th>Delete</th>
+                            <th>แก้ไข</th>
                         </tr>
                     </thead>
 
@@ -125,8 +125,8 @@
                                 <td><?php echo $row["operation"]; ?></td>
                                 <td class="text-nowrap">
                                     <center>
-                                        <a href="edit_operation.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">Edit</a>
-                                        <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">Delete</a>
+                                        <a href="edit_operation.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">แก้ไข</a>
+                                        <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">ลบ</a>
                                     </center>
                                 </td>
                             </tr>

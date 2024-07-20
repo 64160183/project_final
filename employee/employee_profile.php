@@ -88,7 +88,7 @@
             <h3>
                 <?php if(isset($_SESSION['employee_login'])) { ?>
                 Welcome, <?php echo $_SESSION['employee_login']; }?>
-                <a href="../logout.php" class="btn btn-danger">Logout</a>
+                <a href="../logout.php" class="btn btn-danger">ออกจากระบบ</a>
             </h3>
         </div>
     </div>
@@ -127,7 +127,7 @@
                     <div class="filter">
                         <div class="container background-container">
                             <div class="div">
-                                <h2 class="div-login-register">Edit User</h2>
+                                <h2 class="div-login-register">แก้ไขข้อมูล</h2>
                                 <hr>
 
                             <?php
@@ -171,28 +171,28 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="password" class="col-sm-3 control-label">Password</label>
+                                    <label for="password" class="col-sm-3 control-label">รหัสผ่าน</label>
                                     <div>
                                         <input type="text" name="txt_password" class="form-control" value="<?php echo $password; ?>">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="phone" class="col-sm-3 control-label">Phone</label>
+                                    <label for="phone" class="col-sm-3 control-label">เบอร์โทรศัพ์</label>
                                     <div>
                                         <input type="text" name="txt_phone" class="form-control" value="<?php echo $phone; ?>">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="address" class="col-sm-3 control-label">Address</label>
+                                    <label for="address" class="col-sm-3 control-label">ที่อยู่</label>
                                     <div>
                                         <input type="text" name="txt_address" class="form-control" value="<?php echo $address; ?>">
                                     </div>
                                 </div>
 
                                 <div class="from-group">
-                                    <label for="type" class="col-sm-3 control-label">Select Type</label>
+                                    <label for="type" class="col-sm-3 control-label">ประเภท</label>
                                     <div class="col-sm-12">
                                         <select name="txt_role" id="form-control">
                                             <option value="<?php echo $role; ?>" select="selected"><?php ; echo $role; ?></option>
@@ -202,8 +202,8 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-offset-3 col-sm-9 mt-4">
-                                        <input type="submit" name="btn_update" class="btn btn-success" value="Update">
-                                        <a href="employee_home.php" class="btn btn-danger">Cancel</a>
+                                        <input type="submit" name="btn_update" class="btn btn-success" value="ตกลง">
+                                        <a href="employee_home.php" class="btn btn-danger">ยกเลิก</a>
                                         <p></p>
                                     </div>
                                 </div>

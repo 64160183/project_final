@@ -20,8 +20,6 @@
 //    description: 'Food Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil soluta voluptas obcaecati molestiae natus deserunt possimus sit nam optio delectus.',
 //    type: 'food'
 //}];
-
-
 var product;
 
 $(document).ready(() => {
@@ -39,10 +37,10 @@ $(document).ready(() => {
                     html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
                             <img class="product-img" src="../img/${product[i].img}" alt="">
                             <p style="font-size: 1.2vw;">${product[i].name}</p>
-                            <p style="font-size: 0.9vw;">${numberWithCommas(product[i].price)} THB</p></a>
+                            <p style="font-size: 0.9vw;">${numberWithCommas(product[i].price)} บาท</p></a>
                             ${product[i].stock > 0 ? 
                                     `` : 
-                                    `<button disabled class="btn btn-light btn-add-to-card">Out of Stock</button>`
+                                    `<button disabled class="btn btn-light btn-add-to-card">สินค้าหมด</button>`
                                 }
                         </div>`;
                 }
@@ -81,7 +79,7 @@ function searchsome(elem) {
             html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
                     <img class="product-img" src="../img/${product[i].img}" alt="">
                     <p style="font-size: 1.2vw;">${product[i].name}</p>
-                    <p style="font-size: 0.9vw;">${numberWithCommas(product[i].price)} THB</p></a>
+                    <p style="font-size: 0.9vw;">${numberWithCommas(product[i].price)} บาท</p></a>
                 </div>`;
         }
     }
@@ -111,12 +109,12 @@ function openProductDetail(i) {
         $("#modalDesc").css('display', 'flex')
         $("#md-img").attr('src', '../img/' + product[i].img);
         $("#md-productname").text(product[i].name);
-        $("#md-price").text(numberWithCommas(product[i].price) + " THB");
-        $("#md-stock").text("คลัง: " + product[i].stock);
+        $("#md-price").text(numberWithCommas(product[i].price) + " บาท");
+        $("#md-stock").text("คลัง : " + product[i].stock);
         $("#md-description").text(product[i].description);
         $("#button-add").html(`${product[i].stock > 0 ? 
-            `<button onclick="addtocart(${i})" class="btn btn-success btn-add-to-card">Add to Cart</button>` : 
-            `<button disabled class="btn btn-light btn-add-to-card">Out of Stock</button>`
+            `<button onclick="addtocart(${i})" class="btn btn-success btn-add-to-card">เพิ่มลงรถเข็น</button>` : 
+            `<button disabled class="btn btn-light btn-add-to-card">สินค้าหมด</button>`
         }`);
     } else {
         console.error('Product not found');
@@ -180,7 +178,7 @@ function rendercart() {
                             <img src="../img/${cart[i].img}" alt="">
                             <div class="cartlist-detail">
                                 <p style="font-size: 1.5vw">${cart[i].name}</p>
-                                <p id="priceproduct${i}" style="font-size: 1.2vw">${(cart[i].price * cart[i].count)} THB</p>
+                                <p id="priceproduct${i}" style="font-size: 1.2vw">${(cart[i].price * cart[i].count)} บาท</p>
                             </div>
                         </div>
 
@@ -267,7 +265,7 @@ function deinitems(action, i) {
         if (cart[i].count > 0) {
             cart[i].count--;
             $("#countitems" + i).text(cart[i].count);
-            $("#priceproduct" + i).text(amount + " THB");
+            $("#priceproduct" + i).text(amount + " บาท");
             $("#pricevat" + i).text("Vat : " + vat.toFixed(1));
             $("#pricenetamount" + i).text("ยอดรวม : " + (cart[i].price * cart[i].count + vat + shipping).toFixed(1));
 
@@ -293,7 +291,7 @@ function deinitems(action, i) {
                     } else {
                         cart[i].count++;
                         $("#countitems" + i).text(cart[i].count);
-                        $("#priceproduct" + i).text(amount + " THB");
+                        $("#priceproduct" + i).text(amount + " บาท");
                         $("#pricevat" + i).text("Vat : " + vat.toFixed(1));
                         $("#pricenetamount" + i).text("ยอดรวม : " + (cart[i].price * cart[i].count + vat + shipping).toFixed(1));
                     }
@@ -304,7 +302,7 @@ function deinitems(action, i) {
         if (cart[i].count < cart[i].stock) {
             cart[i].count++;
             $("#countitems" + i).text(cart[i].count);
-            $("#priceproduct" + i).text(amount + " THB");
+            $("#priceproduct" + i).text(amount + " บาท");
             $("#pricevat" + i).text("Vat : " + vat.toFixed(1));
             $("#pricenetamount" + i).text("ยอดรวม : " + (cart[i].price * cart[i].count + vat + shipping).toFixed(1));
         }
@@ -322,7 +320,7 @@ function buynow() {
             if(response.RespCode == 200) {
                 Swal.fire ({
                     icon: 'success',
-                    title: 'Thank you',
+                    title: 'ขอบคุณ',
                     html: `<p>ราคาสินค้า : ${response.Amount.Amount}</p>
                         <p>ค่าจัดส่ง : ${response.Amount.Shipping}</p>
                         <p>Vat : ${response.Amount.Vat}</p>
@@ -343,7 +341,7 @@ function buynow() {
         }, error: function(err) {
             Swal.fire ({
                 icon: 'error',
-                title: 'Please fill in complete details.'
+                title: 'กรอกรายละเอียดให้ครบถ้วน'
             })
             console.log(err)
         }

@@ -92,7 +92,7 @@
             <h3>
                 <?php if(isset($_SESSION['admin_login'])) { ?>
                 Welcome, <?php echo $_SESSION['admin_login']; }?>
-                <a href="../logout.php" class="btn btn-danger">Logout</a>
+                <a href="../logout.php" class="btn btn-danger">ออกจากระบบ</a>
             </h3>
 
         </div>

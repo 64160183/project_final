@@ -80,7 +80,7 @@
 
     <div class="container">
     <div class="div1">
-        <h2 class="div-login-register">Add Product</h2>
+        <h2 class="div-login-register"><img src="../img/add-product.png" width="70px" class="img">เพิ่มสินค้า</h2>
         <hr>
 
     <?php
@@ -108,42 +108,42 @@
         </div>
 
         <div class="form-group">
-            <label for="image" class="col-sm-3 control-label">Image</label>
+            <label for="image" class="col-sm-3 control-label">รูปภาพ</label>
             <div>
                 <input type="file" name="txt_file" class="form-control" placeholder="Select Image">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="name" class="col-sm-3 control-label">Name</label>
+            <label for="name" class="col-sm-3 control-label">ชื่อ</label>
             <div>
                 <input type="text" name="txt_name" class="form-control" placeholder="Enter Name">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="price" class="col-sm-3 control-label">Price</label>
+            <label for="price" class="col-sm-3 control-label">ราคา</label>
             <div>
                 <input type="text" name="txt_price" class="form-control" placeholder="Enter Price">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="type" class="col-sm-3 control-label">Type</label>
+            <label for="type" class="col-sm-3 control-label">ประเภท</label>
             <div>
                 <input type="text" name="txt_type" class="form-control" placeholder="Enter Type">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="description" class="col-sm-3 control-label">Description</label>
+            <label for="description" class="col-sm-3 control-label">รายละเอียด</label>
             <div>
                 <input type="text" name="txt_description" class="form-control" placeholder="Enter Description">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="stock" class="col-sm-3 control-label">Stock</label>
+            <label for="stock" class="col-sm-3 control-label">จำนวน</label>
             <div>
                 <input type="text" name="txt_stock" class="form-control" placeholder="Enter Stock">
             </div>
@@ -151,8 +151,8 @@
 
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9 mt-4">
-                <input type="submit" name="btn_insert" class="btn btn-success" value="Insert">
-                <a href="product_list.php" class="btn btn-danger">Cancel</a>
+                <input type="submit" name="btn_insert" class="btn btn-success" value="เพิ่ม">
+                <a href="product_list.php" class="btn btn-danger">ยกเลิก</a>
             </div>
         </div>
 

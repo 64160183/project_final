@@ -55,7 +55,7 @@
             <h3>
                 <?php if(isset($_SESSION['admin_login'])) { ?>
                 Welcome, <?php echo $_SESSION['admin_login']; }?>
-                <a href="../logout.php" class="btn btn-danger">Logout</a>
+                <a href="../logout.php" class="btn btn-danger">ออกจากระบบ</a>
             </h3>
 
         </div>
@@ -88,18 +88,18 @@
             </div>
 
             <div class="filter2">
-                <div class="display-5 text-center">Product List</div>
-                <a href="add_product.php" class="btn btn-primary mt-3">Add +</a>
+                <div class="display-5 text-center">รายการสินค้า</div>
+                <a href="add_product.php" class="btn btn-primary mt-3">เพิ่ม +</a>
                 <table class="table table-light table-bordered table-hover mt-3">
                     <thead class="table-primary">
                         <tr>
                             <th>Id</th>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                            <th>Edit and Delete</th>
+                            <th>รูปภาพ</th>
+                            <th>ชื่อ</th>
+                            <th>ราคา</th>
+                            <th>ประเภท</th>
+                            <th>รายละเอียน</th>
+                            <th>แก้ไข</th>
                         </tr>
                     </thead>
 
@@ -119,8 +119,8 @@
                                 <td><?php echo $row["type"]; ?></td>
                                 <td><?php echo $row["description"]; ?></td>
                                 <td class="text-nowrap">
-                                    <a href="edit_product.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">Edit</a>
-                                    <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">Delete</a>
+                                    <a href="edit_product.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">แก้ไข</a>
+                                    <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">ลบ</a>
                                 </td>
                             </tr>
 
