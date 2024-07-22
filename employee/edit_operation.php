@@ -49,14 +49,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Operation</title>
 
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/employee.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 
     <div class="container">
     <div class="div1">
-        <h2 class="div-login-register"><img src="img/Edit.png" width="70px" class="img">Edit Operation</h2>
+        <h2 class="div-login-register"><img src="../img/edit.png" width="70px" class="img">แก้ไขสถานะ</h2>
         <hr>
 
     <?php
@@ -84,12 +84,16 @@
         </div>  
 
         <div class="from-group">
-            <label for="type" class="col-sm-3 control-label"><?php echo $operation; ?></label>
+            <label for="type" class="col-sm-3 control-label">สถานะสินค้า</label>
             <div class="col-sm-12">
                 <select name="txt_operation" id="form-control">
-                    <option value="<?php echo $operation; ?>" select="selected"><?php echo $operation; ?></option>
+                    <option value="กำลังดำเนินการ" select="selected"><?php echo $operation; ?></option>
+                    <option value="รอตรวจสอบ" select="">รอตรวจสอบ</option>
                     <option value="รอดำเนินการ" select="">รอดำเนินการ</option>
+
+                    <option value="รอดำเนินการ" select="">กำลังดำเนินการ</option>
                     <option value="กำลังจัดส่ง" select="">กำลังจัดส่ง</option>
+
                     <option value="จัดส่งสําเร็จ" select="">จัดส่งสําเร็จ</option>
                 </select>
             </div>
@@ -97,8 +101,8 @@
 
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9 mt-4">
-                <input type="submit" name="btn_update" class="btn btn-success" value="Update">
-                <a href="order_history.php" class="btn btn-danger">Cancel</a>
+                <input type="submit" name="btn_update" class="btn btn-success" value="ตกลง">
+                <a href="order_history.php" class="btn btn-danger">ยกเลิก</a>
             </div>
         </div>
 

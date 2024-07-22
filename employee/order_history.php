@@ -29,7 +29,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMPLOYEE PAGE</title>
-    
+
+    <script src="../colorOperation.js"></script>
     
     <link rel="stylesheet" href="css/employee.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -105,11 +106,11 @@
             </div>
 
             <div class="filter2">
-                <div class="display-5 text-center">Order History</div>
+                <div class="display-5 text-center">ประวัติการสั่งซื้อ</div>
                 <table class="table table-light table-bordered table-hover mt-3">
                     <thead class="table-primary">
                         <tr>
-                            <th>Id</th>
+                        <th>Id</th>
                             <th>รหัสสินค้า</th>
                             <th>รายการสินค้า</th>
                             <th>ราคารวมสินค้า</th>
@@ -118,6 +119,7 @@
                             <th>ที่อยู่	</th>
                             <th>เบอร์โทรศัพ์</th>
                             <th>สถานะสินค้า</th>
+                            <th>สลิปจ่ายเงิน</th>
                             <th>แก้ไข</th>
                         </tr>
                     </thead>
@@ -128,21 +130,34 @@
                             $select_stmt->execute();
 
                             while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
+
+                                // Decode the JSON order list
+                                $orderlist = json_decode($row["orderlist"], true);
+                                // Create an HTML table for the orderlist
+                                $orderTable = '<table class="table table-light table-bordered table-hover"><tr><th>ชื่อ</th><th>จำนวน</th><th>ราคาต่อชิ้น</th></tr>';
+                                foreach ($orderlist as $item) {
+                                    $price = isset($item['price']) ? htmlspecialchars($item['price']) . ' บาท' : '';
+                                    $orderTable .= '<tr><td>' . htmlspecialchars($item['name']) . '</td><td>' . htmlspecialchars($item['count']) . '</td><td>' . $price . '</td></tr>';
+                                }
+                                $orderTable .= '</table>';
                         ?>
+
+                        
 
                             <tr>
                                 <td><?php echo $row["id"]; ?></td>
                                 <td><?php echo $row["transid"]; ?></td>
-                                <td style="width: 50px;"><?php echo $row["orderlist"]; ?></td>
+                                <td><?php echo $orderTable; ?></td>
                                 <td><?php echo $row["netamount"]; ?></td>
                                 <td><?php echo $row["updated_at"]; ?></td>
                                 <td><?php echo $row["username"]; ?></td>
                                 <td><?php echo $row["address"]; ?></td>
                                 <td><?php echo $row["phone"]; ?></td>
                                 <td><?php echo $row["operation"]; ?></td>
+                                <td><img class="img_product" src="../uploads/<?php echo $row["slip"]; ?>"></td>
                                 <td class="mt-5">
                                     <center>
-                                        <a href="edit_operation.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">Edit</a>
+                                        <a href="edit_operation.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">แก้ไข</a>
                                     </center>
                                 </td>
                             </tr>
@@ -154,23 +169,4 @@
         </div>
     </div>
 </body>
-    <script>
-        // ฟังก์ชันเพื่อเปลี่ยนสีของเซลล์ที่มีข้อความเป็น "สำเร็จ"
-        function changeCellColor() {
-            // เลือกทุกเซลล์ในตาราง
-            const cells = document.querySelectorAll('table td');
-
-            // ตรวจสอบแต่ละเซลล์
-            cells.forEach(cell => {
-                if (cell.textContent.trim() === 'จัดส่งสําเร็จ') {
-                    cell.style.backgroundColor = 'green';
-                } else if (cell.textContent.trim() === 'รอดำเนินการ' || cell.textContent.trim() === 'กำลังจัดส่ง') {
-                    cell.style.backgroundColor = 'orange';
-                }
-            });
-        }
-
-        // เรียกใช้ฟังก์ชันเมื่อโหลดหน้าเสร็จแล้ว
-        window.onload = changeCellColor;
-    </script>
 </html>

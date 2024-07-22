@@ -17,6 +17,7 @@
     if (isset($_REQUEST['btn_update'])) {
         try {
         $id_up = $_REQUEST['txt_id'];
+        $operation_up = $_REQUEST['txt_operation'];
         $image_file = $_FILES['txt_file']['name'];
         $type = $_FILES['txt_file']['type'];
         $size = $_FILES['txt_file']['size'];
@@ -44,8 +45,9 @@
         }
 
                 if (!isset($errorMsg)) {
-                    $update_stmt = $db->prepare("UPDATE sp_transaction SET id = :id_up, slip = :file_up WHERE id = :id");
+                    $update_stmt = $db->prepare("UPDATE sp_transaction SET id = :id_up, operation = :operation_up, slip = :file_up WHERE id = :id");
                     $update_stmt->bindParam(':id_up', $id_up);
+                    $update_stmt->bindParam(':operation_up', $operation_up);
                     $update_stmt->bindParam(':file_up', $image_file);
                     $update_stmt->bindParam(':id', $id);
 
@@ -74,7 +76,7 @@
 
     <div class="container">
         <div class="div1">
-            <h2 class="div-login-register"><img src="" width="70px" class="img">Add Slip</h2>
+            <h2 class="div-login-register"><img src="../img/slip.png" width="70px" class="img">เพิ่มสลิป</h2>
             <hr>
 
             <?php
@@ -109,10 +111,18 @@
                     </div>
                 </div>
 
+                <div class="from-group" style="display: none;">
+                    <div class="col-sm-12">
+                        <select name="txt_operation" id="form-control">
+                            <option value="รอตรวจสอบ" select="selected">รอตรวจสอบ</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9 mt-4">
-                        <input type="submit" name="btn_update" class="btn btn-success" value="Upload">
-                        <a href="order_history.php" class="btn btn-danger">Cancel</a>
+                        <input type="submit" name="btn_update" class="btn btn-success" value="ตกลง">
+                        <a href="order_history.php" class="btn btn-danger">ยกเลิก</a>
                     </div>
                 </div>
             </form>

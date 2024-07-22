@@ -84,7 +84,7 @@
 
     <div class="container">
     <div class="div1">
-        <h2 class="div-login-register"><img src="../img/edit.png" width="70px" class="img">Edit User</h2>
+        <h2 class="div-login-register"><img src="../img/edit.png" width="70px" class="img">แก้ไขข้อมูลผูใช้</h2>
         <hr>
 
     <?php
@@ -112,14 +112,14 @@
         </div>
 
         <div class="form-group">
-            <label for="firstname" class="col-sm-3 control-label">Firstname</label>
+            <label for="firstname" class="col-sm-3 control-label">ชื่อ</label>
             <div>
                 <input type="text" name="txt_firstname" class="form-control" value="<?php echo $firstname; ?>">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="lastname" class="col-sm-3 control-label">Lastname</label>
+            <label for="lastname" class="col-sm-3 control-label">นามสกุล</label>
             <div>
                 <input type="text" name="txt_lastname" class="form-control" value="<?php echo $lastname; ?>">
             </div>
@@ -140,28 +140,28 @@
         </div>
 
         <div class="form-group">
-            <label for="password" class="col-sm-3 control-label">Password</label>
+            <label for="password" class="col-sm-3 control-label">รหัสผ่าน</label>
             <div>
                 <input type="text" name="txt_password" class="form-control" value="<?php echo $password; ?>">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="phone" class="col-sm-3 control-label">Tel</label>
+            <label for="phone" class="col-sm-3 control-label">เบอร์โทรศัพท์</label>
             <div>
                 <input type="text" name="txt_tel" class="form-control" value="<?php echo $phone; ?>">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="address" class="col-sm-3 control-label">Address</label>
+            <label for="address" class="col-sm-3 control-label">ที่อยู่</label>
             <div>
                 <input type="text" name="txt_address" class="form-control" value="<?php echo $address; ?>">
             </div>
         </div>
 
         <div class="from-group">
-            <label for="type" class="col-sm-3 control-label">Select Type</label>
+            <label for="type" class="col-sm-3 control-label">ประเภท</label>
             <div class="col-sm-12">
                 <select name="txt_role" id="form-control">
                     <option value="<?php echo $role; ?>" select="selected"><?php echo $role; ?></option>

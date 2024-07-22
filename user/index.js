@@ -168,6 +168,10 @@ function openCart() {
     renderprice();
 }
 
+function openSlip() {
+    $('#modalSlip').css('display', 'flex')
+}
+
 function rendercart() {
     if(cart.length > 0) {
         var html = '';

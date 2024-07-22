@@ -42,7 +42,7 @@ $(document).ready(() => {
                             <p style="font-size: 0.9vw;">${numberWithCommas(product[i].price)} THB</p></a>
                             ${product[i].stock > 0 ? 
                                 `` : 
-                                `<button disabled class="btn btn-light btn-add-to-card">Out of Stock</button>`
+                                `<button disabled class="btn btn-light btn-add-to-card">สินค้าหมด</button>`
                             }
                         </div>`;
                 }
@@ -115,8 +115,8 @@ function openProductDetail(i) {
         $("#md-stock").text("คลัง : " + product[i].stock);
         $("#md-description").text(product[i].description)
         $("#button-add").html(`${product[i].stock > 0 ? 
-            `<button onclick="addtocart(${i})" class="btn btn-success btn-add-to-card">Add to Cart</button>` : 
-            `<button disabled class="btn btn-light btn-add-to-card">Out of Stock</button>`
+            `<button onclick="addtocart(${i})" class="btn btn-success btn-add-to-card">เพิ่มลงรถเข็น</button>` : 
+            `<button disabled class="btn btn-light btn-add-to-card">สินค้าหมด</button>`
         }`);
     } else {
         console.error('Product not found');
