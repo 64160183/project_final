@@ -49,14 +49,22 @@ $(document).ready(() => {
                 $("#productlist").html(html);
 
     
-                var html = '';
+                // Create a set to store unique product types
+                var uniqueTypes = new Set();
                 for (let i = 0; i < product.length; i++) {
-                    html += `<a onclick="searchproduct('${product[i].type}')" class="sidebar-menu-filter" style="cursor: pointer;">${product[i].type}</a>`;
+                    uniqueTypes.add(product[i].type);
+                }
+
+                // Convert the set to an array
+                var uniqueTypesArray = Array.from(uniqueTypes);
+                var html = '';
+                for (let i = 0; i < uniqueTypesArray.length; i++) {
+                    html += `<a onclick="searchproduct('${uniqueTypesArray[i]}')" class="sidebar-menu-filter" style="cursor: pointer;">${uniqueTypesArray[i]}</a>`;
                 }
                 $("#menufilterlist").html(html);
             }
         }, error: function(err) {
-            console.log(err)
+            console.log(err);
         }
     })
 
@@ -72,12 +80,12 @@ function numberWithCommas(x) {
 }
 
 function searchsome(elem) {
-    var value = $('#'+elem.id).val()
+    var value = $('#'+elem.id).val().toLowerCase();
     console.log(value)
 
     var html = '';
     for (let i = 0; i < product.length; i++) {
-        if(product[i].name.includes(value)  || product[i].type.includes(value) || product[i].productid === value) {
+        if(product[i].name.includes(value)  || product[i].type.toLowerCase().includes(value) || product[i].productid === value) {
             html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
                     <img class="product-img" src="../img/${product[i].img}" alt="">
                     <p style="font-size: 1.2vw;">${product[i].name}</p>
@@ -323,4 +331,51 @@ function openGraphTotal() {
 function openGraphType() {
     $("#graph-type").css('display', 'flex')
     $('#graph-total').css('display', 'none')
+}
+
+function searchorder(elem) {
+    var value = $('#' + elem.id).val().toLowerCase();
+    console.log(value);
+
+    $('#orderlist tr').filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+}
+
+function searchorder(elem) {
+    var value = $('#' + elem.id).val().toLowerCase();
+    console.log(value);
+
+    var html = '';
+    for (let i = 0; i < orders.length; i++) {
+        if (orders[i].orderid.toLowerCase().includes(value) || orders[i].username.toLowerCase().includes(value) || orders[i].operation.toLowerCase().includes(value)) {
+
+            // Create an HTML table for the orderlist
+            var orderTable = '<table class="table table-light table-bordered table-hover"><tr><th>ชื่อ</th><th>จำนวน</th><th>ราคาต่อชิ้น</th></tr>';
+            for (let j = 0; j < orders[i].orderlist.length; j++) {
+                var item = orders[i].orderlist[j];
+                var price = item.price ? item.price + ' บาท' : '';
+                orderTable += '<tr><td>' + item.name + '</td><td>' + item.count + '</td><td>' + price + '</td></tr>';
+            }
+            orderTable += '</table>';
+
+            html += `<tr>
+                        <td>${orders[i].id}</td>
+                        <td>${orders[i].orderid}</td>
+                        <td>${orderTable}</td>
+                        <td>${orders[i].netamount}</td>
+                        <td>${orders[i].updated_at}</td>
+                        <td>${orders[i].username}</td>
+                        <td>${orders[i].address}</td>
+                        <td>${orders[i].phone}</td>
+                        <td>${orders[i].operation}</td>
+                    </tr>`;
+        }
+    }
+
+    if (html === '') {
+        $("#orderlist").html('<tr><td colspan="9">ไม่มีออเดอร์</td></tr>');
+    } else {
+        $("#orderlist").html(html);
+    }
 }

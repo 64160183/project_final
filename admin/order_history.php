@@ -23,6 +23,31 @@
     }
 ?>
 
+<?php
+    $select_stmt = $db->prepare("SELECT * FROM sp_transaction");
+    $select_stmt->execute();
+
+    $orders = array();
+    while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
+        $order = array(
+            'id' => $row['id'],
+            'orderid' => $row['transid'],
+            'orderlist' => json_decode($row['orderlist'], true),
+            'netamount' => $row['netamount'],
+            'updated_at' => $row['updated_at'],
+            'username' => $row['username'],
+            'address' => $row['address'],
+            'phone' => $row['phone'],
+            'operation' => $row['operation'],
+            'slip' => $row['slip'],
+        );
+        array_push($orders, $order);
+    }
+?>
+<script>
+    var orders = <?php echo json_encode($orders); ?>;
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +56,10 @@
     <title>ADMIN PAGE</title>
 
     <script src="../colorOperation.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <link rel="stylesheet" href="css/admin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -91,6 +120,11 @@
 
             <div class="filter2">
                 <div class="display-5 text-center">ประวัติการสั่งซื้อ</div>
+                
+                <br>
+
+                <input type="text" id="searchOrderInput" onkeyup="searchorder(this)" class="sidebar-search sidebar-menu-filter" placeholder="ค้นหาประวัติการสั่งซื้อ">
+
                 <table class="table table-light table-bordered table-hover mt-3">
                     <thead class="table-primary">
                         <tr>
@@ -108,7 +142,7 @@
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody id="orderlist">
                         <?php
                             $select_stmt = $db->prepare("SELECT * FROM sp_transaction");
                             $select_stmt->execute();

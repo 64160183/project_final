@@ -47,14 +47,22 @@ $(document).ready(() => {
                 $("#productlist").html(html);
 
     
-                var html = '';
+                // Create a set to store unique product types
+                var uniqueTypes = new Set();
                 for (let i = 0; i < product.length; i++) {
-                    html += `<a onclick="searchproduct('${product[i].type}')" class="sidebar-menu-filter" style="cursor: pointer;">${product[i].type}</a>`;
+                    uniqueTypes.add(product[i].type);
+                }
+
+                // Convert the set to an array
+                var uniqueTypesArray = Array.from(uniqueTypes);
+                var html = '';
+                for (let i = 0; i < uniqueTypesArray.length; i++) {
+                    html += `<a onclick="searchproduct('${uniqueTypesArray[i]}')" class="sidebar-menu-filter" style="cursor: pointer;">${uniqueTypesArray[i]}</a>`;
                 }
                 $("#menufilterlist").html(html);
             }
         }, error: function(err) {
-            console.log(err)
+            console.log(err);
         }
     })
 
@@ -70,12 +78,12 @@ function numberWithCommas(x) {
 }
 
 function searchsome(elem) {
-    var value = $('#'+elem.id).val()
+    var value = $('#'+elem.id).val().toLowerCase();
     console.log(value)
 
     var html = '';
     for (let i = 0; i < product.length; i++) {
-        if(product[i].name.includes(value)  || product[i].type.includes(value)) {
+        if(product[i].name.includes(value)  || product[i].type.toLowerCase().includes(value)) {
             html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
                     <img class="product-img" src="../img/${product[i].img}" alt="">
                     <p style="font-size: 1.2vw;">${product[i].name}</p>

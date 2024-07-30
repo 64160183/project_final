@@ -9,6 +9,7 @@
         $type_up = $_REQUEST['txt_type'];
         $description_up = $_REQUEST['txt_description'];
         $stock_up = $_REQUEST['txt_stock'];
+        $weight_up = $_REQUEST['txt_weight'];
 
         $image_file = $_FILES['txt_file']['name'];
         $type = $_FILES['txt_file']['type'];
@@ -30,6 +31,8 @@
             $errorMsg = 'Please enter Description';
         } else if (empty($stock_up)) {
             $errorMsg = 'Please enter Stock';
+        } else if (empty($weight_up)) {
+            $errorMsg = 'Please enter Weight';
         } else if (empty($image_file)) {
             $errorMsg = 'Please enter Image';
         } else if ($type == "image/jpg" || $type == "image/jpeg" || $type == "image/png") { //เช็คประเภทรูป
@@ -46,7 +49,7 @@
             $errorMsg = "อัปโหลด jpg, jpeg, png";
         }
                 if (!isset($errorMsg)) {
-                    $insert_stmt = $db->prepare("INSERT INTO sp_product(id, img, name, price, type, description, stock) VALUES (:id, :fimage, :name, :price, :type, :description, :stock)");
+                    $insert_stmt = $db->prepare("INSERT INTO sp_product(id, img, name, price, type, description, stock, weight) VALUES (:id, :fimage, :name, :price, :type, :description, :stock, :weight)");
                     $insert_stmt->bindParam(':id', $id_up);
                     $insert_stmt->bindParam(':fimage', $image_file);
                     $insert_stmt->bindParam(':name', $name_up);
@@ -54,6 +57,7 @@
                     $insert_stmt->bindParam(':type', $type_up);
                     $insert_stmt->bindParam(':description', $description_up);
                     $insert_stmt->bindParam(':stock', $stock_up);
+                    $insert_stmt->bindParam(':weight', $weight_up);
 
                     if ($insert_stmt->execute()) {
                         $insertMsg = "Insert Successfully...";
@@ -146,6 +150,13 @@
             <label for="stock" class="col-sm-3 control-label">จำนวน</label>
             <div>
                 <input type="text" name="txt_stock" class="form-control" placeholder="Enter Stock">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="weight" class="col-sm-3 control-label">น้ำหนัก</label>
+            <div>
+                <input type="text" name="txt_weight" class="form-control" placeholder="Enter Weight">
             </div>
         </div>
 
