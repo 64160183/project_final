@@ -10,6 +10,8 @@
         $description_up = $_REQUEST['txt_description'];
         $stock_up = $_REQUEST['txt_stock'];
         $weight_up = $_REQUEST['txt_weight'];
+        $productid_up = round(microtime(true) * 1000);
+
 
         $image_file = $_FILES['txt_file']['name'];
         $type = $_FILES['txt_file']['type'];
@@ -49,10 +51,11 @@
             $errorMsg = "อัปโหลด jpg, jpeg, png";
         }
                 if (!isset($errorMsg)) {
-                    $insert_stmt = $db->prepare("INSERT INTO sp_product(id, img, name, price, type, description, stock, weight) VALUES (:id, :fimage, :name, :price, :type, :description, :stock, :weight)");
+                    $insert_stmt = $db->prepare("INSERT INTO sp_product(id, img, name, productid, price, type, description, stock, weight) VALUES (:id, :fimage, :name, :productid, :price, :type, :description, :stock, :weight)");
                     $insert_stmt->bindParam(':id', $id_up);
                     $insert_stmt->bindParam(':fimage', $image_file);
                     $insert_stmt->bindParam(':name', $name_up);
+                    $insert_stmt->bindParam(':productid', $productid_up);
                     $insert_stmt->bindParam(':price', $price_up);
                     $insert_stmt->bindParam(':type', $type_up);
                     $insert_stmt->bindParam(':description', $description_up);

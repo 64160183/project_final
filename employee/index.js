@@ -137,6 +137,8 @@ function cancelModal() {
 
 
 var cart = [];
+var successSound = new Audio('../audio/success.mp3');
+var errorSound = new Audio('../audio/error.mp3');
 function addtocart() {
     var pass = true;
 
@@ -166,6 +168,10 @@ function addtocart() {
         icon: 'success',
         title: 'Add ' + product[productindex].name + ' to cart !'
     })
+
+    // เล่นเสียงเมื่อ add to cart สำเร็จ
+    successSound.play();
+    
     $("#cartcount").css('display','flex').text(cart.length)
 }
 
@@ -296,6 +302,10 @@ function buynow() {
         }, success: function(response) {
             console.log(response)
             if(response.RespCode == 200) {
+
+                // เล่นเสียงเมื่อ buy สำเร็จ
+                successSound.play();
+
                 Swal.fire ({
                     icon: 'success',
                     title: 'Thank you',
@@ -311,6 +321,9 @@ function buynow() {
                     }
                 }))
             } else {
+
+                errorSound.play();
+
                 Swal.fire ({
                     icon: 'error',
                     title: 'Something is Went wrong'

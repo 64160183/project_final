@@ -135,6 +135,8 @@ function cancelModal() {
 
 
 var cart = [];
+var successSound = new Audio('../audio/success.mp3');
+var errorSound = new Audio('../audio/error.mp3');
 function addtocart() {
     var pass = true;
 
@@ -165,6 +167,10 @@ function addtocart() {
         icon: 'success',
         title: 'Add ' + product[productindex].name + ' to cart !'
     })
+
+    // เล่นเสียงเมื่อ add to cart สำเร็จ
+    successSound.play();
+
     $("#cartcount").css('display','flex').text(cart.length)
     $("#myprice").css('display','block')
 }
@@ -222,11 +228,15 @@ function renderprice() {
         } else if (totalWeight <= 3000) {
             shipping = 60;
         } else if (totalWeight <= 5000) {
-            shipping = 90;
-        } else if (totalWeight <= 7000) {
-            shipping = 120;
+            shipping = 80;
+        } else if (totalWeight <= 10000) {
+            shipping = 100;
+        } else if (totalWeight <= 15000){
+            shipping = 170;
+        } else if (totalWeight <= 20000){
+            shipping = 250;
         } else {
-            shipping = 150;
+            shipping = 270;
         }
 
         for (let i = 0; i < cart.length; i++) {
@@ -263,11 +273,15 @@ function deinitems(action, i) {
     } else if (totalWeight <= 3000) {
         shipping = 60;
     } else if (totalWeight <= 5000) {
-        shipping = 90;
-    } else if (totalWeight <= 7000) {
-        shipping = 120;
+        shipping = 80;
+    } else if (totalWeight <= 10000) {
+        shipping = 100;
+    } else if (totalWeight <= 15000){
+        shipping = 170;
+    } else if (totalWeight <= 20000){
+        shipping = 250;
     } else {
-        shipping = 150;
+        shipping = 270;
     }
 
     vat = (amount + shipping) * 0.07;
@@ -330,6 +344,10 @@ function buynow() {
         }, success: function(response) {
             console.log(response)
             if(response.RespCode == 200) {
+
+                // เล่นเสียงเมื่อ buy สำเร็จ
+                successSound.play();
+
                 Swal.fire ({
                     icon: 'success',
                     title: 'ขอบคุณ',
@@ -345,12 +363,18 @@ function buynow() {
                     }
                 }))
             } else {
+
+                errorSound.play();
+
                 Swal.fire ({
                     icon: 'error',
                     title: 'Something is Went wrong'
                 })
             }
         }, error: function(err) {
+
+            errorSound.play();
+            
             Swal.fire ({
                 icon: 'error',
                 title: 'กรอกรายละเอียดให้ครบถ้วน'

@@ -72,11 +72,15 @@
                     } else if ($totalWeight <= 3000) {
                         $shipping = 60;
                     } else if ($totalWeight <= 5000) {
-                        $shipping = 90;
-                    } else if ($totalWeight <= 7000) {
-                        $shipping = 120;
+                        $shipping = 80;
+                    } else if ($totalWeight <= 10000) {
+                        $shipping = 100;
+                    } else if ($totalWeight <= 15000){
+                        $shipping = 170;
+                    } else if ($totalWeight <= 20000){
+                        $shipping = 250;
                     } else {
-                        $shipping = 150;
+                        $shipping = 270;
                     }
                     $vat = (($amount + $shipping) * 0.07);
                     $netamount = $amount + $shipping + $vat;

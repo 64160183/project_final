@@ -89,11 +89,7 @@
                 <select name="txt_operation" id="form-control">
                     <option value="กำลังดำเนินการ" select="selected"><?php echo $operation; ?></option>
                     <option value="รอตรวจสอบ" select="">รอตรวจสอบ</option>
-                    <option value="รอดำเนินการ" select="">รอดำเนินการ</option>
-
-                    <option value="รอดำเนินการ" select="">กำลังดำเนินการ</option>
                     <option value="กำลังจัดส่ง" select="">กำลังจัดส่ง</option>
-                    
                     <option value="จัดส่งสําเร็จ" select="">จัดส่งสําเร็จ</option>
                 </select>
             </div>

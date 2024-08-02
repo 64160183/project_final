@@ -25,6 +25,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    
 
     <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
@@ -187,6 +188,9 @@
                 </div>
             </div>
 
+            <audio id="scan-sound" src="../audio/success.mp3"></audio>
+            <audio id="error-sound" src="../audio/error.mp3"></audio>
+
             <script>
                 let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
                 Instascan.Camera.getCameras().then(function(cameras) {
@@ -200,8 +204,11 @@
                 });
             
                 scanner.addListener('scan', function(c) {
-                    const scannedId = c; // Adjust if QR code data needs parsing
+                    const scannedId = c;
                     addProductToCartById(scannedId);
+
+                    // เล่นสแกนโค้ด QR สำเร็จ
+                    document.getElementById('scan-sound').play();
                 });
             
                 function addProductToCartById(productid) {
@@ -242,14 +249,14 @@
                     }
                 }
 
-        function cancelModal() {
-            $(".modal").css('display', 'none');
-        }
-
-        // Initialize product and cart arrays
-        var product = []; // Populate this with your product data
-        var cart = [];
-    </script>
+                function cancelModal() {
+                    $(".modal").css('display', 'none');
+                }
+            
+                // Initialize product and cart arrays
+                var product = []; // Populate this with your product data
+                var cart = [];
+            </script>
             </div>
                 
         </div>

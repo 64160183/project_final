@@ -6,11 +6,11 @@ function changeCellColor() {
     cells.forEach(cell => {
         if (cell.textContent.trim() === 'จัดส่งสําเร็จ') {
             cell.style.backgroundColor = 'green';
-        } else if (cell.textContent.trim() === 'รอชำระเงิน' || cell.textContent.trim() === 'กำลังจัดส่ง') {
+        } else if (cell.textContent.trim() === 'รอชำระเงิน') {
             cell.style.backgroundColor = 'red';
-        } else if (cell.textContent.trim() === 'รอตรวจสอบ' || cell.textContent.trim() === 'รอดำเนินการ') {
+        } else if (cell.textContent.trim() === 'รอตรวจสอบ') {
             cell.style.backgroundColor = 'orange';
-        } else if (cell.textContent.trim() === 'กำลังดำเนินการ' || cell.textContent.trim() === 'กำลังจัดส่ง') {
+        } else if (cell.textContent.trim() === 'กำลังจัดส่ง') {
             cell.style.backgroundColor = 'greenyellow';
         }
     });
