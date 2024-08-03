@@ -156,6 +156,7 @@ function addtocart() {
             price: product[productindex].price,
             img: product[productindex].img,
             stock: product[productindex].stock,
+            weight: product[productindex].weight,
             count: 1
         };
         // console.log(obj)
@@ -218,32 +219,37 @@ function rendercart() {
 function renderprice() {
     if (cart.length > 0) {
         var html = '';
-        var totalWeight = cart.reduce((total, item) => total + (item.weight * item.count), 0); // น้ำหนักมีอยู่ในรายการรถเข็น
-        var shipping = 0;
         var totalAmount = 0;
-        
-        // คำนวณค่าจัดส่งตามน้ำหนัก
-        if (totalWeight <= 1000) {
-            shipping = 30;
-        } else if (totalWeight <= 3000) {
-            shipping = 60;
-        } else if (totalWeight <= 5000) {
-            shipping = 80;
-        } else if (totalWeight <= 10000) {
-            shipping = 100;
-        } else if (totalWeight <= 15000){
-            shipping = 170;
-        } else if (totalWeight <= 20000){
-            shipping = 250;
-        } else {
-            shipping = 270;
-        }
 
         for (let i = 0; i < cart.length; i++) {
+            // Calculate the shipping cost for each item based on its weight
+            var itemWeight = cart[i].weight * cart[i].count;
+            var shipping = 0;
+
+            // Calculate shipping cost based on item weight
+            if (itemWeight <= 50000) {
+                for (var j = 1000; j <= 50000; j += 1000) {
+                    if (itemWeight <= j) {
+                        shipping = 30 + ((j / 1000 - 1) * 10);
+                        break;
+                    }
+                }
+            } else if (itemWeight >= 50001 && itemWeight <= 200000) {
+                shipping = 520;
+            } else if (itemWeight >= 200001 && itemWeight <= 999999) {
+                shipping = 2500;
+            } else if (itemWeight >= 1000000 && itemWeight <= 7500000) {
+                shipping = 5000;
+            } else if (itemWeight >= 7500001 && itemWeight <= 10000000) {
+                shipping = 10000;
+            } else if (itemWeight >= 10000001) {
+                shipping = 15000;
+            }
+
             var amount = cart[i].price * cart[i].count;
-            var vat = (amount + shipping) * 0.07; // คำนวณตามจำนวน + ค่าจัดส่ง
+            var vat = (amount + shipping) * 0.07; // Calculate VAT based on amount + shipping
             var netamount = amount + shipping + vat;
-            totalAmount += amount; // รวมยอดรวมสำหรับการแสดงผล
+            totalAmount += amount; // Accumulate total amount before VAT and shipping
 
             html += `<div class="menu-price">
                         <p>ชื่อสินค้า : ${cart[i].name}</p> &nbsp;&nbsp;
@@ -253,6 +259,7 @@ function renderprice() {
                     </div>`;
         }
                 
+        // Display the total amount, excluding shipping
         $("#myprice").html(html);
 
     } else {
@@ -268,21 +275,24 @@ function deinitems(action, i) {
     var netamount = amount + shipping + vat;
 
     // คำนวณค่าจัดส่งตามน้ำหนัก
-    if (totalWeight <= 1000) {
-        shipping = 30;
-    } else if (totalWeight <= 3000) {
-        shipping = 60;
-    } else if (totalWeight <= 5000) {
-        shipping = 80;
-    } else if (totalWeight <= 10000) {
-        shipping = 100;
-    } else if (totalWeight <= 15000){
-        shipping = 170;
-    } else if (totalWeight <= 20000){
-        shipping = 250;
-    } else {
-        shipping = 270;
-    }
+    if (totalWeight <= 6000) {
+        for (var j = 1000; j <= 50000; j += 1000) {
+            if (totalWeight <= j) {
+                shipping = 35 + ((j / 1000 - 1) * 5);
+                break;
+            }
+        }
+    } else if (totalWeight >= 50001 && totalWeight <= 200000) {
+            shipping = 520;
+        } else if (totalWeight >= 200001 && totalWeight <= 999999) {
+            shipping = 2500;
+        } else if (totalWeight >= 1000000 && totalWeight <= 7500000) {
+            shipping = 5000;
+        } else if (totalWeight >= 7500001 && totalWeight <= 10000000) {
+            shipping = 10000;
+        } else if (totalWeight >= 10000001) {
+            shipping = 15000;
+        }
 
     vat = (amount + shipping) * 0.07;
     netamount = amount + shipping + vat;
@@ -309,6 +319,7 @@ function deinitems(action, i) {
                         console.log(cart);
                         rendercart();
                         $("#cartcount").css('display', 'flex').text(cart.length);
+                        renderprice();
 
                         if (cart.length <= 0) {
                             $("#cartcount").css('display', 'none');
@@ -333,6 +344,8 @@ function deinitems(action, i) {
             $("#pricenetamount" + i).text("ยอดรวม : " + (cart[i].price * cart[i].count + vat + shipping).toFixed(1));
         }
     }
+
+    renderprice();
 }
 
 function buynow() {

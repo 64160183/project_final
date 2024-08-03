@@ -67,21 +67,27 @@
                          }
                      }
  
-                    if ($totalWeight <= 1000) {
-                        $shipping = 30;
-                    } else if ($totalWeight <= 3000) {
-                        $shipping = 60;
-                    } else if ($totalWeight <= 5000) {
-                        $shipping = 80;
-                    } else if ($totalWeight <= 10000) {
-                        $shipping = 100;
-                    } else if ($totalWeight <= 15000){
-                        $shipping = 170;
-                    } else if ($totalWeight <= 20000){
-                        $shipping = 250;
-                    } else {
-                        $shipping = 270;
+                    $shipping = 0;
+
+                    if ($totalWeight <= 50000) {
+                     for ($i = 1000; $i <= 50000; $i += 1000) {
+                         if ($totalWeight <= $i) {
+                             $shipping = 30 + (($i / 1000 - 1) * 10);
+                             break;
+                         }
                     }
+                    } else if ($totalWeight >= 50001 && $totalWeight <= 200000) {
+                        $shipping = 520;
+                    } else if ($totalWeight >= 200001 && $totalWeight <= 999999) {
+                        $shipping = 2500;
+                    } else if ($totalWeight >= 1000000 && $totalWeight <= 7500000) {
+                        $shipping = 5000;
+                    } else if ($totalWeight >= 7500001 && $totalWeight <= 10000000) {
+                        $shipping = 10000;
+                    } else if ($totalWeight >= 10000001) {
+                        $shipping = 15000;
+                    }
+
                     $vat = (($amount + $shipping) * 0.07);
                     $netamount = $amount + $shipping + $vat;
                     $transid = round(microtime(true) * 1000);
