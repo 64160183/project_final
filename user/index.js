@@ -220,6 +220,8 @@ function renderprice() {
     if (cart.length > 0) {
         var html = '';
         var totalAmount = 0;
+        var totalVat = 0;
+        var totalShipping = 0;
 
         for (let i = 0; i < cart.length; i++) {
             // Calculate the shipping cost for each item based on its weight
@@ -250,6 +252,8 @@ function renderprice() {
             var vat = (amount + shipping) * 0.07; // Calculate VAT based on amount + shipping
             var netamount = amount + shipping + vat;
             totalAmount += amount; // Accumulate total amount before VAT and shipping
+            totalVat += vat;
+            totalShipping += shipping;
 
             html += `<div class="menu-price">
                         <p>ชื่อสินค้า : ${cart[i].name}</p> &nbsp;&nbsp;
@@ -258,9 +262,18 @@ function renderprice() {
                         <p id="pricenetamount${i}">ยอดรวม : ${netamount.toFixed(1)}</p>
                     </div>`;
         }
+
+        var totalWithVat = totalAmount + totalVat;
+        var totalGrand = totalAmount + totalVat + totalShipping;
                 
         // Display the total amount, excluding shipping
-        $("#myprice").html(html);
+        $("#myprice").html(html + `<div class="total-amount">
+                    <br>
+                    <p style="font-size: 1.2vw">ยอดรวม</p>
+                    <p>ยอดรวมค่าจัดส่ง : ${totalShipping.toFixed(1)}</p>
+                    <p>ยอดรวมสินค้า (ไม่รวมค่าจัดส่ง) : ${totalAmount.toFixed(1)} + ${totalVat.toFixed(1)} = ${totalWithVat.toFixed(1)}</p>
+                    <p>ยอดรวมทั้งหมด : ${totalGrand.toFixed(1)}</p>
+                </div>`);
 
     } else {
         $("#myprice").html('<p>ไม่มีสินค้าในตะกร้า</p>');

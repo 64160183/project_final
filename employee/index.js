@@ -219,11 +219,19 @@ function renderprice() {
     if(cart.length > 0) {
         var html = '';
         var shiping = 0;
+        var totalAmount = 0;
+        var totalVat = 0;
+        var totalShipping = 0;
                 
         for (let i = 0; i < cart.length; i++) {
             var amount = cart[i].price * cart[i].count;
             var vat = (amount) * 7 /100;
             var netamount = amount + shiping + vat;
+
+            totalAmount += amount; // Accumulate total amount before VAT and shipping
+            totalVat += vat;
+            totalShipping = 0;
+
             html += `<div class="menu-price">
                         <p>ชื่อสินค้า : ${cart[i].name}</p> &nbsp;&nbsp;
                         <p>ค่าจัดส่ง : ${shiping}</p> &nbsp;&nbsp;
@@ -232,7 +240,17 @@ function renderprice() {
                     </div>`;
 
         }
-        $("#myprice").html(html)
+
+        var totalWithVat = totalAmount + totalVat;
+        var totalGrand = totalAmount + totalVat + totalShipping;
+
+        $("#myprice").html(html + `<div class="total-amount">
+            <br>
+            <p style="font-size: 1.2vw">ยอดรวม</p>
+            <p>ยอดรวมค่าจัดส่ง : ${totalShipping.toFixed(1)}</p>
+            <p>ยอดรวมสินค้า (ไม่รวมค่าจัดส่ง) : ${totalAmount.toFixed(1)} + ${totalVat.toFixed(1)} = ${totalWithVat.toFixed(1)}</p>
+            <p>ยอดรวมทั้งหมด : ${totalGrand.toFixed(1)}</p>
+        </div>`)
 
         
     } else {

@@ -282,6 +282,10 @@
 
 .cartlist {
     /*background: goldenrod;*/
+    width: 100%;
+    min-height: 0vw;
+    max-height: 15vw;
+    overflow:auto; /* แสดง scroll bar ถ้าเนื้อหามีความสูงมากเกินไป */
 }
 
 .cartlist-item {
