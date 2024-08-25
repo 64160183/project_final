@@ -95,6 +95,20 @@
 
             <div class="filter2">
                 <div class="display-5 text-center">ประวัติการสั่งซื้อ</div>
+
+                <br>
+
+                <center>
+                    <div class="payment">
+                        <center>
+                            <div>การชำระเงิน</div>
+                            <p>โอนเข้าบัญชี ภูธเนศ เนินไสว ธนาคารกรุงไทย ออมทรัพย์</p>
+                            <p style="font-size: 1.2vw; color: red;">เลขบัญชี 237-0-58388-6</p>
+                            <p>โอนแล้วกรุณาส่งสลิปเพื่อรอตรวจสอบ หากมีปัญหาโทรแจ้งหมายเลข 099-609-7312</p>
+                        </center>
+                    </div>
+                </center>
+                
                 <table class="table table-light table-bordered table-hover mt-3">
                     <thead class="table-primary">
                         <tr>

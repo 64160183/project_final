@@ -215,19 +215,6 @@
     padding-top: 5vw; /* เพิ่มระยะห่างจากขอบบน */
 }
 
-.modal2 {
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: block;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .modal-page {
     min-width: 50vw;
     max-width: 70vw;

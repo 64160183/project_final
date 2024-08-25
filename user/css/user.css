@@ -391,3 +391,8 @@
     height: 13vw;
     border-radius: 10px;
 }
+
+.payment {
+    border-style: solid;
+    width: 50%;
+}

@@ -9,14 +9,18 @@ $(document).ready(() => {
                 var html = '';
 
                 for (let i = 0; i < product.length; i++) {
-                    html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
+                    html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}" style="background-color: rgb(201, 220, 255); display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
                             <img class="product-img" src="../img/${product[i].img}" alt="">
-                            <p style="font-size: 1.2vw;">${product[i].name}</p>
-                            <p style="font-size: 0.9vw;">${numberWithCommas(product[i].price)} บาท</p>
-                            ${product[i].stock > 0 ? 
+                            <p style="font-size: 0.9vw;">${product[i].name}</p>
+
+                            <p style="font-size: 1.2vw; margin-top: auto;">
+                                ${numberWithCommas(product[i].price)} บาท
+
+                                ${product[i].stock > 0 ? 
                                     `` : 
                                     `<button disabled class="btn btn-light btn-add-to-card">สินค้าหมด</button>`
                                 }
+                            </p>
                         </div>`;
                 }
                 $("#productlist").html(html);
@@ -52,10 +56,17 @@ function searchsome(elem) {
     var html = '';
     for (let i = 0; i < product.length; i++) {
         if(product[i].name.includes(value)  || product[i].type.toLowerCase().includes(value)) {
-            html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}">
+            html += `<div onclick="openProductDetail(${i})" class="product-item ${product[i].type}" style="background-color: rgb(201, 220, 255); display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
                     <img class="product-img" src="../img/${product[i].img}" alt="">
-                    <p style="font-size: 1.2vw;">${product[i].name}</p>
-                    <p style="font-size: 0.9vw;">${numberWithCommas(product[i].price)} บาท</p></a>
+                    <p style="font-size: 0.9vw;">${product[i].name}</p>
+                    <p style="font-size: 1.2vw;">
+                        ${numberWithCommas(product[i].price)} บาท
+
+                        ${product[i].stock > 0 ? 
+                            `` : 
+                            `<button disabled class="btn btn-light btn-add-to-card">สินค้าหมด</button>`
+                        }
+                    </p>
                 </div>`;
         }
     }

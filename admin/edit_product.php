@@ -72,7 +72,7 @@
                     $update_stmt->bindParam(':stock_up', $stock_up);
                     $update_stmt->bindParam(':id', $id);
 
-                    if ($update_stmt->execute()) {
+                    if ($update_stmt->execute()) { 
                         $updateMsg = "Record update successfully...";
                         header("refresh:1;product_list.php");
                     }
@@ -125,7 +125,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="image" class="col-sm-3 control-label">Slip</label>
+                    <label for="image" class="col-sm-3 control-label">รูปที่จะอัฟ</label>
                     <div>
                         <input type="file" name="txt_file" class="form-control" accept="image/jpeg, image/png">
                         <p class="small mb-0 mt-2">อัปได้เฉพาะไฟล์ jpeg, png</p>
