@@ -344,6 +344,7 @@ function deinitems(action, i) {
                         $("#priceproduct" + i).text(amount + " บาท");
                         $("#pricevat" + i).text("Vat : " + vat.toFixed(1));
                         $("#pricenetamount" + i).text("ยอดรวม : " + (cart[i].price * cart[i].count + vat + shipping).toFixed(1));
+                        renderprice();
                     }
                 });
             }
