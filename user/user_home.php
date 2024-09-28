@@ -133,7 +133,7 @@
                             <p id="md-price" style="font-size: 1.2vw">500 THB</p>
                             <p id="md-stock">0</p>
                             <br>
-                            <p id="md-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, suscipit.</p>
+                            <p id="md-description" class="description-size">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, suscipit.</p>
                             <br>
                             <div class="btn-control" id="button-add">
                                 <div id="button-add"></div>
