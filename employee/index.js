@@ -173,6 +173,7 @@ function addtocart() {
     successSound.play();
     
     $("#cartcount").css('display','flex').text(cart.length)
+    $("#myprice").css('display','block')
 }
 
 
