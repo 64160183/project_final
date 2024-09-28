@@ -288,9 +288,11 @@ function deinitems(action, i) {
                      console.log(cart)
                      rendercart();
                      $("#cartcount").css('display','flex').text(cart.length)
+                     renderprice();
                      
                      if(cart.length <= 0) {
                         $("#cartcount").css('display','none')
+                        $("#myprice").css('display', 'none');
                      }
                   } else {
                     cart[i].count++;
@@ -298,6 +300,7 @@ function deinitems(action, i) {
                     $("#priceproduct"+i).text(cart[i].price * cart[i].count + " THB")
                     $("#pricevat"+i).text("Vat : " + cart[i].price * cart[i].count  * 7 /100)
                     $("#pricenetamount"+i).text("ยอดรวม : " + ((cart[i].price * cart[i].count) + ((cart[i].price * cart[i].count)* 7 /100) + 0))
+                    renderprice();
                   }
                 })
             }
@@ -309,6 +312,8 @@ function deinitems(action, i) {
         $("#pricevat"+i).text("Vat : " + cart[i].price * cart[i].count  * 7 /100)
         $("#pricenetamount"+i).text("ยอดรวม : " + ((cart[i].price * cart[i].count) + ((cart[i].price * cart[i].count)* 7 /100) + 0))
     }
+
+    renderprice();
 }
 
 function buynow() {
