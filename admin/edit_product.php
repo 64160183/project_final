@@ -44,8 +44,10 @@
             $errorMsg = 'Please enter Description';
         } else if (empty($stock_up)) {
             $errorMsg = 'Please enter Stock';
-        } else if (empty($image_file)) {
-            $errorMsg = 'Please enter Image';
+        } 
+        
+        if (empty($image_file)) {
+            $image_file = $row['img']; // ใช้รูปเดิมถ้าไม่มีการอัปโหลดรูปใหม่
         } else if ($type == "image/jpg" || $type == "image/jpeg" || $type == "image/png") { //เช็คประเภทรูป
             if (!file_exists($path)) {
                 if ($size < 5000000) { //เช็ค size รูปที่จะอัฟ
@@ -62,7 +64,7 @@
         }
 
                 if (!isset($errorMsg)) {
-                    $update_stmt = $db->prepare("UPDATE sp_product SET id = :id_up, img = :file_up, name = :name_up, price = :price_up, type = :type_up, description = :description_up stock = :stock_up WHERE id = :id");
+                    $update_stmt = $db->prepare("UPDATE sp_product SET id = :id_up, img = :file_up, name = :name_up, price = :price_up, type = :type_up, description = :description_up, stock = :stock_up WHERE id = :id");
                     $update_stmt->bindParam(':id_up', $id_up);
                     $update_stmt->bindParam(':file_up', $image_file);
                     $update_stmt->bindParam(':name_up', $name_up);
@@ -96,7 +98,7 @@
 <body>
 
     <div class="container">
-        <div class="div1">
+        <div class="div2">
             <h2 class="div-login-register"><img src="../img/edit.png" width="70px" class="img">แก้ไขสินค้า</h2>
             <hr>
 
@@ -127,41 +129,50 @@
                 <div class="form-group">
                     <label for="image" class="col-sm-3 control-label">รูปที่จะอัฟ</label>
                     <div>
+                        <?php if (!empty($row['img'])) { ?>
+                            <p class="small mb-0">รูปปัจจุบัน</p>
+                            <img src="../img/<?php echo $row['img']; ?>" alt="Current Image" width="150">
+                        <?php } ?>
+                    </div>
+                    
+                    <br>
+
+                    <div>
                         <input type="file" name="txt_file" class="form-control" accept="image/jpeg, image/png">
                         <p class="small mb-0 mt-2">อัปได้เฉพาะไฟล์ jpeg, png</p>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="name" class="col-sm-3 control-label">Name</label>
+                    <label for="name" class="col-sm-3 control-label">ชื่อสินค้า</label>
                     <div>
                         <input type="text" name="txt_name" class="form-control" value="<?php echo $name; ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="price" class="col-sm-3 control-label">Price</label>
+                    <label for="price" class="col-sm-3 control-label">ราคาสินค้า</label>
                     <div>
                         <input type="text" name="txt_price" class="form-control" value="<?php echo $price; ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="type" class="col-sm-3 control-label">Type</label>
+                    <label for="type" class="col-sm-3 control-label">ประเภท</label>
                     <div>
                         <input type="text" name="txt_type" class="form-control" value="<?php echo $type; ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="description" class="col-sm-3 control-label">Description</label>
+                    <label for="description" class="col-sm-3 control-label">รายละเอียด</label>
                     <div>
                         <input type="text" name="txt_description" class="form-control" value="<?php echo $description; ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="stock" class="col-sm-3 control-label">Stock</label>
+                    <label for="stock" class="col-sm-3 control-label">จำนวน</label>
                     <div>
                         <input type="text" name="txt_stock" class="form-control" value="<?php echo $stock; ?>">
                     </div>

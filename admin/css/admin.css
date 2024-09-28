@@ -4,7 +4,21 @@
     padding: 10px;
     border-radius: 10px;
     width: 450px;
-    height: 730px;
+    min-height: 650px;
+    max-height: 800px;
+    box-shadow: 0 10px 20px rgba(98, 98, 98, 0.2);
+    position: absolute;
+    left: 40%;
+}
+
+.div2 {
+    margin-top: 50px;
+    background: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 10px;
+    width: 450px;
+    min-height: 900px;
+    max-height: 1000px;
     box-shadow: 0 10px 20px rgba(98, 98, 98, 0.2);
     position: absolute;
     left: 40%;

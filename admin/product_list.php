@@ -98,7 +98,8 @@
                             <th>ชื่อ</th>
                             <th>ราคา</th>
                             <th>ประเภท</th>
-                            <th>รายละเอียน</th>
+                            <th>รายละเอียด</th>
+                            <th>จำนวน</th>
                             <th>แก้ไข</th>
                         </tr>
                     </thead>
@@ -117,7 +118,8 @@
                                 <td><?php echo $row["name"]; ?></td>
                                 <td><?php echo $row["price"]; ?></td>
                                 <td><?php echo $row["type"]; ?></td>
-                                <td><?php echo $row["description"]; ?></td>
+                                <td style="width: 30%"><?php echo $row["description"]; ?></td>
+                                <td><center><?php echo $row["stock"]; ?> ชิ้น</center></td>
                                 <td class="text-nowrap">
                                     <a href="edit_product.php?update_id=<?php echo $row["id"]; ?>" class="btn btn-warning">แก้ไข</a>
                                     <a href="?delete_id=<?php echo $row["id"]; ?>" class="btn btn-danger">ลบ</a>
