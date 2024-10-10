@@ -123,7 +123,7 @@
         <div class="modal-page">
             <div class="styleh2">
                 <h2>รายละเอียดสินค้า</h2>
-                <img onclick="cancelModal()" class="close-size" src="../img/close.png" alt="">
+                <img onclick="cancelModal()" class="close-size" src="../img/close.png" alt="" id="close">
             </div>
                 <div class="modaldesc-content">
                     <img id="md-img" class="modaldese-image" src="https://images.unsplash.com/photo-1531390979850-32568e0159ce?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
@@ -135,7 +135,7 @@
                             <br>
                             <p id="md-description" class="description-size">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, suscipit.</p>
                             <br>
-                            <div class="btn-control" id="button-add">
+                            <div class="btn-control" >
                                 <div id="button-add"></div>
                             </div>
                     </div>
@@ -148,7 +148,7 @@
         <div class="modal-page">
             <div class="styleh2">
                 <h2>รถเข็นของฉัน</h2>
-                <img onclick="cancelModal()" class="close-size" src="../img/close.png" alt="">
+                <img onclick="cancelModal()" class="close-size" src="../img/close.png" alt="" id="close">
             </div>
 
             <br>

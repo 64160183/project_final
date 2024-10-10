@@ -415,4 +415,7 @@ function searchorder(elem) {
     } else {
         $("#orderlist").html(html);
     }
+
+    // เรียกใช้ฟังก์ชันเปลี่ยนสีเซลล์ในตารางสถานะ
+    changeCellColor();
 }
